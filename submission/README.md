@@ -23,11 +23,42 @@
 |---|---|
 | `rps_demo.py` | 演示局 rock-paper-scissors 的**最终版**。纯均匀随机 = 博弈论最优(看不到对手,不可被利用)。 |
 | `rps_adaptive.py` | 仅当某游戏每轮输入**确实带对手历史**时才有用。RPS 演示局输入是随机笑话,用不上。留给真比赛参考。 |
-| `territory_wars.py` | Territory Wars(31×31 贪吃蛇/Tron,4 人抢地盘)。对最近的对手做**迭代加深极小化极大对抗搜索**(alpha-beta + 走法排序),叶子用多源 BFS 评估 `我的Voronoi领地 - 0.6×对手领地` —— 负项让它**主动切割**对手空间;理性对手不会自杀,搜索据此忽略对手的送死走法;与所有对手隔开后切换到贴墙(Warnsdorff)填满残局。每步限时 `MOVE_BUDGET`(默认 0.07s,按平台真实限时调)。本地 1v1 打贪心 bot 18/20、4 人混战 8/10、对随机 16/16,单步 ~70ms。 |
+| `territory_wars.cpp` / `.exe` | **Territory Wars 的提交版 —— 用这个。** C++ bot:迭代加深极小化极大搜索(alpha-beta),叶子评估 = 我的 Voronoi 领地(对全部对手)+ 生存空间;生存闸门排除撞车方向;隔开后贴墙填残局。每步思考时间=剩余预算÷剩余回合,整局算力自动卡在 ~0.34s 内。本地对随机 20/20,角落开局早死率低。⚠️ `AGGR` 设为 0 —— 实测「主动切割单个对手」在 4 人混战里反而吃亏(另两家趁机扩张),所以只做「最大化自己领地」。 |
+| `territory_wars.py` | 较早的 Python 快速 1-ply 贪心版(无搜索),较弱但整局算力 ~130ms 也能跑。只作备份/参考,正式提交用 C++ 版。 |
+| `capture_the_flag.py` | **Capture the Flag 的提交版 —— 用这个。** 29x29、2v2 夺旗。一个进程一名玩家,队友跑同一份代码(克隆);无通信,用「位置字典序」分工——一人进攻夺敌旗、一人防守守己旗。移动 = 贪心下降 BFS 距离场(敌旗/己旗/己方领地/绿洲四张静态场开局算一次,每回合最多再跑一次 BFS 追人)。危险模型:身处敌方领地且与活着的敌人切比雪夫距离 ≤2 的格子会被抓,避开;卡住太久转「拼一把」强推。绿洲回血(140)兼安全区。本地对随机 60/60 全胜,100 局零 DQ。纯 Python 足够快(整局算力 ~0.15s)。 |
 
-### territory_wars.py 可调参数(文件顶部常量)
-- `MOVE_BUDGET` —— 每步思考时间预算。**先看平台 Wiki 的真实限时**:若是 100ms 保持 0.07;更宽松可调大(搜得更深更强),更紧则调小。
-- `AGGR` —— 切割侵略性(0=只顾自己抢地,1=完全零和对抗)。默认 0.6 偏进攻。
+### Territory Wars 提交方式(C++)
+
+**提交 `territory_wars.cpp` 源文件本身,不要提交 .exe。**
+
+⚠️ 已踩坑:判题机是 **Linux**。上传 Windows 编译的 `.exe` 会报
+`ERROR Invalid Move(OUT): execl: Exec format error`(Linux 跑不了 Windows PE
+二进制)。平台会在它自己的 Linux 机器上编译你提交的源文件。
+
+用平台的 **`Submit C++/Binary`** 按钮上传 **`territory_wars.cpp`**(源文件)。
+源码只用标准头(`<cstdio> <cstdlib> <chrono>`),无任何 Windows 依赖,已用
+`g++ -std=c++17 -O2 -Wall -Wextra` 验证零警告,Linux g++ 能直接编过。
+
+本地自测编译(仅用于测试,不是提交物):
+
+```bash
+g++ -std=c++17 -O2 territory_wars.cpp -o territory_wars      # Linux/WSL
+g++ -std=c++17 -O2 -static territory_wars.cpp -o tw.exe      # 本地 Windows
+```
+
+- 顶部常量 `TOTAL_BUDGET`(默认 0.34s):整局算力上限。每步用「剩余预算÷剩余
+  回合」自动分配思考时间,512 回合加起来不会超。平台限时 500ms,留 ~160ms 余量。
+- `AGGR`(默认 0,见上);`MAX_DEPTH`(默认 12)搜索深度上限。
+- ⚠️ 教训:Python 对抗搜索版每步固定烧 70ms,第 7 回合累计超 500ms 被判
+  `Timeouted`。**这个游戏限时是「整局总和」。** C++ 版用「预算分摊到每步」解决。
+
+### Capture the Flag 提交方式
+
+提交 `capture_the_flag.py` 整份内容(Python)。判题机是 Linux,Python 跑得动;
+本 bot 不做搜索,开局算 4 张 BFS 场、每回合最多再 1 张,整局算力 ~0.15s,无超时风险。
+本地模拟器 `tools/ctf_sim.py` 跑真实规则验证(`python tools/ctf_sim.py` 对随机、
+`python tools/ctf_sim.py mirror` 自对弈)。⚠️ 测试棋盘必须**保证四角连通**——纯随机
+障碍会把角落封死造出无解局;真平台棋盘密度高(~25%)但是结构化、连通的。
 
 ## 已确认事实(RPS 演示局)
 
