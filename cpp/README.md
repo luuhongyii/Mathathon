@@ -16,6 +16,18 @@ cl /std:c++17 /O2 nim_example.cpp /Fe:nim.exe
 g++ -std=c++17 -O2 nim_example.cpp -o nim.exe
 ```
 
+**For submissions, always link statically** so the binary has no MinGW
+runtime-DLL dependency (the judge machine won't have `libstdc++-6.dll` etc.):
+
+```bash
+g++ -std=c++17 -O2 -static nim_example.cpp -o nim.exe
+```
+
+Local MinGW: WinLibs g++ 16.1.0 at
+`%LOCALAPPDATA%\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.UCRT_*\mingw64\bin`
+(on PATH after a shell restart). A non-static build only runs from a shell
+that has that `bin\` on PATH — `-static` avoids the issue entirely.
+
 ## Run
 
 ```bash
