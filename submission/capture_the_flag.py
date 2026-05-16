@@ -10,12 +10,12 @@ Strategy
   * One bot instance per player; the teammate runs this same code (a clone).
     Roles split with NO communication: a lexicographic tiebreak on positions,
     committed the moment the two clones diverge. One ATTACKS (goes for the
-    enemy flag), one DEFENDS (camps our flag, intercepts intruders/carriers).
+    enemy flag), one DEFENDS (guards the home front, intercepts intruders/carriers).
   * Movement = greedy descent of BFS distance fields. Static fields (enemy
     flag, our flag, our territory, oasis) are computed once at round 0; at
     most one extra BFS per round (chasing a moving enemy). Cheap and safe on
     any time budget.
-  * Danger model: a cell in enemy territory within Chebyshev 2 of a living
+  * Danger model: a cell in enemy territory within Chebyshev 1 of a living
     enemy is where you get caught - avoided. If progress stalls too long the
     attacker turns "desperate" and pushes through anyway (a draw beats a
     timid stalemate; a death just costs a respawn, not a forfeit).
@@ -83,6 +83,7 @@ class Bot:
         self.d_myterr = None
         self.d_oasis = None
         self.d_myflag = None
+        self.d_guard = None
         self.role = None            # committed 'A' / 'D'
         self.refilling = False
         self.stall = 0
@@ -131,6 +132,18 @@ class Bot:
         self.d_myterr = bfs(
             [y * SIZE + x for y in range(SIZE) for x in range(SIZE)
              if free[y * SIZE + x] and territory(x, y) == self.my_terr], adj)
+        guard = []
+        for y in range(SIZE):
+            for x in range(SIZE):
+                i = y * SIZE + x
+                if not free[i]:
+                    continue
+                if self.my_terr == "B":
+                    if y in (12, 13) and 2 <= x <= 26:
+                        guard.append(i)
+                elif y in (15, 16) and 2 <= x <= 26:
+                    guard.append(i)
+        self.d_guard = bfs(guard or [self.my_flag], adj)
         self.ready = True
 
     # ---- helpers --------------------------------------------------------
@@ -139,7 +152,7 @@ class Bot:
         if territory(x, y) != self.enemy_terr:
             return False
         for ex, ey, _, _ in enemies:
-            if max(abs(ex - x), abs(ey - y)) <= 2:
+            if max(abs(ex - x), abs(ey - y)) <= 1:
                 return True
         return False
 
@@ -186,10 +199,10 @@ class Bot:
             role = "D" if (not mate_alive or mine_closer) else "A"
         elif mate_carry:
             role = "D"
-        elif self.role is not None:
-            role = self.role                        # committed - sticky
         elif not mate_alive:
             role = "A"
+        elif self.role is not None:
+            role = self.role                        # committed - sticky
         elif (mx, my) != (mate[0], mate[1]):
             role = "A" if (mx, my) < (mate[0], mate[1]) else "D"
             self.role = role
@@ -229,8 +242,8 @@ class Bot:
                     tgt = bfs([intruder[1] * SIZE + intruder[0]], self.adj)
                 tgt_id, goal = "chase", (intruder[0], intruder[1])
             else:
-                tgt, tgt_id = self.d_myflag, "camp"
-                goal = (self.my_flag % SIZE, self.my_flag // SIZE)
+                tgt, tgt_id = self.d_guard, "guard"
+                goal = (14, 13 if self.blue else 15)
 
         # ----- stall tracking -> desperate push -----
         cur = tgt[my_idx]

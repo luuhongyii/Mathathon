@@ -11,8 +11,10 @@ import subprocess
 import sys
 
 SIZE = 29
-BOT = os.path.join(os.path.dirname(__file__), "..", "submission",
-                   "capture_the_flag.py")
+BOT = os.environ.get(
+    "CTF_BOT",
+    os.path.join(os.path.dirname(__file__), "..", "submission", "capture_the_flag.py"),
+)
 
 
 def in_oasis(x, y):
@@ -82,8 +84,11 @@ class Proc:
     """One bot subprocess (one player)."""
 
     def __init__(self, board):
+        cmd = BOT.split() if isinstance(BOT, str) and " " in BOT else [BOT]
+        if BOT.endswith(".py"):
+            cmd = [sys.executable, BOT]
         self.p = subprocess.Popen(
-            [sys.executable, BOT], stdin=subprocess.PIPE,
+            cmd, stdin=subprocess.PIPE,
             stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
         self.p.stdin.write(board + "\n")
         self.p.stdin.flush()
