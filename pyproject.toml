@@ -1,0 +1,10 @@
+[project]
+name = "mathathon-starter-kit"
+version = "0.1.0"
+description = "Reusable bot-development kit for competitive mathematical game challenges."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pyright]
+include = ["mathathon_kit", "examples"]
+typeCheckingMode = "basic"
