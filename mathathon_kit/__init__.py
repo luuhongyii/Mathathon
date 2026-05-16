@@ -14,6 +14,7 @@ from .strategy import (
     ISMCTSBot,
     PavlovBot,
     RegretMatchingBot,
+    SimultaneousMCTSBot,
     TitForTatBot,
 )
 from .utils import (
@@ -94,6 +95,7 @@ __all__ = [
     "PavlovBot",
     "RandomBot",
     "RegretMatchingBot",
+    "SimultaneousMCTSBot",
     "TitForTatBot",
     "compose_evaluators",
     "normalize_evaluator",

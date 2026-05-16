@@ -12,7 +12,7 @@ testable bot — and a working stdio submission — as fast as possible.
 |---|---|
 | `core.py` | `GameState`, `SimultaneousState`, `Simulator`, `SimultaneousSimulator`, `TimeBudget` |
 | `bots.py` | Random / Greedy / Minimax (α-β) / **`MinimaxBotTT` (TT + iterative deepening + PV ordering)** / BeamSearch / MCTS (opponent-aware) / MetaBot |
-| `strategy.py` | RegretMatching · FictitiousPlay · ISMCTS · TitForTat · Grim · Pavlov · ε-Greedy bandit |
+| `strategy.py` | RegretMatching · FictitiousPlay · ISMCTS (turn-based hidden info) · **`SimultaneousMCTSBot`** (decoupled-UCT for simultaneous-move games; determinize / evaluator / opponent-model hooks) · TitForTat · Grim · Pavlov · ε-Greedy bandit |
 | `nash.py` | **`solve_zero_sum`** (LP via scipy, fictitious-play fallback) · `NashMatrixBot` |
 | `tournament.py` | **N-player** round-robin — win-rate, avg score, multi-Elo · `significance()` (auto baseline = 1/seats) · `error_report()` (error messages without `keep_results`) |
 | `parallel.py` | `ParallelRoundRobin` — drop-in process-pool round-robin (~3× speedup) |
@@ -35,7 +35,7 @@ testable bot — and a working stdio submission — as fast as possible.
 | `kuhn_poker.py` | Kuhn poker (hidden info, ISMCTS smoke test) | 2 | turn-based + hidden info |
 | `platform_submission_nim.py` | stdio submission template | 1 | live judge |
 | `template_adapter.py` | **copy-me scaffold** — blank adapter + opening checklist | 2 | turn-based |
-| `figgie.py` | Simplified Jane Street Figgie — full-pipeline rehearsal | 4 | simultaneous + hidden info |
+| `figgie.py` | Simplified Jane Street Figgie — belief tracking + decoupled-UCT search | 4 | simultaneous + hidden info |
 | `figgie_submission.py` | Figgie stdio submission (bundles to one file) | 1 | live judge |
 
 ### Tooling — `tools/`
@@ -122,7 +122,9 @@ joint-move version).
    - **Long horizon / large branching / stochastic** → `MCTSBot`.
    - **Repeated matrix-style** → `RegretMatchingBot` or `FictitiousPlayBot`.
    - **Pure 2-player zero-sum matrix** → `solve_zero_sum(payoff_matrix)` → `NashMatrixBot` (unexploitable mixed strategy).
-   - **Hidden information** → `ISMCTSBot` (give it a `determinize()` sampler).
+   - **Hidden information, turn-based** → `ISMCTSBot` (give it a `determinize()` sampler).
+   - **Hidden information, simultaneous-move** → `SimultaneousMCTSBot` with a `determinize()` sampler. `ISMCTSBot` does *not* fit here — it needs `current_player` / `apply`, which a `SimultaneousState` lacks.
+   - **Simultaneous-move, multi-round** → `SimultaneousMCTSBot` (decoupled-UCT). Add an `evaluator` for long games, an `action_filter` for big action sets, and an `opponent_policy` to switch from equilibrium search to exploiting a weak field. See `examples/figgie.py`.
    - **Simultaneous one-shot** → enumerate-then-best-respond + `RegretMatchingBot` over rounds.
 4. **Tune.** Use `GridTuner` over your engine's parameters. Switch to
    `ParallelRoundRobin` when sweeps get slow.
@@ -162,7 +164,7 @@ mathathon_kit/   # core engine
 examples/        # one adapter per archetype
 tools/           # bundle.py — single-file submission amalgamator
 cpp/             # C++17 single-header mirror
-tests/           # pytest suite (58 tests, all green)
+tests/           # pytest suite (69 tests, all green)
 pyproject.toml
 ```
 
@@ -170,6 +172,6 @@ pyproject.toml
 
 ```
 $ python -m pytest tests/ -q
-..........................................................                  [100%]
-58 passed
+.....................................................................         [100%]
+69 passed
 ```

@@ -21,7 +21,17 @@ the 12-card suit) is the hidden GOAL suit.
 HIDDEN-INFO NOTE: the kit hands the full state to every bot, so `twelve_suit`
 and other players' hands are technically visible — a well-behaved bot must
 not read them. A real submission gets only its own observation (see
-figgie_submission.py); for search you would add an ISMCTS `determinize()`.
+figgie_submission.py). The honest way to *search* a hidden-info game is a
+`determinize()` sampler — `SearchBot` below does exactly this, driving the
+kit's `SimultaneousMCTSBot` (decoupled-UCT for simultaneous-move games).
+Note `ISMCTSBot` will NOT work here: it is turn-based and needs
+`current_player` / `apply`, which a `SimultaneousState` does not have.
+
+WHAT THIS FILE SHOWS, deepest last:
+  - goal_belief / hand_value — the static informational edge from one hand.
+  - BeliefTracker — refines that belief round by round from observed trades.
+  - MarketMaker / Eager / Inference — fixed one-shot policies.
+  - determinize_figgie + SearchBot — sample the hidden goal, then search.
 
 SIMPLIFICATIONS (documented on purpose): one quote per player per round, and
 a single round-by-round call auction rather than a continuous order book.
@@ -38,10 +48,17 @@ from typing import List, Mapping, Sequence, Tuple
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from mathathon_kit import RandomBot, RoundRobin, benchmark_bot, validate_adapter
+from mathathon_kit import (
+    RandomBot,
+    RoundRobin,
+    SimultaneousMCTSBot,
+    benchmark_bot,
+    validate_adapter,
+)
 
 Player = int
 Action = Tuple  # ("pass",) | ("bid", suit, price) | ("ask", suit, price)
+Trade = Tuple[int, int, int, int]  # (suit, buyer, seller, clearing_price)
 
 _PARTNER = {0: 1, 1: 0, 2: 3, 3: 2}  # same-colour suit pairs (0,1 black; 2,3 red)
 PRICES = (6, 8, 10, 12, 14)  # quote ladder; 10 is the suit-blind "fair" value
@@ -62,6 +79,9 @@ class FiggieState:
     twelve_suit: int
     max_rounds: int = MAX_ROUNDS
     players: Tuple[Player, ...] = (0, 1, 2, 3)
+    # Trades cleared in the PREVIOUS round -- public information every player
+    # observes. A round-by-round belief tracker mines this; see BeliefTracker.
+    last_trades: Tuple[Trade, ...] = ()
 
     def active_players(self) -> Sequence[Player]:
         return () if self.is_terminal() else self.players
@@ -85,6 +105,7 @@ class FiggieState:
         # spread profit. Sorting is index-tie-broken, so this is deterministic.
         hands = [list(h) for h in self.hands]
         chips = list(self.chips)
+        trades: List[Trade] = []
         for suit in range(4):
             bids = sorted(
                 (
@@ -111,6 +132,7 @@ class FiggieState:
                 hands[seller][suit] -= 1
                 chips[buyer] -= trade
                 chips[seller] += trade
+                trades.append((suit, buyer, seller, trade))
                 i += 1
                 j += 1
         return FiggieState(
@@ -120,6 +142,7 @@ class FiggieState:
             twelve_suit=self.twelve_suit,
             max_rounds=self.max_rounds,
             players=self.players,
+            last_trades=tuple(trades),
         )
 
     def is_terminal(self) -> bool:
@@ -298,13 +321,196 @@ class InferenceBot:
         return ("pass",)
 
 
+# --- Tracking the goal suit as the game unfolds -----------------------------
+#
+# goal_belief() reads a static snapshot of one hand. But every round you also
+# see which suits TRADED (FiggieState.last_trades). Players who have inferred
+# the goal tend to buy it, so trade volume in a suit is (noisy) evidence that
+# it is the goal. BeliefTracker folds that evidence into the hand-only prior.
+
+
+class BeliefTracker:
+    """Posterior over the hidden goal suit, refined each round from observed
+    trades. Seed it with your own hand, then call ``observe`` once per round
+    with ``FiggieState.last_trades``.
+
+    The trade signal is deliberately weak (``trade_weight`` is low): market
+    makers also churn the abundant 12-card suit -- the goal's PARTNER, not the
+    goal -- so trades are informative but noisy. This is a teaching model of
+    Bayesian-style updating, not a calibrated likelihood. A suit our own hand
+    has ruled out (probability 0) stays 0: evidence never resurrects it."""
+
+    def __init__(self, hand: Sequence[int], trade_weight: float = 0.12) -> None:
+        self.belief: List[float] = goal_belief(hand)
+        self.trade_weight = trade_weight
+
+    def observe(self, trades: Sequence[Trade]) -> List[float]:
+        if trades:
+            bump = [0.0, 0.0, 0.0, 0.0]
+            for suit, *_rest in trades:
+                bump[suit] += 1.0
+            updated = [
+                self.belief[s] * (1.0 + self.trade_weight * bump[s]) for s in range(4)
+            ]
+            total = sum(updated)
+            if total > 0.0:
+                self.belief = [p / total for p in updated]
+        return self.belief
+
+    def most_likely(self) -> int:
+        return max(range(4), key=lambda s: self.belief[s])
+
+
+# --- Search: determinize the hidden state, then run decoupled-UCT ------------
+
+
+def _sample_index(weights: Sequence[float], rng: random.Random) -> int:
+    """Sample an index in proportion to non-negative weights."""
+    total = sum(weights)
+    if total <= 0.0:
+        return rng.randrange(len(weights))
+    threshold = rng.random() * total
+    cumulative = 0.0
+    for index, weight in enumerate(weights):
+        cumulative += weight
+        if threshold <= cumulative:
+            return index
+    return len(weights) - 1
+
+
+def determinize_figgie(
+    state: FiggieState,
+    player: Player,
+    belief: Sequence[float],
+    rng: random.Random,
+) -> FiggieState:
+    """Sample a full FiggieState consistent with what ``player`` knows.
+
+    Keeps the player's own hand and the public chips / round / trade log,
+    samples the hidden goal suit from ``belief``, and deals the rest of the
+    deck across the other seats. Only private-to-player or public facts are
+    read: the player's own hand, and how many cards each opponent holds (a
+    public count -- every trade is observed). Opponents' SUITS are sampled,
+    never copied off the true state -- so a search bot stays honest."""
+    my_hand = state.hands[player]
+    twelve = _PARTNER[_sample_index(belief, rng)]
+    deck = _deck_counts(twelve)
+    remaining: List[int] = []
+    for suit in range(4):
+        left = deck[suit] - my_hand[suit]
+        if left < 0:  # belief should have ruled this out; bail out safely
+            return state
+        remaining.extend([suit] * left)
+    rng.shuffle(remaining)
+    hands: List[Tuple[int, ...]] = [()] * 4
+    hands[player] = tuple(my_hand)
+    cursor = 0
+    for seat in range(4):
+        if seat == player:
+            continue
+        drawn = [0, 0, 0, 0]
+        for _ in range(sum(state.hands[seat])):  # card count is public
+            drawn[remaining[cursor]] += 1
+            cursor += 1
+        hands[seat] = tuple(drawn)
+    return FiggieState(
+        hands=tuple(hands),
+        chips=state.chips,
+        round=state.round,
+        twelve_suit=twelve,
+        max_rounds=state.max_rounds,
+        players=state.players,
+        last_trades=state.last_trades,
+    )
+
+
+def _figgie_eval(state: FiggieState, player: Player) -> float:
+    """Leaf evaluator for SearchBot's search. Inside a determinization the goal
+    suit is fixed, so we can project the end-game payout from the *current*
+    holdings -- the score() formula applied before the game ends. This is a
+    sharp, low-variance signal: a random rollout to the end would smear one
+    move's effect across seven noisy rounds and leave the search guessing."""
+    goal = _PARTNER[state.twelve_suit]
+    counts = [state.hands[p][goal] for p in range(4)]
+    best = max(counts)
+    winners = [p for p in range(4) if counts[p] == best]
+    bonus = ANTE * 4 - sum(counts) * GOAL_CARD_VALUE
+    value = state.chips[player] + state.hands[player][goal] * GOAL_CARD_VALUE
+    if player in winners:
+        value += bonus / len(winners)
+    return float(value)
+
+
+def _figgie_candidates(state: FiggieState, player: Player) -> List[Action]:
+    """Prune the 41-action legal set to ~9 for the search: pass, plus one
+    representative bid and one representative ask per suit. The suit-and-side
+    choice is what decides the game; the exact price rung is a second-order
+    knob the search can afford to drop. SimultaneousMCTSBot needs this -- thin
+    MCTS cannot cover 41 arms per player on a per-move time budget."""
+    legal = set(state.legal_actions(player))
+    candidates: List[Action] = [("pass",)]
+    for suit in range(4):
+        # Highest affordable bid: midpoint clearing makes a top bid near-free,
+        # and the high bidder wins the auction match.
+        for price in (14, 12, 10, 8):
+            if ("bid", suit, price) in legal:
+                candidates.append(("bid", suit, price))
+                break
+        for price in (8, 10, 12, 14):  # lowest ask -- dump junk readily
+            if ("ask", suit, price) in legal:
+                candidates.append(("ask", suit, price))
+                break
+    return candidates
+
+
+class SearchBot:
+    """Decoupled-UCT search over a belief-sampled full game -- the deepest bot
+    here. It tracks the goal-suit posterior across rounds (BeliefTracker) and
+    each round runs SimultaneousMCTSBot: the determinizer samples the hidden
+    goal suit and opponents' hands from that posterior, a pruned candidate set
+    keeps the branching tractable, and a leaf evaluator projects the end-game
+    payout. Unlike InferenceBot (a fixed one-shot bid) the move is the outcome
+    of search against opponents who are themselves modelled as best-responding."""
+
+    name = "search"
+
+    def __init__(self, simulations: int = 1200) -> None:
+        # `simulations` is only a cap -- the per-move time budget is the real
+        # limiter. Keep it high so a generous budget is never wasted; the
+        # search needs a few hundred sims before its edge is reliable.
+        self.simulations = simulations
+        self._tracker = None
+
+    def choose_action(self, state, player, budget, rng):
+        if state.round == 0 or self._tracker is None:
+            self._tracker = BeliefTracker(state.hands[player])  # fresh game
+        belief = self._tracker.observe(state.last_trades)
+        engine = SimultaneousMCTSBot(
+            determinize=lambda s, p, r: determinize_figgie(s, p, belief, r),
+            evaluator=_figgie_eval,
+            action_filter=_figgie_candidates,
+            # Exploitative: your profit needs a counterparty who misprices a
+            # card, so model opponents as noisy, not as flawless hoarders.
+            opponent_policy=lambda s, p, r: r.choice(list(s.legal_actions(p))),
+            simulations=self.simulations,
+        )
+        return engine.choose_action(state, player, budget, rng)
+
+
 if __name__ == "__main__":
     print("=== Step 1: validate the adapter (mutation / hashable / termination) ===")
     print(validate_adapter(make_state(0), games=10).summary())
 
-    print("\n=== Step 2: sample goal-suit belief from one hand ===")
+    print("\n=== Step 2: belief from one hand, then refined by observed trades ===")
     sample = make_state(0).hands[0]
     print(f"hand {sample}  ->  P(goal=suit) = {[round(p, 2) for p in goal_belief(sample)]}")
+    tracker = BeliefTracker(sample)
+    # Simulate two rounds where suit 1 is heavily traded -- watch belief shift.
+    busy_round = ((1, 0, 2, 10), (1, 3, 0, 12), (1, 2, 1, 8))
+    for r in (1, 2):
+        tracker.observe(busy_round)
+        print(f"after round {r} (suit 1 traded x3) -> "
+              f"P(goal=suit) = {[round(p, 2) for p in tracker.belief]}")
 
     print("\n=== Step 3: 4-player round-robin -- naive bots vs the inference bot ===")
     bots = {
@@ -328,5 +534,38 @@ if __name__ == "__main__":
     if report.error_samples:
         print(report.error_report())
 
-    print("\n=== Step 5: per-move latency (works on simultaneous games too) ===")
-    print(benchmark_bot(InferenceBot(), make_state, positions=40, time_limit=0.02).summary())
+    print("\n=== Step 5: the search bot -- decoupled-UCT over belief samples ===")
+    # SearchBot runs SimultaneousMCTSBot every move: it samples the hidden goal
+    # suit from its belief, best-responds against a noisy opponent model, and
+    # scores leaves with the projected payout. It needs a few hundred sims per
+    # move to be reliable, so this round-robin runs fewer games with a larger
+    # per-move budget -- it takes ~45s, far longer than the naive bots above.
+    #
+    # Expect search to lead the field on AVERAGE SCORE and on Elo, and to run
+    # level with the hand-tuned InferenceBot on win-rate. It gets there using
+    # only the rules and a belief sampler -- no Figgie-specific bidding policy
+    # is hand-written into it, unlike InferenceBot. The move limit is 0.10s;
+    # SimultaneousMCTSBot self-limits to 80% of it for jitter headroom.
+    search_bots = {
+        "search": SearchBot(),
+        "inference": InferenceBot(),
+        "eager": EagerBot(),
+        "random": RandomBot(),
+    }
+    search_report = RoundRobin(
+        players=(0, 1, 2, 3),
+        initial_state_factory=make_state,
+        games_per_pair=80,
+        simultaneous=True,
+        time_limit_per_move=0.10,
+    ).run(search_bots, seed=11)
+    print(search_report.summary())
+    print(search_report.significance())
+    if search_report.error_samples:
+        print(search_report.error_report())
+
+    print("\n=== Step 6: per-move latency -- inference (cheap) vs search (heavy) ===")
+    # One overrun forfeits a game: always benchmark the engine you ship.
+    print(benchmark_bot(InferenceBot(), make_state, positions=40, time_limit=0.10).summary())
+    print(benchmark_bot(SearchBot(), make_state, positions=20,
+                        time_limit=0.10).summary())

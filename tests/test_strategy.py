@@ -1,10 +1,12 @@
 import random
+from dataclasses import dataclass
 from typing import Optional, Sequence
 
 from mathathon_kit import (
     EpsilonGreedyBanditBot,
     FictitiousPlayBot,
     RegretMatchingBot,
+    SimultaneousMCTSBot,
     TimeBudget,
 )
 
@@ -72,3 +74,74 @@ def test_epsilon_bandit_picks_high_reward():
     state = _DummyState(("a", "b", "c"))
     action = bot.choose_action(state, 0, TimeBudget(0.01), random.Random(0))
     assert action == "a"
+
+
+# ---------------------------------------------------------------------------
+# SimultaneousMCTSBot -- decoupled-UCT for simultaneous-move games
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class _PickHigh:
+    """Trivial 2-player simultaneous game: each round both players pick a
+    number 0/1/2 and add it to their total; after ``rounds`` rounds the score
+    is your total minus the opponent's. Picking 2 strictly dominates -- a
+    working search must converge to it. The score is competitive (zero-sum),
+    so it exercises the bot's mean-centred reward normalisation."""
+
+    players: tuple = (0, 1)
+    round: int = 0
+    rounds: int = 3
+    totals: tuple = (0, 0)
+
+    def active_players(self):
+        return () if self.is_terminal() else self.players
+
+    def legal_actions(self, player):
+        return (0, 1, 2)
+
+    def apply_joint(self, actions):
+        totals = tuple(self.totals[p] + actions[p] for p in self.players)
+        return _PickHigh(self.players, self.round + 1, self.rounds, totals)
+
+    def is_terminal(self):
+        return self.round >= self.rounds
+
+    def score(self, player):
+        return float(self.totals[player] - self.totals[1 - player])
+
+
+def test_simultaneous_mcts_finds_the_dominant_action():
+    """Plain decoupled-UCT, full rollouts: the search must pick the winner."""
+    bot = SimultaneousMCTSBot(simulations=400)
+    move = bot.choose_action(_PickHigh(), 0, TimeBudget(1.0), random.Random(0))
+    assert move == 2
+
+
+def test_simultaneous_mcts_with_evaluator_and_action_filter():
+    """An evaluator replaces rollouts; an action_filter prunes the branching.
+    The evaluator is on the same competitive scale as score()."""
+    bot = SimultaneousMCTSBot(
+        simulations=300,
+        evaluator=lambda s, p: float(s.totals[p] - s.totals[1 - p]),
+        action_filter=lambda s, p: (0, 2),  # action 1 pruned away
+    )
+    move = bot.choose_action(_PickHigh(), 0, TimeBudget(1.0), random.Random(1))
+    assert move == 2
+
+
+def test_simultaneous_mcts_exploitative_mode_runs():
+    """With an opponent_policy only the searching player gets a bandit."""
+    bot = SimultaneousMCTSBot(
+        simulations=300,
+        opponent_policy=lambda s, p, r: r.choice(list(s.legal_actions(p))),
+    )
+    move = bot.choose_action(_PickHigh(), 0, TimeBudget(1.0), random.Random(2))
+    assert move == 2
+
+
+def test_simultaneous_mcts_respects_a_tiny_budget():
+    """A search starved of time still returns a legal action, never crashes."""
+    bot = SimultaneousMCTSBot(simulations=10_000_000)
+    move = bot.choose_action(_PickHigh(), 0, TimeBudget(0.002), random.Random(0))
+    assert move in (0, 1, 2)
