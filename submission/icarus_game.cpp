@@ -84,7 +84,7 @@ int heuristic_bid(const array<Player, 4>& p) {
     for (int i = 1; i < 4; ++i) {
         if (!alive[i]) continue;
 
-        int fallback = 64;
+        int fallback = 72;
         int odist = TARGET - p[i].pos;
         if (odist <= 100) fallback = max(45, min(100, odist));
 
@@ -120,12 +120,11 @@ int heuristic_bid(const array<Player, 4>& p) {
     } else if (my_pos >= leader - 20 && my_pos >= 760) {
         bid = min(expected_second + 1, expected_high - rnd(6, 12)) + rnd(-2, 2);
     } else {
-        bid = expected_second + rnd(0, 6);
-        bid = min(bid, expected_high - rnd(2, 7));
-        bid += rnd(-3, 3);
+        bid = max(expected_second + rnd(2, 8), expected_high - rnd(2, 6));
+        bid += rnd(-3, 4);
     }
 
-    if (round_no <= 1 && dist > 100) bid = 63 + rnd(-3, 5);
+    if (round_no <= 1 && dist > 100) bid = 70 + rnd(-4, 6);
     if (dist > 100) bid = max(bid, 34);
     return clamp_bid(bid);
 }
@@ -141,13 +140,15 @@ int sample_opponent_bid(int idx, const array<Player, 4>& p) {
     if (!h.empty() && rnd(1, 100) <= 78) {
         int start = max(0, (int)h.size() - 10);
         int base = h[start + rnd(0, (int)h.size() - start - 1)];
-        return clamp_bid(base + rnd(-10, 10));
+        int noise = rnd(-8, 10);
+        if (rnd(1, 100) <= 28) noise += rnd(3, 9);
+        return clamp_bid(base + noise);
     }
 
     int r = rnd(1, 100);
-    if (r <= 52) return rnd(56, 82);
-    if (r <= 84) return rnd(35, 72);
-    return rnd(76, 98);
+    if (r <= 48) return rnd(64, 86);
+    if (r <= 78) return rnd(52, 76);
+    return rnd(78, 96);
 }
 
 array<bool, 4> blocked_players(const array<Player, 4>& p, const array<int, 4>& bids) {
@@ -202,10 +203,12 @@ double rollout_score(int my_bid, const array<Player, 4>& p) {
     }
 
     double value = (double)(pos[0] - p[0].pos);
-    if (blocked[0]) value -= 15.0;
+    if (blocked[0]) value -= 24.0;
+    if (!blocked[0] && bids[0] >= 68) value += 4.0;
 
     int leader_after = *max_element(pos.begin(), pos.end());
-    value -= max(0, leader_after - pos[0]) * 0.10;
+    value -= max(0, leader_after - pos[0]) * 0.16;
+    if (pos[0] == leader_after) value += 10.0;
 
     if (pos[0] >= TARGET) {
         value += 760.0;
@@ -234,9 +237,9 @@ vector<int> build_candidates(const array<Player, 4>& p, int base) {
     int dist = TARGET - p[0].pos;
     add(base);
 
-    for (int d = -8; d <= 8; d += 4) add(base + d);
-    for (int b = 42; b <= 86; b += 6) add(b);
-    for (int b : {58, 62, 66, 70, 76, 84}) add(b);
+    for (int d = -10; d <= 10; d += 4) add(base + d);
+    for (int b = 50; b <= 94; b += 6) add(b);
+    for (int b : {63, 67, 70, 73, 76, 80, 85, 91}) add(b);
 
     if (dist <= 100) {
         for (int d = -12; d <= 12; d += 4) add(dist + d);
@@ -244,9 +247,9 @@ vector<int> build_candidates(const array<Player, 4>& p, int base) {
 
     for (int i = 1; i < 4; ++i) {
         if (!alive[i]) continue;
-        int m = (int)round(mean_recent(i, 64));
-        int hi = max_recent(i, 72);
-        for (int d : {-8, -4, -2, 0}) {
+        int m = (int)round(mean_recent(i, 72));
+        int hi = max_recent(i, 80);
+        for (int d : {-7, -4, -1, 0, 2, 5}) {
             add(m + d);
             add(hi + d);
         }
