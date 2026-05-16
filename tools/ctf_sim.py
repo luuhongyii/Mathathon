@@ -4,6 +4,8 @@ Runs the real game rules, driving bots over stdio exactly like the platform.
 Usage:
     python tools/ctf_sim.py            # my bot (blue) vs random (red), many games
     python tools/ctf_sim.py mirror     # my bot vs my bot
+    python tools/ctf_sim.py hard       # vs greedy runner + guard
+    python tools/ctf_sim.py smart      # vs stronger rule bot (danger-aware)
 """
 import os
 import random
@@ -124,6 +126,248 @@ class RandomBot:
             if 0 <= nx < SIZE and 0 <= ny < SIZE and (nx, ny) not in self.obs:
                 opts.append(mv)
         return random.choice(opts or ["s"])
+
+
+class GreedyFieldBot:
+    """Rule-based opponent for stress tests: one runner and one home guard."""
+
+    def __init__(self, board, mode):
+        self.obs = {(i % SIZE, i // SIZE)
+                    for i, c in enumerate(board) if c == "#"}
+        self.mode = mode
+        self.adj = {}
+        for y in range(SIZE):
+            for x in range(SIZE):
+                if (x, y) in self.obs:
+                    continue
+                ns = []
+                for mv, dx, dy in (("u", 0, -1), ("d", 0, 1),
+                                   ("l", -1, 0), ("r", 1, 0)):
+                    nx, ny = x + dx, y + dy
+                    if 0 <= nx < SIZE and 0 <= ny < SIZE and (nx, ny) not in self.obs:
+                        ns.append((mv, nx, ny))
+                self.adj[(x, y)] = ns
+
+    def _target(self, nums):
+        x, y, _, carrying = nums[:4]
+        blue = y <= 14
+        if self.mode == "runner":
+            if carrying:
+                return (14, 13) if blue else (14, 15)
+            return (28, 28) if blue else (0, 0)
+        return (27, 27) if blue else (1, 1)
+
+    def move(self, state):
+        nums = [int(n) for n in state.split()]
+        x, y = nums[0], nums[1]
+        if x < 0:
+            return "s"
+        tx, ty = self._target(nums)
+        best = ("s", abs(x - tx) + abs(y - ty), random.random())
+        for mv, nx, ny in self.adj.get((x, y), ()):
+            key = (mv, abs(nx - tx) + abs(ny - ty), random.random())
+            if (key[1], key[2]) < (best[1], best[2]):
+                best = key
+        return best[0]
+
+
+class SmartBot:
+    """Stress opponent: BFS fields, 1-ply catch model, runner/guard split."""
+
+    def __init__(self, board, player_id):
+        self.pid = player_id
+        self.blue = player_id < 2
+        self.runner = (player_id % 2 == 0)
+        self.obs = {(i % SIZE, i // SIZE)
+                    for i, c in enumerate(board) if c == "#"}
+        self.adj = {}
+        self.free = {}
+        for y in range(SIZE):
+            for x in range(SIZE):
+                if (x, y) in self.obs:
+                    continue
+                i = y * SIZE + x
+                self.free[i] = True
+                ns = []
+                for mv, dx, dy in (("u", 0, -1), ("d", 0, 1),
+                                   ("l", -1, 0), ("r", 1, 0)):
+                    nx, ny = x + dx, y + dy
+                    if 0 <= nx < SIZE and 0 <= ny < SIZE and (nx, ny) not in self.obs:
+                        ns.append((mv, nx, ny, ny * SIZE + nx))
+                self.adj[i] = ns
+        if self.blue:
+            self.my_flag = 0
+            self.enemy_flag = 28 * SIZE + 28
+            self.my_terr, self.enemy_terr = "B", "R"
+        else:
+            self.my_flag = 28 * SIZE + 28
+            self.enemy_flag = 0
+            self.my_terr, self.enemy_terr = "R", "B"
+        self.d_enemyflag = self._bfs([self.enemy_flag])
+        self.d_myflag = self._bfs([self.my_flag])
+        self.d_myterr = self._bfs(
+            [i for i in self.free
+             if territory(i % SIZE, i // SIZE) == self.my_terr])
+        oasis = [i for i in self.free if in_oasis(i % SIZE, i // SIZE)]
+        self.d_oasis = self._bfs(oasis)
+        guard = []
+        for i in self.free:
+            x, y = i % SIZE, i // SIZE
+            if self.my_terr == "B":
+                if y in (12, 13) and 2 <= x <= 26:
+                    guard.append(i)
+            elif y in (15, 16) and 2 <= x <= 26:
+                guard.append(i)
+        self.d_guard = self._bfs(guard or [self.my_flag])
+
+    def _bfs(self, sources):
+        dist = {i: 10 ** 9 for i in self.free}
+        q = []
+        for s in sources:
+            if s in dist and dist[s] == 10 ** 9:
+                dist[s] = 0
+                q.append(s)
+        head = 0
+        while head < len(q):
+            c = q[head]
+            head += 1
+            nd = dist[c] + 1
+            for _, _, _, nb in self.adj.get(c, ()):
+                if dist[nb] > nd:
+                    dist[nb] = nd
+                    q.append(nb)
+        return dist
+
+    def _enemy_steps(self, ex, ey):
+        yield ex, ey
+        for _, dx, dy in ((0, -1), (0, 1), (-1, 0), (1, 0)):
+            nx, ny = ex + dx, ey + dy
+            if 0 <= nx < SIZE and 0 <= ny < SIZE and (nx, ny) not in self.obs:
+                yield nx, ny
+
+    def _caught_after(self, nx, ny, enemies):
+        if territory(nx, ny) != self.enemy_terr:
+            return False
+        for ex, ey, _, _ in enemies:
+            best = 99
+            for px, py in self._enemy_steps(ex, ey):
+                best = min(best, max(abs(px - nx), abs(py - ny)))
+            if best <= 1:
+                return True
+        return False
+
+    def _flag_guarded(self, my_i, enemies):
+        if not enemies:
+            return False
+        my_d = self.d_enemyflag.get(my_i, 10 ** 9)
+        eb = 10 ** 9
+        for ex, ey, _, _ in enemies:
+            eb = min(eb, self.d_enemyflag.get(ey * SIZE + ex, 10 ** 9))
+        return eb <= my_d + 1
+
+    def _unsafe(self, nx, ny, enemies, use_1ply):
+        if use_1ply:
+            return self._caught_after(nx, ny, enemies)
+        if territory(nx, ny) != self.enemy_terr:
+            return False
+        for ex, ey, _, _ in enemies:
+            if max(abs(ex - nx), abs(ey - ny)) <= 2:
+                for px, py in self._enemy_steps(ex, ey):
+                    if max(abs(px - nx), abs(py - ny)) <= 1:
+                        return True
+        return False
+
+    def move(self, state):
+        nums = [int(n) for n in state.split()]
+        x, y, h, carrying = nums[:4]
+        if x < 0:
+            return "s"
+        mate = nums[4:8]
+        mate_alive = mate[0] >= 0
+        mate_carry = mate_alive and mate[3] == 1
+        enemies = []
+        for off in (8, 12):
+            ex, ey = nums[off], nums[off + 1]
+            if ex >= 0:
+                enemies.append((ex, ey, nums[off + 2], nums[off + 3]))
+        my_i = y * SIZE + x
+        enemy_carrier = next((e for e in enemies if e[3] == 1), None)
+        use_1ply = bool(enemies) and (
+            carrying or enemy_carrier is not None
+            or territory(x, y) == self.enemy_terr)
+
+        do = self.d_oasis.get(my_i, 10 ** 9)
+        need_home = self.d_myterr.get(my_i, 10 ** 9)
+        refilling = False
+        if mate_alive and in_oasis(mate[0], mate[1]) and mate[2] >= 108 and h >= 75:
+            refilling = False
+        elif in_oasis(x, y):
+            refilling = h < (100 if carrying else 112)
+        elif carrying and do < 10 ** 8:
+            refilling = h < need_home + 26
+        elif self.runner and not carrying and do < 10 ** 8:
+            nf = self.d_enemyflag.get(my_i, 10 ** 9)
+            refilling = h < nf + need_home + 20
+
+        guarded = (self.runner and not carrying
+                   and self._flag_guarded(my_i, enemies))
+
+        if refilling and not in_oasis(x, y):
+            tgt = self.d_oasis
+        elif guarded:
+            tgt = self.d_oasis
+        elif carrying:
+            tgt = self.d_myterr
+        elif enemy_carrier and not self.runner:
+            tgt = self._bfs([enemy_carrier[1] * SIZE + enemy_carrier[0]])
+        elif mate_carry and not self.runner:
+            best = 10 ** 9
+            blocker = None
+            for e in enemies:
+                d = self.d_myflag.get(e[1] * SIZE + e[0], 10 ** 9)
+                if d < best:
+                    best, blocker = d, e
+            if blocker:
+                tgt = self._bfs([blocker[1] * SIZE + blocker[0]])
+            else:
+                tgt = self.d_guard
+        elif self.runner and not carrying:
+            tgt = self.d_enemyflag
+        elif enemies:
+            best = 10 ** 9
+            intr = None
+            for e in enemies:
+                if territory(e[0], e[1]) == self.my_terr:
+                    d = self.d_myflag.get(e[1] * SIZE + e[0], 10 ** 9)
+                    if d < best:
+                        best, intr = d, e
+            if intr is None:
+                for e in enemies:
+                    d = self.d_myflag.get(e[1] * SIZE + e[0], 10 ** 9)
+                    if d < best:
+                        best, intr = d, e
+            tgt = (self._bfs([intr[1] * SIZE + intr[0]]) if intr
+                   else self.d_guard)
+        else:
+            tgt = self.d_guard
+
+        here_bad = self._unsafe(x, y, enemies, use_1ply)
+        opts = []
+        for mv, nx, ny, ni in self.adj.get(my_i, ()):
+            d = tgt.get(ni, 10 ** 9)
+            if d == 10 ** 9:
+                d = 9000 + abs(nx - x) + abs(ny - y)
+            bad = self._unsafe(nx, ny, enemies, use_1ply)
+            safe = 0 if bad else 1
+            if here_bad:
+                mc = min(max(abs(ex - nx), abs(ey - ny)) for ex, ey, _, _ in enemies)
+                opts.append((safe, mc, -d, random.random(), mv))
+            else:
+                opts.append((safe, -d, random.random(), mv))
+        opts.append((1, 0, random.random(), "s") if not here_bad
+                    else (1, 99, 0, random.random(), "s"))
+        opts.sort(reverse=True)
+        return opts[0][-1]
 
 
 DELTA = {"u": (0, -1), "d": (0, 1), "l": (-1, 0), "r": (1, 0), "s": (0, 0)}
@@ -253,7 +497,10 @@ def run_game(board, bots, verbose=False):
 
 
 def main():
-    mirror = len(sys.argv) > 1 and sys.argv[1] == "mirror"
+    mode = sys.argv[1] if len(sys.argv) > 1 else ""
+    mirror = mode == "mirror"
+    hard = mode == "hard"
+    smart = mode == "smart"
     games = 20
     tally = {"blue": 0, "red": 0, "draw": 0, "dq": 0}
     for g in range(games):
@@ -264,6 +511,10 @@ def main():
         for p in range(4):
             if p < 2 or mirror:
                 bots.append(Proc(board))
+            elif smart:
+                bots.append(SmartBot(board, p))
+            elif hard:
+                bots.append(GreedyFieldBot(board, "guard" if p == 2 else "runner"))
             else:
                 bots.append(RandomBot(board))
         result = run_game(board, bots)

@@ -6,15 +6,24 @@ in enemy territory next to a living opponent. Hydration drains every turn
 (2/turn at home, 1/turn elsewhere); the central 5x5 oasis refills it to 140 and
 is also a safe haven (neutral - nobody can be caught there).
 
-Strategy (balanced build: aggressive pathing + selective safety)
-  * Lexicographic role split: one attacks, one defends (no communication).
-  * Greedy BFS fields; at most one extra BFS per round when chasing.
-  * _danger_next: avoid cells an enemy can reach in one step and catch you.
-  * Dynamic flag staging only when an enemy is genuinely closer to their flag.
-  * Defender escorts when teammate carries; mid-line guard when idle.
-  * No deep search / 1-ply simulation (keeps games fast, fewer stale draws).
+Strategy
+  * One bot instance per player; the teammate runs this same code (a clone).
+    Roles split with NO communication: a lexicographic tiebreak on positions,
+    committed the moment the two clones diverge. One ATTACKS (goes for the
+    enemy flag), one DEFENDS (guards the home front, intercepts intruders/carriers).
+  * Movement = greedy descent of BFS distance fields. Static fields (enemy
+    flag, our flag, our territory, oasis) are computed once at round 0; at
+    most one extra BFS per round (chasing a moving enemy). Cheap and safe on
+    any time budget.
+  * Danger model: a cell in enemy territory within Chebyshev 1 of a living
+    enemy is where you get caught - avoided. If progress stalls too long the
+    attacker turns "desperate" and pushes through anyway (a draw beats a
+    timid stalemate; a death just costs a respawn, not a forfeit).
+  * Refuels at the oasis when hydration would not otherwise last.
 
-Robustness: never writes stderr; always prints u/d/l/r/s and flushes.
+Robustness: never writes stderr (the platform treats stderr as a forfeit);
+every round prints exactly one of u/d/l/r/s and flushes; all decision logic is
+wrapped so a bug emits the last move instead of crashing.
 """
 import sys
 import random
@@ -30,6 +39,7 @@ def in_oasis(x, y):
 
 
 def territory(x, y):
+    """'B' = blue home, 'R' = red home, 'N' = neutral (oasis + row 14)."""
     if 12 <= x <= 16 and 12 <= y <= 16:
         return "N"
     if y <= 13:
@@ -40,6 +50,7 @@ def territory(x, y):
 
 
 def bfs(sources, adj):
+    """Multi-source BFS over free cells; returns a flat distance array."""
     dist = [INF] * N
     q = []
     for s in sources:
@@ -73,14 +84,14 @@ class Bot:
         self.d_oasis = None
         self.d_myflag = None
         self.d_guard = None
-        self.d_midguard = None
-        self.role = None
+        self.role = None            # committed 'A' / 'D'
         self.refilling = False
         self.stall = 0
         self.last_tgt_id = None
         self.last_tgt_val = INF
         self.last_move = "s"
 
+    # ---- one-time setup -------------------------------------------------
     def setup_board(self, board_text):
         free = bytearray(N)
         L = len(board_text)
@@ -102,10 +113,11 @@ class Bot:
         self.adj = adj
 
     def setup_team(self, mx, my):
+        # Blue starts/respawns at y=0, red at y=28 -> y tells the team.
         self.blue = (my <= 14)
         if self.blue:
-            self.my_flag = 0
-            self.enemy_flag = 28 * SIZE + 28
+            self.my_flag = 0                       # (0, 0)
+            self.enemy_flag = 28 * SIZE + 28       # (28, 28)
             self.my_terr, self.enemy_terr = "B", "R"
         else:
             self.my_flag = 28 * SIZE + 28
@@ -120,7 +132,7 @@ class Bot:
         self.d_myterr = bfs(
             [y * SIZE + x for y in range(SIZE) for x in range(SIZE)
              if free[y * SIZE + x] and territory(x, y) == self.my_terr], adj)
-        guard, midguard = [], []
+        guard = []
         for y in range(SIZE):
             for x in range(SIZE):
                 i = y * SIZE + x
@@ -129,84 +141,20 @@ class Bot:
                 if self.my_terr == "B":
                     if y in (12, 13) and 2 <= x <= 26:
                         guard.append(i)
-                    if y in (10, 11, 12) and 4 <= x <= 24:
-                        midguard.append(i)
                 elif y in (15, 16) and 2 <= x <= 26:
                     guard.append(i)
-                    if y in (16, 17, 18) and 4 <= x <= 24:
-                        midguard.append(i)
         self.d_guard = bfs(guard or [self.my_flag], adj)
-        self.d_midguard = bfs(midguard or guard or [self.my_flag], adj)
         self.ready = True
 
+    # ---- helpers --------------------------------------------------------
     def _danger(self, x, y, enemies):
+        """True if cell (x,y) is where I could be caught next turn."""
         if territory(x, y) != self.enemy_terr:
             return False
         for ex, ey, _, _ in enemies:
             if max(abs(ex - x), abs(ey - y)) <= 1:
                 return True
         return False
-
-    def _danger_next(self, x, y, enemies):
-        if territory(x, y) != self.enemy_terr:
-            return False
-        if self._danger(x, y, enemies):
-            return True
-        for ex, ey, _, _ in enemies:
-            if max(abs(ex - x), abs(ey - y)) > 2:
-                continue
-            for _, dx, dy in DIRS:
-                nx, ny = ex + dx, ey + dy
-                if 0 <= nx < SIZE and 0 <= ny < SIZE and self.free[ny * SIZE + nx]:
-                    if max(abs(nx - x), abs(ny - y)) <= 1:
-                        return True
-        return False
-
-    def _flag_guarded(self, my_idx, enemies):
-        if not enemies:
-            return False
-        my_dist = self.d_enemyflag[my_idx]
-        enemy_best = INF
-        for ex, ey, _, _ in enemies:
-            d = self.d_enemyflag[ey * SIZE + ex]
-            if d < enemy_best:
-                enemy_best = d
-        return enemy_best <= my_dist
-
-    def _escort_field(self, mate):
-        mate_i = mate[1] * SIZE + mate[0]
-        dm = self.d_myflag[mate_i]
-        sources = []
-        for i in range(N):
-            if not self.free[i]:
-                continue
-            d = self.d_myflag[i]
-            if d == INF or d > dm:
-                continue
-            x, y = i % SIZE, i // SIZE
-            if territory(x, y) not in (self.my_terr, "N"):
-                continue
-            if dm - d <= 10:
-                sources.append(i)
-        if not sources:
-            sources = [mate_i]
-        return bfs(sources, self.adj)
-
-    def _update_refill(self, mx, my, mh, my_idx, i_carry, mate, mate_alive):
-        if mate_alive and in_oasis(mate[0], mate[1]) and mate[2] >= 105 and mh >= 72:
-            self.refilling = False
-            return
-        do = self.d_oasis[my_idx]
-        if in_oasis(mx, my):
-            self.refilling = mh < (95 if i_carry else 108)
-            return
-        if do == INF:
-            self.refilling = False
-            return
-        if i_carry:
-            self.refilling = mh < self.d_myterr[my_idx] + 22
-        else:
-            self.refilling = mh < 2 * do + 12
 
     @staticmethod
     def _min_cheb(x, y, enemies):
@@ -217,10 +165,11 @@ class Bot:
                 m = d
         return m
 
+    # ---- per-round decision --------------------------------------------
     def decide(self, v):
         players = [(v[i], v[i + 1], v[i + 2], v[i + 3]) for i in range(0, 16, 4)]
         mx, my, mh, mf = players[0]
-        if mx < 0:
+        if mx < 0:                                  # dead / respawning
             self.stall = 0
             self.refilling = False
             return "s"
@@ -235,6 +184,7 @@ class Bot:
         mate_carry = mate_alive and mate[3] == 1
         carrier = next((e for e in enemies if e[3] == 1), None)
 
+        # ----- role assignment (no communication) -----
         chase_field = None
         provisional = False
         if i_carry:
@@ -252,23 +202,23 @@ class Bot:
         elif not mate_alive:
             role = "A"
         elif self.role is not None:
-            role = self.role
+            role = self.role                        # committed - sticky
         elif (mx, my) != (mate[0], mate[1]):
             role = "A" if (mx, my) < (mate[0], mate[1]) else "D"
             self.role = role
         else:
-            role = "A"
+            role = "A"                              # both on same cell yet
             provisional = True
 
-        self._update_refill(mx, my, mh, my_idx, i_carry, mate, mate_alive)
-
-        flag_guarded = (role == "A" and not i_carry
-                        and self._flag_guarded(my_idx, enemies))
+        # ----- pick the target distance field -----
+        do = self.d_oasis[my_idx]
+        if in_oasis(mx, my):
+            self.refilling = False
+        elif do != INF and mh < 2 * do + 14:
+            self.refilling = True
 
         if self.refilling and not in_oasis(mx, my):
             tgt, tgt_id, goal = self.d_oasis, "oasis", (14, 14)
-        elif flag_guarded:
-            tgt, tgt_id, goal = self.d_oasis, "stage", (14, 14)
         elif role == "A":
             if i_carry:
                 tgt, tgt_id = self.d_myterr, "home"
@@ -276,57 +226,35 @@ class Bot:
             else:
                 tgt, tgt_id = self.d_enemyflag, "eflag"
                 goal = (self.enemy_flag % SIZE, self.enemy_flag // SIZE)
-        else:
-            if mate_carry:
-                tgt = self._escort_field(mate)
-                tgt_id, goal = "escort", (
-                    self.my_flag % SIZE, self.my_flag // SIZE)
-                if enemies:
-                    best = INF
-                    blocker = None
-                    for e in enemies:
+        else:                                       # defender
+            intruder = carrier
+            if intruder is None:
+                best = INF
+                for e in enemies:
+                    if territory(e[0], e[1]) == self.my_terr:
                         ds = self.d_myflag[e[1] * SIZE + e[0]]
                         if ds < best:
-                            best, blocker = ds, e
-                    if blocker is not None:
-                        tgt = bfs([blocker[1] * SIZE + blocker[0]], self.adj)
-                        tgt_id, goal = "block", (blocker[0], blocker[1])
-            else:
-                intruder = carrier
-                if intruder is None:
-                    best = INF
-                    for e in enemies:
-                        if territory(e[0], e[1]) == self.my_terr:
-                            ds = self.d_myflag[e[1] * SIZE + e[0]]
-                            if ds < best:
-                                best, intruder = ds, e
-                    if intruder is None:
-                        for e in enemies:
-                            approaching = (11 <= e[1] <= 16 if self.my_terr == "B"
-                                           else 12 <= e[1] <= 17)
-                            ds = self.d_myflag[e[1] * SIZE + e[0]]
-                            if approaching and ds < best:
-                                best, intruder = ds, e
-                if intruder is not None:
-                    if chase_field is not None and intruder is carrier:
-                        tgt = chase_field
-                    else:
-                        tgt = bfs([intruder[1] * SIZE + intruder[0]], self.adj)
-                    tgt_id, goal = "chase", (intruder[0], intruder[1])
+                            best, intruder = ds, e
+            if intruder is not None:
+                if chase_field is not None and intruder is carrier:
+                    tgt = chase_field
                 else:
-                    tgt, tgt_id = (self.d_midguard if enemies else self.d_guard,
-                                   "midguard" if enemies else "guard")
-                    goal = (14, 13 if self.blue else 15)
+                    tgt = bfs([intruder[1] * SIZE + intruder[0]], self.adj)
+                tgt_id, goal = "chase", (intruder[0], intruder[1])
+            else:
+                tgt, tgt_id = self.d_guard, "guard"
+                goal = (14, 13 if self.blue else 15)
 
+        # ----- stall tracking -> desperate push -----
         cur = tgt[my_idx]
         if tgt_id != self.last_tgt_id or cur < self.last_tgt_val or cur == 0:
             self.stall = 0
         else:
             self.stall += 1
         self.last_tgt_id, self.last_tgt_val = tgt_id, cur
-        stall_lim = 16 if i_carry else 25
-        desperate = self.stall > stall_lim and not flag_guarded
+        desperate = self.stall > 25
 
+        # ----- candidate moves -----
         cands = []
         for letter, dx, dy in DIRS:
             nx, ny = mx + dx, my + dy
@@ -334,25 +262,24 @@ class Bot:
                 cands.append((letter, nx, ny))
         cands.append(("s", mx, my))
 
+        # Provisional clones share a cell - move randomly (but not backwards)
+        # so the two diverge; positions then commit the lexicographic roles.
         if provisional:
             use_man = (cur == INF)
             gx, gy = goal
-            forward, lateral = [], []
+            forward = []
             for letter, nx, ny in cands:
-                if letter == "s":
-                    continue
                 ni = ny * SIZE + nx
                 dv = abs(nx - gx) + abs(ny - gy) if use_man else tgt[ni]
                 if dv <= cur:
                     forward.append(letter)
-                    if nx != mx:
-                        lateral.append(letter)
-            self.last_move = random.choice(lateral or forward or [c[0] for c in cands])
+            self.last_move = random.choice(forward or [c[0] for c in cands])
             return self.last_move
 
+        # ----- score candidates -----
         use_man = (cur == INF)
         gx, gy = goal
-        here_danger = self._danger_next(mx, my, enemies)
+        here_danger = self._danger(mx, my, enemies)
         best, best_key = "s", None
         for letter, nx, ny in cands:
             ni = ny * SIZE + nx
@@ -361,13 +288,13 @@ class Bot:
             else:
                 dv = tgt[ni]
                 dval = dv if dv != INF else 9000 + abs(nx - gx) + abs(ny - gy)
-            danger = self._danger_next(nx, ny, enemies) and not desperate
+            danger = self._danger(nx, ny, enemies) and not desperate
             terr_pen = (role == "D" and territory(nx, ny) == self.enemy_terr)
             safe = 0 if (danger or terr_pen) else 1
-            if here_danger:
+            if here_danger:                         # escape first
                 key = (safe, self._min_cheb(nx, ny, enemies), -dval,
                        random.random())
-            else:
+            else:                                   # progress first
                 key = (safe, -dval, random.random())
             if best_key is None or key > best_key:
                 best_key, best = key, letter

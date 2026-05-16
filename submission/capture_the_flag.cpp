@@ -66,7 +66,7 @@ struct Bot {
     char myTerr = 'B';
     char enemyTerr = 'R';
 
-    vector<int> dEnemyFlag, dMyTerr, dOasis, dMyFlag, dGuard;
+    vector<int> dEnemyFlag, dMyTerr, dOasis, dMyFlag, dGuard, dMidGuard;
 
     char committedRole = 0;
     bool refilling = false;
@@ -157,7 +157,7 @@ struct Bot {
         dEnemyFlag = bfs({enemyFlag});
         dMyFlag = bfs({myFlag});
 
-        vector<int> oasis, myTerrCells, guard;
+        vector<int> oasis, myTerrCells, guard, midGuard;
         for (int y = 0; y < SIZE; ++y) {
             for (int x = 0; x < SIZE; ++x) {
                 int p = idx(x, y);
@@ -169,15 +169,19 @@ struct Bot {
                 // territory, so intruders are caught soon after crossing.
                 if (myTerr == 'B') {
                     if ((y == 12 || y == 13) && 2 <= x && x <= 26) guard.push_back(p);
+                    if ((y == 10 || y == 11 || y == 12) && 4 <= x && x <= 24) midGuard.push_back(p);
                 } else {
                     if ((y == 15 || y == 16) && 2 <= x && x <= 26) guard.push_back(p);
+                    if ((y == 16 || y == 17 || y == 18) && 4 <= x && x <= 24) midGuard.push_back(p);
                 }
             }
         }
         if (guard.empty()) guard.push_back(myFlag);
+        if (midGuard.empty()) midGuard = guard;
         dOasis = bfs(oasis);
         dMyTerr = bfs(myTerrCells);
         dGuard = bfs(guard);
+        dMidGuard = bfs(midGuard);
         ready = true;
     }
 
@@ -193,6 +197,15 @@ struct Bot {
         int best = 99;
         for (const Player& e : enemies) {
             best = min(best, max(abs(e.x - x), abs(e.y - y)));
+        }
+        return best;
+    }
+
+    int enemyFlagPressure(const vector<Player>& enemies) const {
+        int fx = enemyFlag % SIZE, fy = enemyFlag / SIZE;
+        int best = 99;
+        for (const Player& e : enemies) {
+            best = min(best, max(abs(e.x - fx), abs(e.y - fy)));
         }
         return best;
     }
@@ -267,9 +280,15 @@ struct Bot {
         string targetId;
         int goalX = 14, goalY = 14;
 
+        bool flagGuarded = !iCarry && role == 'A' && enemyFlagPressure(enemies) <= 2;
+
         if (refilling && !inOasis(me.x, me.y)) {
             target = &dOasis;
             targetId = "oasis";
+            goalX = goalY = 14;
+        } else if (flagGuarded) {
+            target = &dOasis;
+            targetId = "stage";
             goalX = goalY = 14;
         } else if (role == 'A') {
             if (iCarry) {
@@ -297,6 +316,19 @@ struct Bot {
                         }
                     }
                 }
+                if (intruderIndex < 0) {
+                    for (int i = 0; i < (int)enemies.size(); ++i) {
+                        const Player& e = enemies[i];
+                        int pidx = idx(e.x, e.y);
+                        bool approaching = myTerr == 'B'
+                            ? (e.y <= 16 && e.y >= 11)
+                            : (e.y >= 12 && e.y <= 17);
+                        if (approaching && dMyFlag[pidx] < best) {
+                            best = dMyFlag[pidx];
+                            intruderIndex = i;
+                        }
+                    }
+                }
             }
             if (intruderIndex >= 0) {
                 const Player& intr = enemies[intruderIndex];
@@ -311,8 +343,8 @@ struct Bot {
                 goalX = intr.x;
                 goalY = intr.y;
             } else {
-                target = &dGuard;
-                targetId = "guard";
+                target = enemies.empty() ? &dGuard : &dMidGuard;
+                targetId = enemies.empty() ? "guard" : "midguard";
                 goalX = blue ? 14 : 14;
                 goalY = blue ? 13 : 15;
             }
@@ -326,7 +358,7 @@ struct Bot {
         }
         lastTargetId = targetId;
         lastTargetVal = cur;
-        bool desperate = stall > 25;
+        bool desperate = stall > 25 && !flagGuarded;
 
         struct Cand { char c; int x; int y; };
         vector<Cand> cands;

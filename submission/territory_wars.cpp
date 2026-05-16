@@ -1,27 +1,33 @@
-// Territory Wars submission. Compile STATIC and submit the .exe:
+// Territory Wars submission. The judge is LINUX - submit this .cpp SOURCE
+// file (the platform compiles it). Do NOT submit a Windows .exe.
 //
-//   g++ -std=c++17 -O2 -static territory_wars.cpp -o territory_wars.exe
+// Local test build:  g++ -std=c++17 -O2 territory_wars.cpp -o tw
 //
 // Game (Tron / light-cycle): 31x31 board, 4 players from the corners. Each
 // turn every player steps u/d/l/r and leaves a permanent trail; entering any
 // claimed cell or the edge kills you. Score = cells claimed. The judge sends
 // only the four head positions per line - we accumulate the trail map.
 //
-// The platform allows ~500ms of compute for the WHOLE game. C++ is fast
-// enough to spend that on real search, so this bot runs an iterative-
-// deepening maximin search against the nearest rival:
-//   * leaf eval = my Voronoi territory - AGGR * rival's Voronoi territory
-//     (negative term => actively cut the rival's space), via multi-source BFS
-//   * alpha-beta pruning; a rational rival never suicides, so the search
-//     ignores opponent moves that would kill the opponent
+// Strategy - iterative-deepening maximin search vs the nearest rival, with a
+// CHAMBER-AWARE space evaluation:
+//   * leaf eval = articulation-point "tree of chambers" estimate of the truly
+//     usable space inside my Voronoi territory. Plain flood-fill over-counts:
+//     it can't see that snaking up one column and down the next walls you into
+//     a tiny region. Chamber analysis decomposes the space at its cut-points,
+//     so once you enter a chamber through a narrow neck only that branch
+//     counts - the bot stops boxing itself in.
 //   * survival gate: prefer collision-free first moves that keep real room
 //   * each move's thinking time is (remaining budget)/(remaining turns), so
-//     the whole 512-turn game stays comfortably under the 500ms total
+//     the whole 512-turn game stays well under the ~500ms total budget
 //   * if sealed off from every opponent: greedy wall-hug space-filling
+// (Tried a1k0n's edge-count term and a red/black parity bound - measured: edge
+// counting hurt in this 4-player absolute-eval setting, parity was neutral.
+// Kept the plain chamber cell count, which tested strongest.)
 // Never writes to stderr (the platform treats stderr as a forfeit).
 
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 #include <chrono>
 
 using Clock = std::chrono::steady_clock;
@@ -36,10 +42,6 @@ static const double TOTAL_BUDGET = 0.34;    // compute seconds for whole game
                                              // (~160ms margin under the limit)
 static const int    MAX_TURNS    = 512;     // game length (for time slicing)
 static const int    MAX_DEPTH    = 12;      // iterative-deepening ceiling
-static const double AGGR         = 0.0;     // cutting the rival backfires in a
-                                             // 4-player free-for-all (the other
-                                             // two expand freely) - measured
-static const double SURV         = 0.02;    // mild own-room nudge
 static const double COLLIDE_W    = 600.0;   // residual collision penalty
 
 static int board[N];                        // 0 = free, 1 = occupied trail
@@ -47,6 +49,14 @@ static int adj[N][4];
 static int adjn[N];
 static int q[N];
 static int dist_me[N], dist_op[N], dist_ot[N];
+
+// Chamber-analysis scratch.
+static char inregion[N];                     // cells the estimate may use
+static int  disc[N], low[N];                 // Tarjan discovery / low-link
+static char artic[N];                        // articulation point?
+static char vis2[N];                         // chamber-flood visited
+static int  cq[N];                           // chamber-flood queue
+static int  timer_;
 
 // Move index: 0=u 1=d 2=l 3=r. dxs/dys map a letter to a board step and are
 // self-calibrated from observed moves (handles a flipped y-axis).
@@ -107,40 +117,85 @@ static void bfs(const int* src, int ns, int* d) {
     }
 }
 
-static int reach_count(int start) {
-    int s[1] = {start};
-    bfs(s, 1, dist_op);
-    int n = 0;
-    for (int i = 0; i < N; i++)
-        if (dist_op[i] < INF) n++;
-    return n;
+// -- chamber-aware usable-space estimate --------------------------------
+// Tarjan articulation points over the subgraph induced by inregion[].
+static void tarjan(int u, int parent) {
+    disc[u] = low[u] = ++timer_;
+    int children = 0;
+    for (int k = 0; k < adjn[u]; k++) {
+        int v = adj[u][k];
+        if (!inregion[v] || v == parent) continue;
+        if (disc[v] == 0) {
+            children++;
+            tarjan(v, u);
+            if (low[v] < low[u]) low[u] = low[v];
+            if (parent != -1 && low[v] >= disc[u]) artic[u] = 1;
+        } else if (disc[v] < low[u]) {
+            low[u] = disc[v];
+        }
+    }
+    if (parent == -1 && children > 1) artic[u] = 1;
 }
 
-// Leaf evaluation: Voronoi territory differential (mine - AGGR*rival's),
-// plus a mild survival nudge. dist_ot (other opponents) is precomputed.
+// One chamber = cells reachable from `start` without crossing an articulation
+// point. We fill it, then exit through the single best articulation point.
+static int chamber_rec(int start) {
+    int head = 0, tail = 0;
+    cq[tail++] = start;
+    vis2[start] = 1;
+    int size = 0, exits[32], ne = 0;
+    while (head < tail) {
+        int c = cq[head++];
+        size++;
+        if (c != start && artic[c]) {            // chamber boundary
+            if (ne < 32) exits[ne++] = c;
+            continue;                            // do not expand past it
+        }
+        for (int k = 0; k < adjn[c]; k++) {
+            int nb = adj[c][k];
+            if (inregion[nb] && !vis2[nb]) { vis2[nb] = 1; cq[tail++] = nb; }
+        }
+    }
+    int best = 0;
+    for (int e = 0; e < ne; e++) {
+        int a = exits[e];
+        for (int k = 0; k < adjn[a]; k++) {
+            int nb = adj[a][k];
+            if (inregion[nb] && !vis2[nb]) {
+                int b = chamber_rec(nb);         // disjoint sub-region
+                if (b > best) best = b;
+            }
+        }
+    }
+    return size + best;
+}
+
+// Estimate of the cells we can actually still cover starting at `start`,
+// confined to the cells flagged in inregion[] (set by the caller).
+static int chamber_space(int start) {
+    memset(disc, 0, sizeof disc);
+    memset(artic, 0, sizeof artic);
+    memset(vis2, 0, sizeof vis2);
+    timer_ = 0;
+    tarjan(start, -1);
+    return chamber_rec(start);
+}
+
+// Leaf evaluation: chamber-aware usable space inside my Voronoi region (the
+// cells I reach strictly before every opponent).
 static double evaluate(int mypos, int rivpos, bool have_rival) {
     int s[1];
     s[0] = mypos;
     bfs(s, 1, dist_me);
-    if (!have_rival) {
-        int room = 0, myv = 0;
-        for (int i = 0; i < N; i++)
-            if (dist_me[i] < INF) {
-                room++;
-                if (dist_me[i] < dist_ot[i]) myv++;
-            }
-        return (double)myv + SURV * room;
-    }
-    s[0] = rivpos;
-    bfs(s, 1, dist_op);
-    int room = 0, myv = 0, rivv = 0;
+    if (have_rival) { s[0] = rivpos; bfs(s, 1, dist_op); }
     for (int i = 0; i < N; i++) {
-        int dm = dist_me[i], dr = dist_op[i], dt = dist_ot[i];
-        if (dm < INF) room++;
-        if (dm < dr && dm < dt && dm < INF) myv++;
-        else if (dr < dm && dr < dt && dr < INF) rivv++;
+        int dm = dist_me[i];
+        if (dm >= INF) { inregion[i] = 0; continue; }
+        int dr = have_rival ? dist_op[i] : INF;
+        inregion[i] = (dm < dr && dm < dist_ot[i]) ? 1 : 0;
     }
-    return (double)myv - AGGR * (double)rivv + SURV * room;
+    inregion[mypos] = 1;
+    return (double) chamber_space(mypos);
 }
 
 // Maximin search: I maximise, the nearest rival minimises. Other opponents
@@ -271,11 +326,12 @@ static char decide(const int* p) {
         if (dmin < rbest) { rbest = dmin; rival = o; }
     }
 
-    // Room (reachable free cells) and same-turn collision risk per move.
+    // Per move: chamber-aware room (over all free cells) and collision risk.
+    for (int i = 0; i < N; i++) inregion[i] = (board[i] == 0) ? 1 : 0;
     int room[4], roomy = 0;
     double risk[4];
     for (int r = 0; r < nr; r++) {
-        room[r] = reach_count(rc[r]);
+        room[r] = chamber_space(rc[r]);
         if (room[r] > roomy) roomy = room[r];
         int cx = rc[r] % SIZE, cy = rc[r] / SIZE;
         double rk = 0.0;
@@ -342,6 +398,7 @@ static char decide(const int* p) {
             board[rc[r]] = 0;
             if (g_timed_out) break;
             sc -= COLLIDE_W * risk[r];
+            sc -= 0.001 * cell_exits(rc[r]);     // wall-hug tie-break
             if (sc > cur_score) { cur_score = sc; cur = r; }
         }
         if (g_timed_out) break;                  // discard partial depth
