@@ -9,7 +9,7 @@
 using namespace std;
 
 static const int TARGET = 999;
-static const int TIME_BUDGET_MS = 8;
+static const int TIME_BUDGET_MS = 3;
 
 struct Player {
     int pos;
@@ -234,19 +234,19 @@ vector<int> build_candidates(const array<Player, 4>& p, int base) {
     int dist = TARGET - p[0].pos;
     add(base);
 
-    for (int d = -10; d <= 10; d += 2) add(base + d);
-    for (int b = 38; b <= 90; b += 4) add(b);
-    for (int b : {57, 61, 64, 67, 70, 74, 79, 85}) add(b);
+    for (int d = -8; d <= 8; d += 4) add(base + d);
+    for (int b = 42; b <= 86; b += 6) add(b);
+    for (int b : {58, 62, 66, 70, 76, 84}) add(b);
 
     if (dist <= 100) {
-        for (int d = -14; d <= 14; d += 2) add(dist + d);
+        for (int d = -12; d <= 12; d += 4) add(dist + d);
     }
 
     for (int i = 1; i < 4; ++i) {
         if (!alive[i]) continue;
         int m = (int)round(mean_recent(i, 64));
         int hi = max_recent(i, 72);
-        for (int d : {-10, -7, -4, -2, 0, 2}) {
+        for (int d : {-8, -4, -2, 0}) {
             add(m + d);
             add(hi + d);
         }
@@ -264,7 +264,7 @@ int choose_bid(const array<Player, 4>& p) {
 
     auto deadline = chrono::steady_clock::now() + chrono::milliseconds(TIME_BUDGET_MS);
 
-    for (int pass = 0; pass < 45; ++pass) {
+    for (int pass = 0; pass < 14; ++pass) {
         for (int i = 0; i < (int)candidates.size(); ++i) {
             score[i] += rollout_score(candidates[i], p);
             ++count[i];
