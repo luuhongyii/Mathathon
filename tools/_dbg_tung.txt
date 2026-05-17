@@ -1,0 +1,1060 @@
+pos=(23,23) en=(8,8) depth=3 | u:val=460.8,rch=1014,surv=12,col=False  d:val=241.2,rch=1017,surv=12,col=False  l:val=321.5,rch=1019,surv=12,col=False  r:val=408.7,rch=1019,surv=12,col=False
+pos=(23,14) en=(17,8) depth=3 | u:val=427.7,rch=1002,surv=12,col=False  l:val=354.5,rch=1000,surv=12,col=False  r:val=23.4,rch=1002,surv=12,col=False
+pos=(23,11) en=(17,17) depth=3 | u:val=-38.8,rch=986,surv=12,col=False  r:val=-110.1,rch=989,surv=12,col=False
+pos=(23,4) en=(22,17) depth=3 | l:val=60.4,rch=980,surv=12,col=False  r:val=10.3,rch=979,surv=12,col=False
+pos=(22,4) en=(22,20) depth=3 | d:val=73.5,rch=976,surv=12,col=False  l:val=73.5,rch=969,surv=12,col=False
+pos=(22,5) en=(17,20) depth=3 | d:val=29.3,rch=964,surv=12,col=False  l:val=86.4,rch=963,surv=12,col=False
+pos=(14,5) en=(17,26) depth=3 | u:val=-263.5,rch=952,surv=12,col=False  l:val=133.8,rch=956,surv=12,col=False
+pos=(13,5) en=(17,29) depth=3 | u:val=146.8,rch=950,surv=12,col=False  l:val=294.3,rch=944,surv=12,col=False
+pos=(4,5) en=(23,29) depth=3 | u:val=215.2,rch=936,surv=12,col=False  d:val=408.7,rch=935,surv=12,col=False  l:val=-4.5,rch=934,surv=12,col=False
+pos=(4,8) en=(23,31) depth=3 | d:val=498.0,rch=924,surv=12,col=False  l:val=493.5,rch=930,surv=12,col=False  r:val=442.2,rch=932,surv=12,col=False
+pos=(1,8) en=(16,31) depth=3 | u:val=295.8,rch=922,surv=12,col=False  d:val=796.4,rch=919,surv=12,col=False
+pos=(1,12) en=(16,22) depth=3 | d:val=315.5,rch=897,surv=12,col=False  r:val=707.9,rch=897,surv=12,col=False
+pos=(8,12) en=(7,22) depth=3 | d:val=-775.9,rch=884,surv=10,col=False  r:val=-306.5,rch=887,surv=12,col=False
+pos=(9,12) en=(7,13) depth=3 | d:val=-374.2,rch=223,surv=12,col=False  r:val=-311.3,rch=227,surv=12,col=False
+pos=(10,12) en=(7,13) depth=3 | d:val=-342.2,rch=223,surv=12,col=False  r:val=-335.4,rch=222,surv=12,col=False
+pos=(10,16) en=(7,13) depth=3 | r:val=-323.3,rch=218,surv=12,col=False
+pos=(15,16) en=(7,13) depth=3 | u:val=-561.2,rch=215,surv=11,col=False
+pos=(15,13) en=(7,13) depth=3 | u:val=-1024.1,rch=213,surv=9,col=False  l:val=-798.9,rch=213,surv=10,col=False
+pos=(13,13) en=(7,13) depth=3 | u:val=-1026.6,rch=211,surv=9,col=False
+pos=(13,11) en=(7,13) depth=3 | l:val=-1260.1,rch=191,surv=8,col=False
+pos=(5,11) en=(7,13) depth=3 | l:val=-1508.0,rch=188,surv=7,col=False
+pos=(2,11) en=(7,13) depth=3 | u:val=-1732.4,rch=187,surv=6,col=False
+pos=(2,10) en=(7,13) depth=3 | r:val=-1957.9,rch=186,surv=5,col=False
+pos=(3,10) en=(7,13) depth=3 | r:val=-2186.1,rch=177,surv=4,col=False
+pos=(12,10) en=(7,13) depth=3 | r:val=-2511.0,rch=175,surv=3,col=False
+pos=(14,10) en=(7,13) depth=3 | u:val=-2818.8,rch=174,surv=2,col=False
+pos=(14,9) en=(7,13) depth=3 | l:val=-3413.2,rch=93,surv=1,col=False
+pos=(10,9) en=(7,13) depth=3 | l:val=-3669.1,rch=2,surv=0,col=False
+pos=(26,22) en=(22,20) depth=3 | d:val=-42.0,rch=968,surv=12,col=False
+pos=(26,31) en=(17,20) depth=3 | l:val=-286.9,rch=957,surv=12,col=False  r:val=-20.9,rch=961,surv=12,col=False
+pos=(28,31) en=(17,26) depth=3 | u:val=99.5,rch=946,surv=12,col=False
+pos=(28,22) en=(17,29) depth=3 | u:val=223.0,rch=937,surv=12,col=False  r:val=187.8,rch=942,surv=12,col=False
+pos=(28,16) en=(23,29) depth=3 | u:val=461.9,rch=926,surv=12,col=False
+pos=(28,11) en=(23,31) depth=3 | u:val=372.7,rch=841,surv=12,col=False  l:val=309.6,rch=844,surv=12,col=False
+pos=(28,7) en=(16,31) depth=3 | u:val=254.3,rch=832,surv=12,col=False  l:val=355.5,rch=827,surv=12,col=False
+pos=(21,7) en=(16,22) depth=3 | u:val=280.5,rch=807,surv=12,col=False  l:val=333.5,rch=715,surv=12,col=False
+pos=(16,7) en=(7,22) depth=3 | l:val=189.0,rch=701,surv=12,col=False
+pos=(11,7) en=(7,13) depth=3 | u:val=166.0,rch=686,surv=12,col=False
+pos=(11,1) en=(7,7) depth=3 | l:val=601.7,rch=545,surv=12,col=False  r:val=21.6,rch=549,surv=12,col=False
+pos=(3,1) en=(10,7) depth=3 | d:val=672.7,rch=535,surv=12,col=False
+pos=(3,8) en=(10,7) depth=3 | d:val=631.6,rch=527,surv=12,col=False  l:val=655.8,rch=534,surv=12,col=False
+pos=(2,8) en=(10,7) depth=3 | u:val=169.0,rch=527,surv=12,col=False  d:val=634.6,rch=531,surv=12,col=False  l:val=604.6,rch=533,surv=12,col=False
+pos=(2,11) en=(10,7) depth=3 | d:val=641.7,rch=524,surv=12,col=False  r:val=606.6,rch=529,surv=12,col=False
+pos=(2,18) en=(10,7) depth=3 | d:val=649.4,rch=519,surv=12,col=False  r:val=656.7,rch=522,surv=12,col=False
+pos=(4,18) en=(10,7) depth=3 | u:val=663.7,rch=518,surv=12,col=False  d:val=560.4,rch=521,surv=12,col=False
+pos=(4,14) en=(10,7) depth=3 | u:val=663.8,rch=513,surv=12,col=False
+pos=(4,9) en=(10,7) depth=3 | u:val=660.8,rch=502,surv=12,col=False  r:val=590.5,rch=502,surv=12,col=False
+pos=(4,7) en=(10,7) depth=3 | u:val=627.8,rch=499,surv=12,col=False
+pos=(4,4) en=(10,7) depth=3 | r:val=621.6,rch=497,surv=12,col=False
+pos=(6,4) en=(10,7) depth=3 | d:val=617.6,rch=464,surv=12,col=False
+pos=(6,11) en=(10,7) depth=3 | d:val=598.6,rch=459,surv=12,col=False
+pos=(6,16) en=(10,7) depth=3 | d:val=361.4,rch=457,surv=11,col=False
+pos=(6,18) en=(10,7) depth=3 | d:val=140.1,rch=455,surv=10,col=False
+pos=(6,20) en=(10,7) depth=3 | d:val=-99.1,rch=453,surv=9,col=False
+pos=(6,22) en=(10,7) depth=3 | d:val=-672.6,rch=444,surv=8,col=False
+pos=(6,31) en=(10,7) depth=3 | r:val=-1208.9,rch=74,surv=7,col=False
+pos=(14,31) en=(10,7) depth=3 | u:val=-1456.3,rch=71,surv=6,col=False
+pos=(14,28) en=(10,7) depth=3 | u:val=-3922.3,rch=66,surv=0,col=False  l:val=-1693.9,rch=69,surv=5,col=False
+pos=(12,28) en=(10,7) depth=3 | u:val=-1944.4,rch=66,surv=4,col=False  l:val=-2163.0,rch=64,surv=3,col=False
+pos=(12,25) en=(10,7) depth=3 | u:val=-2178.0,rch=64,surv=3,col=False
+pos=(12,23) en=(10,7) depth=3 | l:val=-2445.7,rch=41,surv=2,col=False
+pos=(8,23) en=(10,7) depth=3 | d:val=-3696.1,rch=38,surv=1,col=False
+pos=(8,26) en=(10,7) depth=3 | d:val=-3982.8,rch=36,surv=0,col=False
+pos=(15,1) en=(19,10) depth=3 | l:val=163.8,rch=972,surv=12,col=False
+pos=(11,1) en=(19,10) depth=3 | d:val=194.9,rch=968,surv=12,col=False  l:val=264.1,rch=966,surv=12,col=False
+pos=(5,1) en=(19,10) depth=3 | d:val=274.2,rch=964,surv=12,col=False
+pos=(5,3) en=(19,10) depth=3 | d:val=255.1,rch=956,surv=12,col=False  l:val=124.9,rch=962,surv=12,col=False  r:val=128.7,rch=958,surv=12,col=False
+pos=(5,11) en=(19,10) depth=3 | d:val=266.2,rch=952,surv=12,col=False  l:val=288.2,rch=954,surv=12,col=False  r:val=539.4,rch=955,surv=12,col=False
+pos=(6,11) en=(19,10) depth=3 | u:val=25.3,rch=950,surv=12,col=False  d:val=304.4,rch=954,surv=12,col=False  r:val=590.5,rch=850,surv=12,col=False
+pos=(15,11) en=(19,10) depth=3 | d:val=576.5,rch=843,surv=12,col=False
+pos=(15,18) en=(19,10) depth=3 | d:val=517.3,rch=835,surv=12,col=False  l:val=536.4,rch=838,surv=12,col=False  r:val=590.5,rch=836,surv=12,col=False
+pos=(22,18) en=(19,10) depth=3 | d:val=543.3,rch=833,surv=12,col=False  r:val=493.2,rch=833,surv=12,col=False
+pos=(22,21) en=(19,10) depth=3 | d:val=463.0,rch=742,surv=12,col=False  l:val=556.3,rch=826,surv=12,col=False
+pos=(15,21) en=(19,10) depth=3 | d:val=465.2,rch=820,surv=12,col=False  l:val=563.4,rch=817,surv=12,col=False
+pos=(6,21) en=(19,10) depth=3 | u:val=287.3,rch=813,surv=12,col=False  d:val=587.4,rch=814,surv=12,col=False  l:val=350.7,rch=812,surv=12,col=False
+pos=(6,24) en=(19,10) depth=3 | l:val=-139.2,rch=808,surv=12,col=False  r:val=588.3,rch=807,surv=12,col=False
+pos=(13,24) en=(19,10) depth=3 | d:val=454.2,rch=804,surv=12,col=False  r:val=545.2,rch=806,surv=12,col=False
+pos=(14,24) en=(19,10) depth=3 | d:val=444.1,rch=800,surv=12,col=False  r:val=546.1,rch=799,surv=12,col=False
+pos=(21,24) en=(19,10) depth=3 | d:val=389.1,rch=795,surv=12,col=False  r:val=342.7,rch=679,surv=12,col=False
+pos=(21,28) en=(19,10) depth=3 | d:val=379.1,rch=793,surv=12,col=False  l:val=269.4,rch=788,surv=12,col=False  r:val=338.9,rch=793,surv=12,col=False
+pos=(21,30) en=(19,10) depth=3 | l:val=463.1,rch=789,surv=12,col=False  r:val=289.6,rch=788,surv=12,col=False
+pos=(17,30) en=(19,10) depth=3 | l:val=195.3,rch=787,surv=12,col=False
+pos=(15,30) en=(19,10) depth=3 | u:val=184.2,rch=786,surv=12,col=False  d:val=59.6,rch=786,surv=12,col=False
+pos=(15,29) en=(19,10) depth=3 | u:val=204.2,rch=782,surv=12,col=False  l:val=237.2,rch=780,surv=12,col=False
+pos=(9,29) en=(19,10) depth=3 | u:val=194.0,rch=779,surv=12,col=False  l:val=-25.5,rch=777,surv=12,col=False
+pos=(9,28) en=(19,10) depth=3 | u:val=168.9,rch=777,surv=12,col=False  l:val=138.1,rch=775,surv=12,col=False  r:val=40.6,rch=777,surv=12,col=False
+pos=(9,26) en=(19,10) depth=3 | l:val=161.8,rch=771,surv=12,col=False  r:val=29.7,rch=773,surv=12,col=False
+pos=(3,26) en=(19,10) depth=3 | u:val=146.8,rch=763,surv=12,col=False
+pos=(3,18) en=(19,10) depth=3 | u:val=67.8,rch=761,surv=12,col=False  r:val=131.8,rch=760,surv=12,col=False
+pos=(6,18) en=(19,10) depth=3 | u:val=128.8,rch=759,surv=12,col=False  r:val=122.8,rch=757,surv=12,col=False
+pos=(6,17) en=(19,10) depth=3 | l:val=132.8,rch=755,surv=12,col=False
+pos=(2,17) en=(19,10) depth=3 | u:val=121.8,rch=746,surv=12,col=False
+pos=(2,8) en=(19,10) depth=3 | u:val=16.7,rch=739,surv=12,col=False
+pos=(2,1) en=(19,10) depth=3 | u:val=-276.6,rch=738,surv=12,col=False
+pos=(2,0) en=(19,10) depth=3 | r:val=-211.4,rch=536,surv=12,col=False
+pos=(7,0) en=(19,10) depth=3 | r:val=-198.3,rch=528,surv=12,col=False
+pos=(15,0) en=(19,10) depth=3 | r:val=5.5,rch=523,surv=12,col=False
+pos=(20,0) en=(19,10) depth=3 | d:val=60.7,rch=521,surv=12,col=False  r:val=99.9,rch=521,surv=12,col=False
+pos=(22,0) en=(19,10) depth=3 | d:val=90.8,rch=515,surv=12,col=False  r:val=130.0,rch=513,surv=12,col=False
+pos=(30,0) en=(19,10) depth=3 | d:val=423.1,rch=504,surv=12,col=False
+pos=(30,9) en=(19,10) depth=3 | d:val=409.1,rch=500,surv=12,col=False
+pos=(30,13) en=(19,10) depth=3 | d:val=405.1,rch=494,surv=12,col=False
+pos=(30,19) en=(19,10) depth=3 | d:val=423.2,rch=493,surv=12,col=False
+pos=(30,20) en=(19,10) depth=3 | l:val=383.0,rch=492,surv=12,col=False
+pos=(29,20) en=(19,10) depth=3 | u:val=427.2,rch=488,surv=12,col=False  d:val=379.9,rch=490,surv=12,col=False
+pos=(29,16) en=(19,10) depth=3 | l:val=388.0,rch=487,surv=12,col=False
+pos=(28,16) en=(19,10) depth=3 | u:val=85.5,rch=483,surv=11,col=False  d:val=383.0,rch=482,surv=12,col=False
+pos=(28,21) en=(19,10) depth=3 | r:val=376.0,rch=480,surv=12,col=False
+pos=(30,21) en=(19,10) depth=3 | d:val=139.7,rch=476,surv=11,col=False
+pos=(30,25) en=(19,10) depth=3 | l:val=-117.5,rch=474,surv=10,col=False
+pos=(28,25) en=(19,10) depth=3 | l:val=-652.0,rch=468,surv=9,col=False
+pos=(22,25) en=(19,10) depth=3 | u:val=-1571.6,rch=116,surv=6,col=False  d:val=-982.2,rch=208,surv=8,col=False
+pos=(22,31) en=(19,10) depth=3 | r:val=-1468.8,rch=78,surv=7,col=False
+pos=(25,31) en=(19,10) depth=3 | u:val=-1741.1,rch=74,surv=6,col=False
+pos=(25,27) en=(19,10) depth=3 | r:val=-1981.6,rch=68,surv=5,col=False
+pos=(31,27) en=(19,10) depth=3 | u:val=-2303.3,rch=20,surv=4,col=False  d:val=-3769.3,rch=21,surv=1,col=False
+pos=(31,19) en=(19,10) depth=3 | u:val=-2555.8,rch=14,surv=3,col=False
+pos=(31,13) en=(19,10) depth=3 | u:val=-2801.2,rch=11,surv=2,col=False
+pos=(31,10) en=(19,10) depth=3 | u:val=-3793.8,rch=5,surv=1,col=False
+pos=(31,4) en=(19,10) depth=3 | u:val=-4039.4,rch=3,surv=0,col=False
+pos=(30,24) en=(1,6) depth=3 | d:val=235.3,rch=971,surv=12,col=False  l:val=522.4,rch=973,surv=12,col=False
+pos=(25,29) en=(3,4) depth=3 | l:val=384.8,rch=959,surv=12,col=False
+pos=(20,29) en=(11,4) depth=3 | u:val=557.5,rch=946,surv=12,col=False  l:val=426.0,rch=945,surv=12,col=False
+pos=(20,24) en=(16,4) depth=3 | u:val=249.4,rch=940,surv=12,col=False  l:val=173.2,rch=935,surv=12,col=False
+pos=(20,23) en=(25,4) depth=3 | u:val=382.7,rch=924,surv=12,col=False  l:val=334.6,rch=926,surv=12,col=False  r:val=452.2,rch=930,surv=12,col=False
+pos=(21,23) en=(25,0) depth=3 | u:val=894.6,rch=922,surv=12,col=False
+pos=(21,19) en=(24,0) depth=3 | u:val=871.6,rch=917,surv=12,col=False  l:val=927.6,rch=920,surv=12,col=False
+pos=(20,19) en=(15,0) depth=3 | u:val=826.5,rch=903,surv=12,col=False  l:val=907.5,rch=903,surv=12,col=False
+pos=(12,19) en=(14,0) depth=3 | u:val=760.3,rch=896,surv=12,col=False  d:val=837.4,rch=893,surv=12,col=False  l:val=859.6,rch=901,surv=12,col=False
+pos=(11,19) en=(7,0) depth=3 | u:val=313.4,rch=890,surv=12,col=False  d:val=877.4,rch=889,surv=12,col=False  l:val=912.6,rch=885,surv=12,col=False
+pos=(11,24) en=(7,0) depth=3 | d:val=916.6,rch=887,surv=12,col=False  l:val=909.6,rch=885,surv=12,col=False  r:val=803.3,rch=888,surv=12,col=False
+pos=(11,26) en=(7,0) depth=3 | d:val=878.3,rch=882,surv=12,col=False  l:val=892.5,rch=878,surv=12,col=False
+pos=(11,31) en=(7,0) depth=3 | l:val=933.5,rch=880,surv=12,col=False
+pos=(9,31) en=(7,0) depth=3 | u:val=903.4,rch=875,surv=12,col=False  l:val=835.1,rch=875,surv=12,col=False
+pos=(9,26) en=(7,0) depth=3 | u:val=908.5,rch=866,surv=12,col=False  l:val=875.5,rch=868,surv=12,col=False
+pos=(2,26) en=(7,0) depth=3 | u:val=872.5,rch=864,surv=12,col=False
+pos=(2,22) en=(7,0) depth=3 | u:val=866.6,rch=861,surv=12,col=False  r:val=863.5,rch=858,surv=12,col=False
+pos=(2,19) en=(7,0) depth=3 | u:val=880.6,rch=852,surv=12,col=False  r:val=246.3,rch=856,surv=12,col=False
+pos=(2,10) en=(7,0) depth=3 | u:val=826.5,rch=850,surv=12,col=False
+pos=(2,8) en=(7,0) depth=3 | l:val=184.1,rch=848,surv=12,col=False  r:val=681.9,rch=846,surv=12,col=False
+pos=(6,8) en=(7,0) depth=3 | d:val=671.8,rch=842,surv=12,col=False
+pos=(6,12) en=(7,0) depth=3 | l:val=763.3,rch=840,surv=12,col=False
+pos=(4,12) en=(7,0) depth=3 | d:val=644.7,rch=837,surv=12,col=False
+pos=(4,15) en=(7,0) depth=3 | d:val=623.7,rch=828,surv=12,col=False
+pos=(4,24) en=(7,0) depth=3 | d:val=612.7,rch=827,surv=12,col=False
+pos=(4,25) en=(7,0) depth=3 | r:val=613.7,rch=803,surv=12,col=False
+pos=(5,25) en=(7,0) depth=3 | u:val=723.1,rch=795,surv=12,col=False
+pos=(5,17) en=(7,0) depth=3 | u:val=553.5,rch=794,surv=12,col=False  r:val=654.6,rch=790,surv=12,col=False
+pos=(10,17) en=(7,0) depth=3 | u:val=539.4,rch=789,surv=12,col=False  r:val=630.5,rch=785,surv=12,col=False
+pos=(15,17) en=(7,0) depth=3 | u:val=603.4,rch=780,surv=12,col=False  r:val=629.5,rch=779,surv=12,col=False
+pos=(21,17) en=(7,0) depth=3 | u:val=639.6,rch=774,surv=12,col=False  r:val=475.0,rch=662,surv=12,col=False
+pos=(21,12) en=(7,0) depth=3 | u:val=574.5,rch=769,surv=12,col=False  l:val=606.4,rch=771,surv=12,col=False  r:val=99.0,rch=770,surv=10,col=False
+pos=(18,12) en=(7,0) depth=3 | u:val=588.5,rch=769,surv=12,col=False  l:val=567.6,rch=766,surv=12,col=False
+pos=(18,10) en=(7,0) depth=3 | l:val=588.5,rch=765,surv=12,col=False  r:val=537.3,rch=765,surv=12,col=False
+pos=(14,10) en=(7,0) depth=3 | u:val=519.3,rch=762,surv=12,col=False  d:val=580.5,rch=763,surv=12,col=False
+pos=(14,12) en=(7,0) depth=3 | d:val=574.5,rch=760,surv=12,col=False
+pos=(14,15) en=(7,0) depth=3 | l:val=547.4,rch=758,surv=12,col=False
+pos=(12,15) en=(7,0) depth=3 | u:val=539.4,rch=755,surv=12,col=False
+pos=(12,12) en=(7,0) depth=3 | u:val=530.4,rch=751,surv=12,col=False
+pos=(12,8) en=(7,0) depth=3 | r:val=518.4,rch=748,surv=12,col=False
+pos=(15,8) en=(7,0) depth=3 | r:val=509.4,rch=746,surv=12,col=False
+pos=(17,8) en=(7,0) depth=3 | r:val=510.3,rch=744,surv=12,col=False
+pos=(19,8) en=(7,0) depth=3 | u:val=499.3,rch=743,surv=12,col=False  r:val=481.2,rch=740,surv=12,col=False
+pos=(19,7) en=(7,0) depth=3 | u:val=362.7,rch=741,surv=12,col=False  r:val=511.3,rch=741,surv=12,col=False
+pos=(21,7) en=(7,0) depth=3 | d:val=487.2,rch=739,surv=12,col=False  r:val=-14.3,rch=738,surv=10,col=False
+pos=(21,9) en=(7,0) depth=3 | r:val=483.2,rch=731,surv=12,col=False
+pos=(29,9) en=(7,0) depth=3 | d:val=385.9,rch=724,surv=12,col=False
+pos=(29,16) en=(7,0) depth=3 | l:val=366.9,rch=722,surv=12,col=False
+pos=(27,16) en=(7,0) depth=3 | u:val=408.9,rch=720,surv=12,col=False
+pos=(27,14) en=(7,0) depth=3 | l:val=320.7,rch=717,surv=12,col=False
+pos=(24,14) en=(7,0) depth=3 | d:val=311.5,rch=714,surv=12,col=False
+pos=(24,17) en=(7,0) depth=3 | r:val=86.3,rch=534,surv=11,col=False
+pos=(30,17) en=(7,0) depth=3 | u:val=-145.9,rch=527,surv=10,col=False
+pos=(30,10) en=(7,0) depth=3 | u:val=-566.8,rch=522,surv=9,col=False
+pos=(30,5) en=(7,0) depth=3 | l:val=-848.2,rch=518,surv=8,col=False
+pos=(26,5) en=(7,0) depth=3 | u:val=-1178.0,rch=203,surv=7,col=False
+pos=(26,4) en=(7,0) depth=3 | r:val=-1414.9,rch=198,surv=6,col=False
+pos=(31,4) en=(7,0) depth=3 | d:val=-1700.9,rch=169,surv=5,col=False
+pos=(31,9) en=(7,0) depth=3 | d:val=-1940.8,rch=168,surv=4,col=False
+pos=(31,10) en=(7,0) depth=3 | d:val=-2171.2,rch=165,surv=3,col=False
+pos=(31,13) en=(7,0) depth=3 | d:val=-2397.2,rch=164,surv=2,col=False
+pos=(31,14) en=(7,0) depth=3 | d:val=-3465.2,rch=162,surv=1,col=False
+pos=(31,16) en=(7,0) depth=3 | d:val=-3760.9,rch=153,surv=0,col=False
+pos=(17,10) en=(23,9) depth=3 | u:val=74.5,rch=990,surv=12,col=False  d:val=377.5,rch=997,surv=12,col=False
+pos=(17,11) en=(20,9) depth=3 | d:val=425.9,rch=989,surv=12,col=False  l:val=392.5,rch=991,surv=12,col=False
+pos=(14,16) en=(24,1) depth=3 | u:val=572.4,rch=969,surv=12,col=False  d:val=599.6,rch=968,surv=12,col=False  l:val=602.5,rch=970,surv=12,col=False
+pos=(10,16) en=(24,2) depth=3 | u:val=426.9,rch=964,surv=12,col=False  d:val=497.3,rch=968,surv=12,col=False  l:val=430.1,rch=965,surv=12,col=False
+pos=(10,17) en=(25,2) depth=3 | d:val=708.8,rch=963,surv=12,col=False  l:val=480.3,rch=963,surv=12,col=False  r:val=513.1,rch=960,surv=12,col=False
+pos=(10,21) en=(25,3) depth=3 | d:val=591.3,rch=954,surv=12,col=False  l:val=524.2,rch=960,surv=12,col=False  r:val=621.5,rch=953,surv=12,col=False
+pos=(19,21) en=(25,9) depth=3 | u:val=118.6,rch=940,surv=12,col=False  d:val=543.5,rch=939,surv=12,col=False
+pos=(19,29) en=(25,18) depth=3 | l:val=192.2,rch=924,surv=12,col=False  r:val=282.5,rch=922,surv=12,col=False
+pos=(27,29) en=(28,18) depth=3 | d:val=203.1,rch=918,surv=12,col=False
+pos=(27,30) en=(29,18) depth=3 | d:val=31.7,rch=916,surv=12,col=False  l:val=210.1,rch=911,surv=12,col=False
+pos=(21,30) en=(29,21) depth=3 | l:val=270.4,rch=901,surv=12,col=False
+pos=(14,30) en=(24,21) depth=3 | u:val=249.5,rch=844,surv=12,col=False  l:val=259.4,rch=846,surv=12,col=False
+pos=(11,30) en=(24,27) depth=3 | l:val=308.5,rch=831,surv=12,col=False
+pos=(2,30) en=(25,27) depth=3 | u:val=371.8,rch=825,surv=12,col=False  d:val=263.5,rch=829,surv=12,col=False  l:val=347.7,rch=828,surv=12,col=False
+pos=(2,25) en=(25,26) depth=3 | u:val=410.9,rch=815,surv=12,col=False  r:val=380.9,rch=819,surv=12,col=False
+pos=(2,16) en=(25,23) depth=3 | u:val=460.0,rch=807,surv=12,col=False
+pos=(2,11) en=(25,22) depth=3 | u:val=407.1,rch=802,surv=12,col=False  r:val=463.2,rch=804,surv=12,col=False
+pos=(4,11) en=(25,22) depth=3 | u:val=501.3,rch=798,surv=12,col=False  d:val=313.8,rch=796,surv=12,col=False
+pos=(4,5) en=(25,22) depth=3 | u:val=362.9,rch=793,surv=12,col=False  l:val=295.7,rch=795,surv=12,col=False  r:val=515.4,rch=795,surv=12,col=False
+pos=(7,5) en=(25,22) depth=3 | u:val=516.4,rch=794,surv=12,col=False  r:val=514.4,rch=791,surv=12,col=False
+pos=(7,4) en=(25,22) depth=3 | r:val=515.5,rch=789,surv=12,col=False
+pos=(12,4) en=(25,22) depth=3 | u:val=289.6,rch=787,surv=12,col=False  r:val=538.4,rch=787,surv=12,col=False
+pos=(14,4) en=(25,22) depth=3 | u:val=456.4,rch=786,surv=12,col=False  d:val=502.5,rch=785,surv=12,col=False  r:val=520.4,rch=785,surv=12,col=False
+pos=(14,6) en=(25,22) depth=3 | l:val=323.7,rch=770,surv=12,col=False  r:val=231.5,rch=781,surv=12,col=False
+pos=(5,6) en=(25,22) depth=3 | d:val=300.7,rch=768,surv=12,col=False
+pos=(5,8) en=(25,22) depth=3 | d:val=292.7,rch=765,surv=12,col=False
+pos=(5,11) en=(25,22) depth=3 | r:val=-196.1,rch=761,surv=12,col=False
+pos=(9,11) en=(25,22) depth=3 | d:val=-297.6,rch=192,surv=12,col=False
+pos=(9,18) en=(25,22) depth=3 | l:val=-317.0,rch=190,surv=12,col=False
+pos=(7,18) en=(25,22) depth=3 | d:val=-777.8,rch=184,surv=10,col=False  l:val=-323.7,rch=189,surv=12,col=False
+pos=(6,18) en=(25,22) depth=3 | d:val=-323.9,rch=186,surv=12,col=False
+pos=(6,21) en=(25,22) depth=3 | l:val=-377.3,rch=183,surv=12,col=False  r:val=-566.8,rch=185,surv=11,col=False
+pos=(3,21) en=(25,22) depth=3 | d:val=-462.5,rch=131,surv=12,col=False
+pos=(3,28) en=(25,22) depth=3 | r:val=-492.6,rch=124,surv=12,col=False
+pos=(10,28) en=(25,22) depth=3 | r:val=-735.5,rch=123,surv=11,col=False
+pos=(11,28) en=(25,22) depth=3 | r:val=-961.9,rch=120,surv=10,col=False
+pos=(14,28) en=(25,22) depth=3 | u:val=-1194.0,rch=116,surv=9,col=False
+pos=(14,24) en=(25,22) depth=3 | u:val=-1430.9,rch=115,surv=8,col=False
+pos=(14,23) en=(25,22) depth=3 | l:val=-1667.9,rch=107,surv=7,col=False
+pos=(6,23) en=(25,22) depth=3 | l:val=-1986.1,rch=106,surv=6,col=False
+pos=(5,23) en=(25,22) depth=3 | d:val=-2219.2,rch=102,surv=5,col=False
+pos=(5,27) en=(25,22) depth=3 | r:val=-2569.6,rch=32,surv=4,col=False
+pos=(6,27) en=(25,22) depth=3 | r:val=-2796.5,rch=31,surv=3,col=False
+pos=(7,27) en=(25,22) depth=3 | u:val=-3996.1,rch=30,surv=0,col=False  r:val=-3030.1,rch=25,surv=2,col=False
+pos=(13,27) en=(25,22) depth=3 | u:val=-3768.9,rch=23,surv=1,col=False
+pos=(13,25) en=(25,22) depth=3 | l:val=-4006.0,rch=19,surv=0,col=False
+pos=(28,22) en=(15,11) depth=3 | d:val=137.6,rch=974,surv=12,col=False
+pos=(28,29) en=(12,11) depth=3 | l:val=193.9,rch=966,surv=12,col=False
+pos=(23,29) en=(9,11) depth=3 | u:val=341.6,rch=934,surv=12,col=False  l:val=343.7,rch=938,surv=12,col=False
+pos=(22,29) en=(9,5) depth=3 | u:val=502.0,rch=927,surv=12,col=False  l:val=468.9,rch=926,surv=12,col=False
+pos=(22,24) en=(13,5) depth=3 | u:val=189.0,rch=854,surv=12,col=False  l:val=138.1,rch=854,surv=12,col=False
+pos=(22,16) en=(13,2) depth=3 | u:val=546.5,rch=849,surv=12,col=False  l:val=203.9,rch=845,surv=12,col=False
+pos=(22,14) en=(19,2) depth=3 | u:val=301.6,rch=840,surv=12,col=False
+pos=(22,11) en=(24,2) depth=3 | u:val=411.8,rch=832,surv=12,col=False  l:val=309.7,rch=829,surv=12,col=False  r:val=-195.4,rch=828,surv=11,col=False
+pos=(22,8) en=(24,8) depth=3 | u:val=466.1,rch=821,surv=12,col=False  l:val=563.4,rch=824,surv=12,col=False
+pos=(20,8) en=(24,13) depth=3 | u:val=534.4,rch=816,surv=12,col=False  d:val=615.6,rch=818,surv=12,col=False  l:val=631.6,rch=816,surv=12,col=False
+pos=(20,9) en=(29,13) depth=3 | d:val=622.6,rch=811,surv=12,col=False  l:val=367.8,rch=805,surv=12,col=False
+pos=(20,11) en=(29,22) depth=3 | d:val=643.7,rch=795,surv=12,col=False
+pos=(20,18) en=(30,22) depth=3 | d:val=633.7,rch=786,surv=12,col=False  l:val=638.7,rch=792,surv=12,col=False  r:val=570.5,rch=793,surv=12,col=False
+pos=(18,18) en=(30,14) depth=3 | d:val=653.7,rch=781,surv=12,col=False  l:val=641.7,rch=781,surv=12,col=False
+pos=(18,21) en=(30,7) depth=3 | d:val=540.3,rch=765,surv=12,col=False  l:val=608.5,rch=770,surv=12,col=False
+pos=(14,21) en=(30,4) depth=3 | d:val=683.7,rch=766,surv=12,col=False  l:val=634.5,rch=760,surv=12,col=False
+pos=(14,22) en=(30,0) depth=3 | d:val=647.8,rch=755,surv=12,col=False  l:val=665.8,rch=760,surv=12,col=False  r:val=532.4,rch=760,surv=12,col=False
+pos=(12,22) en=(30,0) depth=3 | u:val=674.0,rch=759,surv=12,col=False  d:val=595.6,rch=753,surv=12,col=False  l:val=644.8,rch=758,surv=12,col=False
+pos=(12,21) en=(30,0) depth=3 | u:val=631.6,rch=758,surv=12,col=False  l:val=672.0,rch=752,surv=12,col=False
+pos=(5,21) en=(30,0) depth=3 | u:val=656.0,rch=746,surv=12,col=False  d:val=584.6,rch=746,surv=12,col=False
+pos=(5,15) en=(30,0) depth=3 | u:val=652.1,rch=745,surv=12,col=False  l:val=337.8,rch=741,surv=12,col=False  r:val=528.5,rch=744,surv=12,col=False
+pos=(5,14) en=(30,0) depth=3 | l:val=372.8,rch=740,surv=12,col=False
+pos=(0,14) en=(30,0) depth=3 | u:val=355.9,rch=399,surv=12,col=False  d:val=42.8,rch=327,surv=12,col=False
+pos=(0,8) en=(30,0) depth=3 | u:val=329.8,rch=394,surv=12,col=False  r:val=173.2,rch=392,surv=12,col=False
+pos=(0,3) en=(30,0) depth=3 | r:val=330.7,rch=388,surv=12,col=False
+pos=(6,3) en=(30,0) depth=3 | d:val=314.7,rch=382,surv=12,col=False
+pos=(6,9) en=(30,0) depth=3 | l:val=315.7,rch=379,surv=12,col=False
+pos=(3,9) en=(30,0) depth=3 | d:val=317.7,rch=377,surv=12,col=False
+pos=(3,11) en=(30,0) depth=3 | r:val=209.3,rch=375,surv=12,col=False
+pos=(5,11) en=(30,0) depth=3 | r:val=207.3,rch=373,surv=12,col=False
+pos=(7,11) en=(30,0) depth=3 | d:val=147.9,rch=213,surv=12,col=False
+pos=(7,19) en=(30,0) depth=3 | r:val=57.8,rch=209,surv=12,col=False
+pos=(11,19) en=(30,0) depth=3 | r:val=-185.7,rch=203,surv=11,col=False
+pos=(17,19) en=(30,0) depth=3 | u:val=-535.6,rch=138,surv=10,col=False
+pos=(17,16) en=(30,0) depth=3 | u:val=-767.9,rch=135,surv=9,col=False
+pos=(17,13) en=(30,0) depth=3 | u:val=-1006.0,rch=131,surv=8,col=False
+pos=(17,9) en=(30,0) depth=3 | l:val=-1244.6,rch=125,surv=7,col=False
+pos=(11,9) en=(30,0) depth=3 | u:val=-1504.3,rch=123,surv=6,col=False
+pos=(11,7) en=(30,0) depth=3 | r:val=-1747.3,rch=115,surv=5,col=False
+pos=(19,7) en=(30,0) depth=3 | u:val=-3665.0,rch=87,surv=1,col=False  d:val=-2659.4,rch=24,surv=2,col=False  r:val=-2044.3,rch=86,surv=4,col=False
+pos=(22,7) en=(30,0) depth=3 | u:val=-2275.2,rch=85,surv=3,col=False
+pos=(22,6) en=(30,0) depth=3 | l:val=-2538.3,rch=84,surv=2,col=False
+pos=(21,6) en=(30,0) depth=3 | u:val=-3675.3,rch=81,surv=1,col=False  l:val=-3665.0,rch=80,surv=1,col=False
+pos=(21,3) en=(30,0) depth=3 | r:val=-4023.5,rch=14,surv=0,col=False
+pos=(18,10) en=(20,21) depth=3 | u:val=14.4,rch=953,surv=12,col=False  l:val=162.8,rch=955,surv=12,col=False
+pos=(13,10) en=(20,18) depth=3 | u:val=195.9,rch=949,surv=12,col=False  d:val=-127.2,rch=951,surv=12,col=False
+pos=(13,7) en=(19,18) depth=3 | u:val=88.8,rch=944,surv=12,col=False  l:val=252.1,rch=879,surv=12,col=False  r:val=60.5,rch=946,surv=12,col=False
+pos=(7,7) en=(19,21) depth=3 | d:val=261.1,rch=873,surv=12,col=False  l:val=50.8,rch=875,surv=12,col=False
+pos=(7,10) en=(13,21) depth=3 | d:val=204.9,rch=858,surv=12,col=False  l:val=33.4,rch=865,surv=12,col=False  r:val=191.2,rch=865,surv=12,col=False
+pos=(7,19) en=(10,21) depth=3 | d:val=212.1,rch=846,surv=12,col=False  l:val=41.8,rch=851,surv=12,col=False
+pos=(7,28) en=(10,23) depth=3 | l:val=225.1,rch=838,surv=12,col=False  r:val=800.3,rch=839,surv=12,col=False
+pos=(12,28) en=(10,27) depth=3 | d:val=968.9,rch=833,surv=12,col=False
+pos=(12,30) en=(10,27) depth=3 | d:val=959.9,rch=832,surv=12,col=False  l:val=88.8,rch=832,surv=12,col=False  r:val=961.8,rch=832,surv=12,col=False
+pos=(12,31) en=(10,27) depth=3 | l:val=63.5,rch=827,surv=12,col=False  r:val=953.8,rch=827,surv=12,col=False
+pos=(17,31) en=(10,27) depth=3 | r:val=943.8,rch=824,surv=12,col=False
+pos=(20,31) en=(10,27) depth=3 | r:val=925.7,rch=821,surv=12,col=False
+pos=(23,31) en=(10,27) depth=3 | u:val=914.7,rch=819,surv=12,col=False  r:val=913.7,rch=818,surv=12,col=False
+pos=(23,29) en=(10,27) depth=3 | r:val=916.7,rch=776,surv=12,col=False
+pos=(27,29) en=(10,27) depth=3 | u:val=908.7,rch=767,surv=12,col=False  r:val=864.6,rch=772,surv=12,col=False
+pos=(27,20) en=(10,27) depth=3 | u:val=890.6,rch=759,surv=12,col=False
+pos=(27,12) en=(10,27) depth=3 | u:val=870.6,rch=755,surv=12,col=False
+pos=(27,8) en=(10,27) depth=3 | u:val=843.6,rch=749,surv=12,col=False  l:val=865.6,rch=746,surv=12,col=False
+pos=(27,2) en=(10,27) depth=3 | l:val=839.6,rch=748,surv=12,col=False  r:val=810.6,rch=747,surv=12,col=False
+pos=(26,2) en=(10,27) depth=3 | u:val=862.6,rch=747,surv=12,col=False  d:val=888.6,rch=741,surv=12,col=False  l:val=839.6,rch=747,surv=12,col=False
+pos=(26,1) en=(10,27) depth=3 | l:val=866.6,rch=745,surv=12,col=False
+pos=(24,1) en=(10,27) depth=3 | d:val=668.8,rch=737,surv=12,col=False  l:val=865.6,rch=740,surv=12,col=False
+pos=(19,1) en=(10,27) depth=3 | d:val=838.6,rch=736,surv=12,col=False  l:val=855.5,rch=733,surv=12,col=False
+pos=(19,5) en=(10,27) depth=3 | l:val=811.5,rch=733,surv=12,col=False  r:val=828.5,rch=731,surv=12,col=False
+pos=(16,5) en=(10,27) depth=3 | l:val=807.5,rch=731,surv=12,col=False
+pos=(14,5) en=(10,27) depth=3 | u:val=847.5,rch=727,surv=12,col=False  l:val=807.5,rch=723,surv=12,col=False
+pos=(14,1) en=(10,27) depth=3 | l:val=838.5,rch=718,surv=12,col=False
+pos=(5,1) en=(10,27) depth=3 | d:val=781.5,rch=714,surv=12,col=False  l:val=820.5,rch=714,surv=12,col=False
+pos=(1,1) en=(10,27) depth=3 | d:val=811.4,rch=711,surv=12,col=False
+pos=(1,4) en=(10,27) depth=3 | d:val=806.4,rch=702,surv=12,col=False  r:val=781.5,rch=710,surv=12,col=False
+pos=(2,4) en=(10,27) depth=3 | d:val=787.4,rch=706,surv=12,col=False
+pos=(2,8) en=(10,27) depth=3 | d:val=793.4,rch=703,surv=12,col=False
+pos=(2,11) en=(10,27) depth=3 | d:val=810.4,rch=694,surv=12,col=False
+pos=(2,20) en=(10,27) depth=3 | d:val=765.4,rch=693,surv=12,col=False  r:val=792.4,rch=693,surv=12,col=False
+pos=(2,21) en=(10,27) depth=3 | d:val=767.4,rch=690,surv=12,col=False
+pos=(2,24) en=(10,27) depth=3 | d:val=767.4,rch=685,surv=12,col=False
+pos=(2,29) en=(10,27) depth=3 | l:val=307.9,rch=684,surv=10,col=False  r:val=484.4,rch=681,surv=12,col=False
+pos=(6,29) en=(10,27) depth=3 | u:val=517.4,rch=411,surv=12,col=False
+pos=(6,23) en=(10,27) depth=3 | u:val=505.4,rch=410,surv=12,col=False
+pos=(6,22) en=(10,27) depth=3 | u:val=257.2,rch=406,surv=11,col=False  l:val=504.4,rch=409,surv=12,col=False
+pos=(5,22) en=(10,27) depth=3 | u:val=504.4,rch=403,surv=12,col=False
+pos=(5,16) en=(10,27) depth=3 | u:val=495.3,rch=401,surv=12,col=False
+pos=(5,14) en=(10,27) depth=3 | u:val=455.4,rch=398,surv=12,col=False
+pos=(5,11) en=(10,27) depth=3 | u:val=429.1,rch=389,surv=12,col=False
+pos=(5,2) en=(10,27) depth=3 | r:val=403.1,rch=319,surv=12,col=False
+pos=(13,2) en=(10,27) depth=3 | d:val=380.1,rch=316,surv=12,col=False
+pos=(13,5) en=(10,27) depth=3 | l:val=333.9,rch=315,surv=12,col=False
+pos=(12,5) en=(10,27) depth=3 | d:val=108.7,rch=314,surv=11,col=False
+pos=(12,6) en=(10,27) depth=3 | r:val=-118.3,rch=269,surv=10,col=False
+pos=(16,6) en=(10,27) depth=3 | r:val=-352.9,rch=267,surv=9,col=False
+pos=(18,6) en=(10,27) depth=3 | r:val=-576.7,rch=260,surv=8,col=False
+pos=(25,6) en=(10,27) depth=3 | d:val=-840.5,rch=258,surv=7,col=False
+pos=(25,8) en=(10,27) depth=3 | d:val=-1104.7,rch=219,surv=6,col=False
+pos=(25,14) en=(10,27) depth=3 | d:val=-1499.0,rch=214,surv=5,col=False
+pos=(25,19) en=(10,27) depth=3 | d:val=-3674.6,rch=205,surv=0,col=False  l:val=-1738.9,rch=213,surv=4,col=False
+pos=(24,19) en=(10,27) depth=3 | d:val=-2217.7,rch=63,surv=3,col=False
+pos=(24,25) en=(10,27) depth=3 | r:val=-2460.6,rch=62,surv=2,col=False
+pos=(25,25) en=(10,27) depth=3 | u:val=-3713.1,rch=59,surv=1,col=False  d:val=-3942.8,rch=61,surv=0,col=False
+pos=(25,22) en=(10,27) depth=3 | u:val=-3948.0,rch=58,surv=0,col=False
+pos=(24,27) en=(2,22) depth=3 | l:val=553.1,rch=993,surv=12,col=False  r:val=384.6,rch=994,surv=12,col=False
+pos=(21,27) en=(4,22) depth=3 | u:val=522.1,rch=987,surv=12,col=False  d:val=448.0,rch=988,surv=12,col=False  l:val=499.9,rch=989,surv=12,col=False
+pos=(21,23) en=(4,20) depth=3 | u:val=302.6,rch=984,surv=12,col=False  l:val=297.4,rch=983,surv=12,col=False
+pos=(21,22) en=(4,13) depth=3 | u:val=674.6,rch=973,surv=12,col=False  l:val=659.8,rch=970,surv=12,col=False
+pos=(21,18) en=(4,12) depth=3 | u:val=822.3,rch=964,surv=12,col=False  l:val=961.6,rch=968,surv=12,col=False  r:val=247.2,rch=968,surv=12,col=False
+pos=(17,18) en=(6,12) depth=3 | u:val=276.6,rch=961,surv=12,col=False  d:val=163.2,rch=964,surv=12,col=False  l:val=363.7,rch=962,surv=12,col=False
+pos=(13,18) en=(10,12) depth=3 | u:val=345.6,rch=955,surv=12,col=False  d:val=-119.8,rch=956,surv=12,col=False  l:val=-45.0,rch=950,surv=12,col=False
+pos=(13,15) en=(10,17) depth=3 | u:val=317.7,rch=943,surv=12,col=False  l:val=587.4,rch=949,surv=12,col=False  r:val=253.3,rch=946,surv=12,col=False
+pos=(12,15) en=(10,22) depth=3 | u:val=289.4,rch=935,surv=12,col=False  l:val=424.8,rch=943,surv=12,col=False
+pos=(11,15) en=(18,22) depth=3 | u:val=411.7,rch=934,surv=12,col=False
+pos=(11,14) en=(18,29) depth=3 | u:val=353.4,rch=918,surv=12,col=False  r:val=438.8,rch=918,surv=12,col=False
+pos=(20,14) en=(11,29) depth=3 | u:val=417.9,rch=902,surv=12,col=False  d:val=465.9,rch=910,surv=12,col=False  r:val=421.8,rch=907,surv=12,col=False
+pos=(20,15) en=(4,29) depth=3 | l:val=373.9,rch=897,surv=12,col=False  r:val=444.8,rch=896,surv=12,col=False
+pos=(27,15) en=(4,27) depth=3 | u:val=533.1,rch=888,surv=12,col=False  r:val=472.2,rch=892,surv=12,col=False
+pos=(27,9) en=(10,27) depth=3 | u:val=440.1,rch=878,surv=12,col=False  l:val=535.2,rch=877,surv=12,col=False
+pos=(22,9) en=(13,27) depth=3 | u:val=558.6,rch=871,surv=12,col=False  d:val=402.2,rch=873,surv=12,col=False  l:val=496.2,rch=867,surv=12,col=False
+pos=(22,6) en=(13,25) depth=3 | u:val=-99.8,rch=863,surv=12,col=False  l:val=377.8,rch=868,surv=12,col=False  r:val=344.8,rch=866,surv=12,col=False
+pos=(21,6) en=(15,25) depth=3 | u:val=583.3,rch=861,surv=12,col=False  d:val=424.9,rch=859,surv=12,col=False  l:val=441.1,rch=861,surv=12,col=False
+pos=(21,1) en=(15,23) depth=3 | l:val=378.0,rch=831,surv=12,col=False  r:val=453.1,rch=830,surv=12,col=False
+pos=(23,1) en=(15,23) depth=3 | r:val=427.0,rch=824,surv=12,col=False
+pos=(29,1) en=(15,23) depth=3 | u:val=-96.8,rch=823,surv=12,col=False  d:val=397.9,rch=822,surv=12,col=False
+pos=(29,3) en=(15,23) depth=3 | d:val=369.8,rch=816,surv=12,col=False  l:val=345.0,rch=821,surv=12,col=False
+pos=(29,9) en=(15,23) depth=3 | d:val=285.6,rch=815,surv=12,col=False
+pos=(29,10) en=(15,23) depth=3 | d:val=238.4,rch=813,surv=12,col=False
+pos=(29,12) en=(15,23) depth=3 | d:val=188.2,rch=807,surv=12,col=False
+pos=(29,18) en=(15,23) depth=3 | d:val=-103.9,rch=803,surv=12,col=False  l:val=166.2,rch=804,surv=12,col=False
+pos=(26,18) en=(15,23) depth=3 | d:val=-94.8,rch=800,surv=12,col=False  l:val=200.3,rch=802,surv=12,col=False
+pos=(24,18) en=(15,23) depth=3 | d:val=172.3,rch=800,surv=12,col=False  l:val=115.0,rch=800,surv=12,col=False
+pos=(24,20) en=(15,23) depth=3 | r:val=33.7,rch=797,surv=12,col=False
+pos=(27,20) en=(15,23) depth=3 | d:val=39.8,rch=795,surv=12,col=False
+pos=(27,22) en=(15,23) depth=3 | d:val=148.1,rch=787,surv=12,col=False
+pos=(27,30) en=(15,23) depth=3 | l:val=-161.0,rch=786,surv=12,col=False  r:val=150.2,rch=784,surv=12,col=False
+pos=(30,30) en=(15,23) depth=3 | u:val=167.3,rch=780,surv=12,col=False
+pos=(30,26) en=(15,23) depth=3 | u:val=194.4,rch=778,surv=12,col=False
+pos=(30,24) en=(15,23) depth=3 | u:val=215.5,rch=776,surv=12,col=False
+pos=(30,22) en=(15,23) depth=3 | u:val=188.4,rch=773,surv=12,col=False
+pos=(30,19) en=(15,23) depth=3 | r:val=-169.1,rch=747,surv=12,col=False
+pos=(31,19) en=(15,23) depth=3 | u:val=-157.1,rch=746,surv=12,col=False
+pos=(31,18) en=(15,23) depth=3 | u:val=-130.0,rch=742,surv=12,col=False
+pos=(31,14) en=(15,23) depth=3 | u:val=6.5,rch=741,surv=12,col=False
+pos=(31,13) en=(15,23) depth=3 | u:val=39.6,rch=739,surv=12,col=False
+pos=(31,11) en=(15,23) depth=3 | u:val=43.6,rch=732,surv=12,col=False
+pos=(31,4) en=(15,23) depth=3 | u:val=38.7,rch=728,surv=12,col=False
+pos=(31,0) en=(15,23) depth=3 | l:val=34.7,rch=706,surv=12,col=False
+pos=(27,0) en=(15,23) depth=3 | l:val=43.7,rch=703,surv=12,col=False
+pos=(24,0) en=(15,23) depth=3 | l:val=43.7,rch=701,surv=12,col=False
+pos=(22,0) en=(15,23) depth=3 | l:val=64.7,rch=694,surv=12,col=False
+pos=(15,0) en=(15,23) depth=3 | d:val=61.8,rch=691,surv=12,col=False  l:val=40.8,rch=692,surv=12,col=False
+pos=(15,3) en=(15,23) depth=3 | d:val=26.7,rch=683,surv=12,col=False  l:val=65.8,rch=683,surv=12,col=False  r:val=14.7,rch=690,surv=12,col=False
+pos=(7,3) en=(15,23) depth=3 | l:val=5.6,rch=681,surv=12,col=False
+pos=(5,3) en=(15,23) depth=3 | l:val=14.6,rch=676,surv=12,col=False
+pos=(0,3) en=(15,23) depth=3 | d:val=40.7,rch=628,surv=12,col=False
+pos=(0,6) en=(15,23) depth=3 | d:val=51.8,rch=627,surv=12,col=False  r:val=-37.5,rch=625,surv=12,col=False
+pos=(0,7) en=(15,23) depth=3 | d:val=315.7,rch=621,surv=12,col=False  r:val=-113.5,rch=222,surv=12,col=False
+pos=(0,13) en=(15,23) depth=3 | d:val=593.7,rch=619,surv=12,col=False
+pos=(0,15) en=(15,23) depth=3 | d:val=663.0,rch=617,surv=12,col=False
+pos=(0,17) en=(15,23) depth=3 | d:val=664.0,rch=609,surv=12,col=False
+pos=(0,25) en=(15,23) depth=3 | d:val=562.6,rch=603,surv=12,col=False  r:val=670.1,rch=604,surv=12,col=False
+pos=(5,25) en=(15,23) depth=3 | u:val=-612.4,rch=350,surv=10,col=False  r:val=666.1,rch=603,surv=12,col=False
+pos=(6,25) en=(15,23) depth=3 | u:val=218.6,rch=602,surv=10,col=False  r:val=101.1,rch=601,surv=12,col=False
+pos=(6,24) en=(15,23) depth=3 | u:val=-13.6,rch=598,surv=9,col=False
+pos=(6,20) en=(15,23) depth=3 | r:val=-252.8,rch=596,surv=8,col=False
+pos=(8,20) en=(15,23) depth=3 | u:val=-1051.0,rch=595,surv=7,col=False
+pos=(8,19) en=(15,23) depth=3 | l:val=-1527.2,rch=592,surv=6,col=False
+pos=(5,19) en=(15,23) depth=3 | u:val=-1752.5,rch=339,surv=5,col=False
+pos=(5,18) en=(15,23) depth=3 | u:val=-1977.7,rch=336,surv=4,col=False
+pos=(5,15) en=(15,23) depth=3 | r:val=-1631.8,rch=332,surv=3,col=False
+pos=(9,15) en=(15,23) depth=3 | u:val=-2883.8,rch=9,surv=2,col=False  d:val=-1863.1,rch=319,surv=2,col=False
+pos=(9,18) en=(15,23) depth=3 | d:val=-3383.3,rch=305,surv=1,col=False  l:val=-4032.1,rch=9,surv=0,col=False
+pos=(9,23) en=(15,23) depth=3 | r:val=-3622.5,rch=304,surv=0,col=False
+pos=(11,7) en=(14,30) depth=3 | u:val=164.8,rch=929,surv=12,col=False  l:val=474.0,rch=924,surv=12,col=False
+pos=(2,7) en=(11,30) depth=3 | u:val=-6.6,rch=916,surv=12,col=False  d:val=681.8,rch=915,surv=12,col=False
+pos=(2,13) en=(10,30) depth=3 | d:val=657.8,rch=905,surv=12,col=False  r:val=636.7,rch=873,surv=12,col=False
+pos=(2,22) en=(8,30) depth=3 | d:val=608.5,rch=897,surv=12,col=False  r:val=782.4,rch=897,surv=12,col=False
+pos=(8,22) en=(8,23) depth=3 | u:val=735.1,rch=882,surv=12,col=False  r:val=659.6,rch=886,surv=12,col=False
+pos=(8,14) en=(8,23) depth=3 | l:val=198.2,rch=881,surv=12,col=False  r:val=717.0,rch=873,surv=12,col=False
+pos=(17,14) en=(8,23) depth=3 | d:val=525.4,rch=868,surv=12,col=False  r:val=709.1,rch=870,surv=12,col=False
+pos=(20,14) en=(8,23) depth=3 | u:val=647.7,rch=869,surv=12,col=False  d:val=658.9,rch=867,surv=12,col=False  r:val=690.9,rch=865,surv=12,col=False
+pos=(25,14) en=(8,23) depth=3 | u:val=622.8,rch=859,surv=12,col=False  d:val=661.8,rch=859,surv=12,col=False  r:val=611.5,rch=860,surv=12,col=False
+pos=(25,20) en=(8,23) depth=3 | d:val=597.6,rch=855,surv=12,col=False  r:val=593.5,rch=858,surv=12,col=False
+pos=(26,20) en=(8,23) depth=3 | u:val=579.6,rch=853,surv=12,col=False  d:val=576.5,rch=852,surv=12,col=False
+pos=(26,15) en=(8,23) depth=3 | u:val=566.6,rch=848,surv=12,col=False
+pos=(26,10) en=(8,23) depth=3 | u:val=306.6,rch=842,surv=12,col=False  l:val=516.3,rch=847,surv=12,col=False
+pos=(25,10) en=(8,23) depth=3 | u:val=325.8,rch=846,surv=12,col=False
+pos=(25,9) en=(8,23) depth=3 | u:val=309.6,rch=841,surv=12,col=False  l:val=-98.8,rch=842,surv=12,col=False  r:val=21.5,rch=840,surv=12,col=False
+pos=(25,4) en=(8,23) depth=3 | l:val=358.8,rch=837,surv=12,col=False  r:val=64.9,rch=835,surv=12,col=False
+pos=(21,4) en=(8,23) depth=3 | u:val=364.8,rch=834,surv=12,col=False  d:val=-1146.4,rch=123,surv=10,col=False
+pos=(21,1) en=(8,23) depth=3 | l:val=110.0,rch=829,surv=12,col=False  r:val=578.6,rch=827,surv=12,col=False
+pos=(28,1) en=(8,23) depth=3 | d:val=547.5,rch=823,surv=12,col=False
+pos=(28,5) en=(8,23) depth=3 | d:val=498.3,rch=815,surv=12,col=False
+pos=(28,13) en=(8,23) depth=3 | d:val=180.2,rch=806,surv=12,col=False  r:val=45.8,rch=812,surv=12,col=False
+pos=(28,22) en=(8,23) depth=3 | r:val=-10.4,rch=803,surv=12,col=False
+pos=(31,22) en=(8,23) depth=3 | d:val=-11.4,rch=799,surv=12,col=False
+pos=(31,26) en=(8,23) depth=3 | l:val=-23.4,rch=792,surv=12,col=False
+pos=(24,26) en=(8,23) depth=3 | u:val=-170.6,rch=270,surv=12,col=False  d:val=-46.4,rch=788,surv=12,col=False
+pos=(24,30) en=(8,23) depth=3 | d:val=-108.6,rch=787,surv=12,col=False
+pos=(24,31) en=(8,23) depth=3 | l:val=-316.5,rch=751,surv=12,col=False  r:val=-1216.7,rch=35,surv=11,col=False
+pos=(23,31) en=(8,23) depth=3 | l:val=-253.3,rch=468,surv=12,col=False
+pos=(20,31) en=(8,23) depth=3 | l:val=-226.2,rch=461,surv=12,col=False
+pos=(13,31) en=(8,23) depth=3 | l:val=288.7,rch=453,surv=12,col=False
+pos=(5,31) en=(8,23) depth=3 | l:val=302.7,rch=449,surv=12,col=False
+pos=(1,31) en=(8,23) depth=3 | u:val=296.6,rch=446,surv=12,col=False
+pos=(1,28) en=(8,23) depth=3 | u:val=235.5,rch=442,surv=12,col=False  l:val=289.6,rch=445,surv=12,col=False
+pos=(0,28) en=(8,23) depth=3 | u:val=292.6,rch=433,surv=12,col=False
+pos=(0,19) en=(8,23) depth=3 | u:val=266.6,rch=431,surv=12,col=False
+pos=(0,17) en=(8,23) depth=3 | u:val=271.6,rch=425,surv=12,col=False
+pos=(0,11) en=(8,23) depth=3 | u:val=255.6,rch=424,surv=12,col=False
+pos=(0,10) en=(8,23) depth=3 | u:val=271.6,rch=422,surv=12,col=False  r:val=210.3,rch=423,surv=12,col=False
+pos=(0,8) en=(8,23) depth=3 | u:val=267.6,rch=420,surv=12,col=False
+pos=(0,6) en=(8,23) depth=3 | u:val=264.6,rch=419,surv=12,col=False  r:val=187.3,rch=346,surv=12,col=False
+pos=(0,5) en=(8,23) depth=3 | r:val=267.5,rch=417,surv=12,col=False
+pos=(2,5) en=(8,23) depth=3 | u:val=45.3,rch=414,surv=11,col=False  r:val=250.5,rch=416,surv=12,col=False
+pos=(3,5) en=(8,23) depth=3 | u:val=246.5,rch=411,surv=12,col=False  r:val=250.5,rch=408,surv=12,col=False
+pos=(3,0) en=(8,23) depth=3 | r:val=13.2,rch=395,surv=11,col=False
+pos=(4,0) en=(8,23) depth=3 | r:val=-233.0,rch=392,surv=10,col=False
+pos=(7,0) en=(8,23) depth=3 | r:val=-461.2,rch=386,surv=9,col=False
+pos=(13,0) en=(8,23) depth=3 | r:val=-1304.4,rch=73,surv=8,col=False
+pos=(22,0) en=(8,23) depth=3 | r:val=-1558.0,rch=71,surv=7,col=False
+pos=(24,0) en=(8,23) depth=3 | r:val=-1792.3,rch=64,surv=6,col=False
+pos=(31,0) en=(8,23) depth=3 | d:val=-2038.2,rch=63,surv=5,col=False
+pos=(31,1) en=(8,23) depth=3 | d:val=-2275.2,rch=55,surv=4,col=False
+pos=(31,9) en=(8,23) depth=3 | d:val=-2539.2,rch=54,surv=3,col=False
+pos=(31,10) en=(8,23) depth=3 | d:val=-3952.7,rch=50,surv=0,col=False  l:val=-2788.9,rch=52,surv=2,col=False
+pos=(29,10) en=(8,23) depth=3 | u:val=-3789.5,rch=18,surv=1,col=False  d:val=-3987.1,rch=30,surv=0,col=False
+pos=(29,9) en=(8,23) depth=3 | u:val=-4018.4,rch=17,surv=0,col=False
+pos=(31,28) en=(3,12) depth=3 | u:val=298.5,rch=966,surv=12,col=False
+pos=(31,21) en=(3,6) depth=3 | u:val=332.7,rch=957,surv=12,col=False
+pos=(31,18) en=(2,6) depth=3 | u:val=499.4,rch=952,surv=12,col=False  l:val=617.5,rch=952,surv=12,col=False
+pos=(27,18) en=(2,4) depth=3 | u:val=573.5,rch=948,surv=12,col=False  d:val=619.4,rch=949,surv=12,col=False  l:val=642.8,rch=942,surv=12,col=False
+pos=(27,19) en=(2,3) depth=3 | l:val=505.3,rch=938,surv=12,col=False
+pos=(20,19) en=(6,3) depth=3 | u:val=656.9,rch=930,surv=12,col=False  d:val=207.2,rch=927,surv=12,col=False  l:val=615.6,rch=925,surv=12,col=False
+pos=(20,15) en=(6,0) depth=3 | u:val=971.0,rch=923,surv=12,col=False  l:val=880.7,rch=921,surv=12,col=False  r:val=819.4,rch=926,surv=12,col=False
+pos=(20,11) en=(12,0) depth=3 | u:val=419.0,rch=909,surv=12,col=False  l:val=528.5,rch=910,surv=12,col=False  r:val=297.5,rch=911,surv=12,col=False
+pos=(13,11) en=(19,0) depth=3 | d:val=479.4,rch=898,surv=12,col=False  l:val=504.5,rch=900,surv=12,col=False
+pos=(10,11) en=(19,8) depth=3 | d:val=251.2,rch=887,surv=12,col=False
+pos=(10,16) en=(14,8) depth=3 | d:val=236.2,rch=873,surv=12,col=False  r:val=210.2,rch=875,surv=12,col=False
+pos=(10,25) en=(14,2) depth=3 | d:val=225.3,rch=863,surv=12,col=False  l:val=214.2,rch=863,surv=12,col=False  r:val=223.2,rch=858,surv=12,col=False
+pos=(10,29) en=(8,2) depth=3 | d:val=-51.8,rch=855,surv=12,col=False  l:val=260.2,rch=849,surv=12,col=False  r:val=261.2,rch=850,surv=12,col=False
+pos=(17,29) en=(8,1) depth=3 | u:val=1002.8,rch=808,surv=12,col=False  r:val=930.9,rch=814,surv=12,col=False
+pos=(17,22) en=(8,1) depth=3 | u:val=904.8,rch=805,surv=12,col=False  r:val=991.8,rch=805,surv=12,col=False
+pos=(20,22) en=(8,1) depth=3 | d:val=987.8,rch=798,surv=12,col=False
+pos=(20,29) en=(8,1) depth=3 | r:val=811.2,rch=794,surv=12,col=False
+pos=(24,29) en=(8,1) depth=3 | u:val=806.2,rch=789,surv=12,col=False
+pos=(24,24) en=(8,1) depth=3 | r:val=751.0,rch=630,surv=12,col=False
+pos=(26,24) en=(8,1) depth=3 | d:val=749.0,rch=623,surv=12,col=False
+pos=(26,31) en=(8,1) depth=3 | l:val=733.0,rch=567,surv=12,col=False
+pos=(18,31) en=(8,1) depth=3 | l:val=713.9,rch=563,surv=12,col=False
+pos=(14,31) en=(8,1) depth=3 | l:val=705.9,rch=558,surv=12,col=False
+pos=(9,31) en=(8,1) depth=3 | u:val=604.8,rch=521,surv=12,col=False  l:val=697.9,rch=553,surv=12,col=False
+pos=(4,31) en=(8,1) depth=3 | l:val=632.9,rch=549,surv=12,col=False
+pos=(0,31) en=(8,1) depth=3 | u:val=624.9,rch=542,surv=12,col=False
+pos=(0,24) en=(8,1) depth=3 | u:val=611.9,rch=541,surv=12,col=False  r:val=586.6,rch=458,surv=12,col=False
+pos=(0,23) en=(8,1) depth=3 | u:val=687.8,rch=537,surv=12,col=False
+pos=(0,19) en=(8,1) depth=3 | u:val=642.7,rch=529,surv=12,col=False
+pos=(0,11) en=(8,1) depth=3 | r:val=620.7,rch=527,surv=12,col=False
+pos=(2,11) en=(8,1) depth=3 | d:val=615.7,rch=484,surv=12,col=False
+pos=(2,16) en=(8,1) depth=3 | d:val=603.7,rch=482,surv=12,col=False
+pos=(2,18) en=(8,1) depth=3 | d:val=604.6,rch=481,surv=12,col=False
+pos=(2,19) en=(8,1) depth=3 | d:val=606.6,rch=478,surv=12,col=False
+pos=(2,22) en=(8,1) depth=3 | d:val=599.6,rch=471,surv=12,col=False
+pos=(2,29) en=(8,1) depth=3 | r:val=494.3,rch=466,surv=12,col=False
+pos=(7,29) en=(8,1) depth=3 | r:val=480.3,rch=464,surv=12,col=False
+pos=(9,29) en=(8,1) depth=3 | u:val=481.2,rch=364,surv=12,col=False
+pos=(9,21) en=(8,1) depth=3 | u:val=462.2,rch=363,surv=12,col=False
+pos=(9,20) en=(8,1) depth=3 | u:val=460.2,rch=356,surv=12,col=False
+pos=(9,13) en=(8,1) depth=3 | u:val=443.2,rch=351,surv=12,col=False
+pos=(9,8) en=(8,1) depth=3 | r:val=465.2,rch=350,surv=12,col=False
+pos=(10,8) en=(8,1) depth=3 | u:val=468.2,rch=346,surv=12,col=False  d:val=319.8,rch=349,surv=12,col=False
+pos=(10,4) en=(8,1) depth=3 | r:val=463.1,rch=345,surv=12,col=False
+pos=(11,4) en=(8,1) depth=3 | d:val=443.1,rch=339,surv=12,col=False
+pos=(11,10) en=(8,1) depth=3 | r:val=453.1,rch=328,surv=12,col=False
+pos=(20,10) en=(8,1) depth=3 | u:val=279.3,rch=206,surv=12,col=False  r:val=463.1,rch=325,surv=12,col=False
+pos=(23,10) en=(8,1) depth=3 | u:val=421.1,rch=323,surv=12,col=False  d:val=430.1,rch=323,surv=12,col=False  r:val=462.1,rch=318,surv=12,col=False
+pos=(30,10) en=(8,1) depth=3 | d:val=447.0,rch=317,surv=12,col=False
+pos=(30,11) en=(8,1) depth=3 | l:val=440.0,rch=309,surv=12,col=False
+pos=(22,11) en=(8,1) depth=3 | d:val=384.8,rch=303,surv=12,col=False
+pos=(22,17) en=(8,1) depth=3 | r:val=370.6,rch=281,surv=12,col=False
+pos=(31,17) en=(8,1) depth=3 | u:val=321.5,rch=232,surv=12,col=False
+pos=(31,8) en=(8,1) depth=3 | u:val=280.8,rch=231,surv=12,col=False
+pos=(31,7) en=(8,1) depth=3 | l:val=260.6,rch=228,surv=12,col=False
+pos=(28,7) en=(8,1) depth=3 | d:val=257.9,rch=227,surv=12,col=False
+pos=(28,8) en=(8,1) depth=3 | l:val=141.4,rch=224,surv=12,col=False
+pos=(25,8) en=(8,1) depth=3 | l:val=106.7,rch=219,surv=12,col=False
+pos=(20,8) en=(8,1) depth=3 | u:val=-120.3,rch=90,surv=12,col=False
+pos=(20,5) en=(8,1) depth=3 | r:val=-131.5,rch=87,surv=12,col=False
+pos=(23,5) en=(8,1) depth=3 | u:val=-349.1,rch=85,surv=11,col=False
+pos=(23,3) en=(8,1) depth=3 | r:val=-575.5,rch=82,surv=10,col=False
+pos=(26,3) en=(8,1) depth=3 | r:val=-811.9,rch=79,surv=9,col=False
+pos=(29,3) en=(8,1) depth=3 | r:val=-1042.8,rch=78,surv=8,col=False
+pos=(30,3) en=(8,1) depth=3 | d:val=-1272.5,rch=76,surv=7,col=False
+pos=(30,5) en=(8,1) depth=3 | l:val=-1524.6,rch=72,surv=6,col=False
+pos=(26,5) en=(8,1) depth=3 | d:val=-1756.6,rch=71,surv=5,col=False
+pos=(26,6) en=(8,1) depth=3 | l:val=-3927.4,rch=70,surv=0,col=False  r:val=-2021.7,rch=46,surv=4,col=False
+pos=(31,6) en=(8,1) depth=3 | u:val=-2270.3,rch=40,surv=3,col=False
+pos=(31,0) en=(8,1) depth=3 | l:val=-2519.1,rch=35,surv=2,col=False
+pos=(26,0) en=(8,1) depth=3 | l:val=-3759.0,rch=34,surv=1,col=False
+pos=(25,0) en=(8,1) depth=3 | d:val=-3989.6,rch=32,surv=0,col=False
+pos=(20,0) en=(16,31) depth=3 | d:val=-236.3,rch=961,surv=12,col=False  l:val=-165.3,rch=959,surv=12,col=False
+pos=(13,0) en=(16,24) depth=3 | l:val=-120.1,rch=951,surv=12,col=False
+pos=(12,0) en=(16,22) depth=3 | d:val=-199.2,rch=947,surv=12,col=False  l:val=71.6,rch=942,surv=12,col=False
+pos=(5,0) en=(16,19) depth=3 | d:val=116.8,rch=933,surv=12,col=False  l:val=-66.8,rch=935,surv=12,col=False
+pos=(5,6) en=(19,19) depth=3 | d:val=382.8,rch=925,surv=12,col=False  r:val=-537.3,rch=921,surv=12,col=False
+pos=(5,11) en=(19,11) depth=3 | d:val=-1.3,rch=916,surv=12,col=False  r:val=400.7,rch=911,surv=12,col=False
+pos=(11,11) en=(25,11) depth=3 | d:val=332.9,rch=899,surv=12,col=False  r:val=398.9,rch=902,surv=12,col=False
+pos=(14,11) en=(25,18) depth=3 | d:val=402.9,rch=892,surv=12,col=False
+pos=(14,14) en=(25,19) depth=3 | d:val=436.9,rch=887,surv=12,col=False  l:val=457.9,rch=882,surv=12,col=False
+pos=(5,14) en=(25,19) depth=3 | d:val=430.9,rch=881,surv=12,col=False  l:val=431.9,rch=881,surv=12,col=False
+pos=(5,15) en=(25,19) depth=3 | d:val=425.8,rch=878,surv=12,col=False  l:val=407.9,rch=877,surv=12,col=False  r:val=425.8,rch=874,surv=12,col=False
+pos=(5,18) en=(25,19) depth=3 | d:val=415.8,rch=870,surv=12,col=False  r:val=372.9,rch=871,surv=12,col=False
+pos=(5,26) en=(25,19) depth=3 | d:val=36.5,rch=867,surv=12,col=False  r:val=383.8,rch=862,surv=12,col=False
+pos=(13,26) en=(25,19) depth=3 | u:val=410.8,rch=858,surv=12,col=False  d:val=-17.7,rch=860,surv=12,col=False
+pos=(13,22) en=(25,19) depth=3 | l:val=405.8,rch=857,surv=12,col=False
+pos=(12,22) en=(25,19) depth=3 | l:val=408.8,rch=855,surv=12,col=False
+pos=(10,22) en=(25,19) depth=3 | u:val=408.8,rch=852,surv=12,col=False
+pos=(10,19) en=(25,19) depth=3 | u:val=368.8,rch=849,surv=12,col=False  r:val=403.8,rch=849,surv=12,col=False
+pos=(13,19) en=(25,19) depth=3 | u:val=394.8,rch=846,surv=12,col=False
+pos=(13,16) en=(25,19) depth=3 | r:val=352.8,rch=844,surv=12,col=False
+pos=(15,16) en=(25,19) depth=3 | d:val=-145.1,rch=842,surv=12,col=False
+pos=(15,18) en=(25,19) depth=3 | d:val=-159.7,rch=256,surv=12,col=False
+pos=(15,20) en=(25,19) depth=3 | d:val=-177.8,rch=251,surv=12,col=False
+pos=(15,25) en=(25,19) depth=3 | l:val=-191.1,rch=250,surv=12,col=False
+pos=(14,25) en=(25,19) depth=3 | d:val=-201.3,rch=233,surv=12,col=False
+pos=(14,28) en=(25,19) depth=3 | d:val=-212.7,rch=231,surv=12,col=False  l:val=-208.0,rch=232,surv=12,col=False
+pos=(13,28) en=(25,19) depth=3 | l:val=-209.9,rch=228,surv=12,col=False
+pos=(9,28) en=(25,19) depth=3 | l:val=-227.7,rch=220,surv=12,col=False
+pos=(1,28) en=(25,19) depth=3 | u:val=-264.4,rch=212,surv=12,col=False
+pos=(1,20) en=(25,19) depth=3 | u:val=-278.1,rch=204,surv=12,col=False
+pos=(1,12) en=(25,19) depth=3 | u:val=-300.9,rch=203,surv=12,col=False  r:val=-300.9,rch=203,surv=12,col=False
+pos=(1,11) en=(25,19) depth=3 | u:val=-991.7,rch=200,surv=9,col=False  r:val=-522.8,rch=202,surv=11,col=False
+pos=(2,11) en=(25,19) depth=3 | d:val=-767.8,rch=201,surv=10,col=False
+pos=(2,12) en=(25,19) depth=3 | d:val=-1001.3,rch=195,surv=9,col=False
+pos=(2,18) en=(25,19) depth=3 | r:val=-1236.2,rch=194,surv=8,col=False
+pos=(3,18) en=(25,19) depth=3 | u:val=-1463.2,rch=193,surv=7,col=False
+pos=(3,17) en=(25,19) depth=3 | r:val=-1751.3,rch=192,surv=6,col=False
+pos=(4,17) en=(25,19) depth=3 | u:val=-2081.2,rch=131,surv=5,col=False  d:val=-3973.8,rch=29,surv=0,col=False
+pos=(4,11) en=(25,19) depth=3 | u:val=-2317.2,rch=130,surv=4,col=False
+pos=(4,10) en=(25,19) depth=3 | u:val=-2540.9,rch=128,surv=3,col=False
+pos=(4,8) en=(25,19) depth=3 | u:val=-3824.4,rch=123,surv=0,col=False  l:val=-2772.5,rch=126,surv=2,col=False
+pos=(2,8) en=(25,19) depth=3 | u:val=-3545.1,rch=119,surv=1,col=False
+pos=(2,1) en=(25,19) depth=3 | r:val=-3843.7,rch=117,surv=0,col=False
+pos=(31,27) en=(19,16) depth=3 | l:val=-206.3,rch=965,surv=12,col=False
+pos=(28,28) en=(19,10) depth=3 | l:val=99.9,rch=955,surv=12,col=False
+pos=(25,28) en=(17,10) depth=3 | d:val=-221.3,rch=951,surv=12,col=False  l:val=126.0,rch=945,surv=12,col=False
+pos=(17,28) en=(8,10) depth=3 | u:val=-7.4,rch=930,surv=12,col=False  l:val=-112.0,rch=934,surv=12,col=False
+pos=(17,22) en=(4,10) depth=3 | u:val=37.6,rch=922,surv=12,col=False  l:val=44.7,rch=917,surv=12,col=False  r:val=-298.3,rch=924,surv=12,col=False
+pos=(8,22) en=(1,10) depth=3 | u:val=160.1,rch=912,surv=12,col=False  d:val=120.0,rch=913,surv=12,col=False  l:val=152.0,rch=907,surv=12,col=False
+pos=(8,20) en=(1,7) depth=3 | u:val=122.9,rch=901,surv=12,col=False  l:val=306.6,rch=907,surv=12,col=False  r:val=311.6,rch=904,surv=12,col=False
+pos=(6,20) en=(5,7) depth=3 | u:val=302.6,rch=897,surv=12,col=False  d:val=324.6,rch=900,surv=12,col=False  l:val=113.0,rch=897,surv=12,col=False
+pos=(6,23) en=(5,9) depth=3 | l:val=951.9,rch=889,surv=12,col=False  r:val=927.9,rch=888,surv=12,col=False
+pos=(3,23) en=(12,9) depth=3 | u:val=954.9,rch=832,surv=12,col=False  d:val=974.9,rch=839,surv=12,col=False
+pos=(3,24) en=(16,9) depth=3 | l:val=942.9,rch=837,surv=12,col=False  r:val=985.9,rch=835,surv=12,col=False
+pos=(7,24) en=(22,9) depth=3 | d:val=1024.9,rch=834,surv=12,col=False  r:val=1010.9,rch=826,surv=12,col=False
+pos=(7,25) en=(22,9) depth=3 | d:val=881.4,rch=828,surv=12,col=False  l:val=1010.9,rch=828,surv=12,col=False  r:val=1029.9,rch=826,surv=12,col=False
+pos=(1,25) en=(22,9) depth=3 | u:val=988.9,rch=823,surv=12,col=False
+pos=(1,20) en=(22,9) depth=3 | u:val=478.0,rch=814,surv=12,col=False  r:val=995.9,rch=820,surv=12,col=False
+pos=(4,20) en=(22,9) depth=3 | u:val=995.9,rch=818,surv=12,col=False
+pos=(4,18) en=(22,9) depth=3 | u:val=649.8,rch=811,surv=12,col=False  l:val=748.2,rch=814,surv=12,col=False  r:val=992.8,rch=817,surv=12,col=False
+pos=(5,18) en=(22,9) depth=3 | r:val=996.8,rch=808,surv=12,col=False
+pos=(14,18) en=(22,9) depth=3 | r:val=798.2,rch=805,surv=12,col=False
+pos=(17,18) en=(22,9) depth=3 | u:val=796.2,rch=798,surv=12,col=False
+pos=(17,11) en=(22,9) depth=3 | l:val=777.2,rch=621,surv=12,col=False
+pos=(14,11) en=(22,9) depth=3 | d:val=774.1,rch=620,surv=12,col=False  l:val=771.1,rch=614,surv=12,col=False
+pos=(14,12) en=(22,9) depth=3 | d:val=742.1,rch=618,surv=12,col=False  l:val=495.1,rch=614,surv=12,col=False
+pos=(14,14) en=(22,9) depth=3 | l:val=740.1,rch=612,surv=12,col=False
+pos=(8,14) en=(22,9) depth=3 | d:val=723.1,rch=611,surv=12,col=False  l:val=755.1,rch=610,surv=12,col=False
+pos=(6,14) en=(22,9) depth=3 | d:val=753.1,rch=609,surv=12,col=False
+pos=(6,15) en=(22,9) depth=3 | d:val=755.1,rch=608,surv=12,col=False
+pos=(6,16) en=(22,9) depth=3 | l:val=715.0,rch=604,surv=12,col=False
+pos=(2,16) en=(22,9) depth=3 | u:val=452.1,rch=599,surv=12,col=False
+pos=(2,11) en=(22,9) depth=3 | l:val=442.0,rch=558,surv=12,col=False
+pos=(0,11) en=(22,9) depth=3 | u:val=495.0,rch=310,surv=12,col=False  d:val=227.9,rch=186,surv=12,col=False
+pos=(0,10) en=(22,9) depth=3 | u:val=500.0,rch=305,surv=12,col=False
+pos=(0,5) en=(22,9) depth=3 | u:val=496.0,rch=300,surv=12,col=False  r:val=493.1,rch=296,surv=12,col=False
+pos=(0,0) en=(22,9) depth=3 | r:val=483.6,rch=294,surv=12,col=False
+pos=(6,0) en=(22,9) depth=3 | d:val=473.8,rch=290,surv=12,col=False  r:val=472.7,rch=285,surv=12,col=False
+pos=(6,4) en=(22,9) depth=3 | r:val=478.1,rch=287,surv=12,col=False
+pos=(9,4) en=(22,9) depth=3 | u:val=469.7,rch=285,surv=12,col=False  r:val=455.9,rch=286,surv=12,col=False
+pos=(10,4) en=(22,9) depth=3 | r:val=431.7,rch=285,surv=12,col=False
+pos=(11,4) en=(22,9) depth=3 | d:val=417.8,rch=282,surv=12,col=False  r:val=445.5,rch=284,surv=12,col=False
+pos=(12,4) en=(22,9) depth=3 | u:val=444.0,rch=282,surv=12,col=False  d:val=375.6,rch=281,surv=12,col=False  r:val=436.7,rch=276,surv=12,col=False
+pos=(12,2) en=(22,9) depth=3 | l:val=419.4,rch=279,surv=12,col=False  r:val=441.8,rch=281,surv=12,col=False
+pos=(13,2) en=(22,9) depth=3 | u:val=413.6,rch=280,surv=12,col=False  r:val=444.4,rch=279,surv=12,col=False
+pos=(15,2) en=(22,9) depth=3 | d:val=411.1,rch=278,surv=12,col=False  r:val=439.5,rch=275,surv=12,col=False
+pos=(19,2) en=(22,9) depth=3 | r:val=429.2,rch=269,surv=12,col=False
+pos=(25,2) en=(22,9) depth=3 | d:val=418.7,rch=267,surv=12,col=False
+pos=(25,4) en=(22,9) depth=3 | d:val=234.5,rch=264,surv=12,col=False  l:val=415.0,rch=264,surv=12,col=False
+pos=(22,4) en=(22,9) depth=3 | l:val=116.8,rch=256,surv=11,col=False
+pos=(14,4) en=(22,9) depth=3 | d:val=-129.0,rch=253,surv=10,col=False
+pos=(14,7) en=(22,9) depth=3 | l:val=-1263.5,rch=69,surv=7,col=False  r:val=-468.5,rch=178,surv=9,col=False
+pos=(20,7) en=(22,9) depth=3 | r:val=-711.9,rch=175,surv=8,col=False
+pos=(23,7) en=(22,9) depth=3 | r:val=-943.3,rch=172,surv=7,col=False
+pos=(26,7) en=(22,9) depth=3 | d:val=-1225.4,rch=171,surv=6,col=False  r:val=-1205.4,rch=168,surv=6,col=False
+pos=(26,8) en=(22,9) depth=3 | d:val=-3746.7,rch=163,surv=0,col=False  r:val=-1458.2,rch=166,surv=5,col=False
+pos=(31,8) en=(22,9) depth=3 | u:val=-1828.9,rch=114,surv=4,col=False  d:val=-2213.8,rch=42,surv=3,col=False
+pos=(31,4) en=(22,9) depth=3 | u:val=-2064.3,rch=111,surv=3,col=False
+pos=(31,1) en=(22,9) depth=3 | l:val=-2393.6,rch=51,surv=2,col=False
+pos=(22,1) en=(22,9) depth=3 | l:val=-3660.1,rch=45,surv=1,col=False
+pos=(16,1) en=(22,9) depth=3 | l:val=-3964.3,rch=38,surv=0,col=False
+pos=(16,5) en=(15,26) depth=3 | d:val=82.7,rch=955,surv=12,col=False  l:val=112.6,rch=960,surv=12,col=False
+pos=(13,5) en=(7,26) depth=3 | d:val=-76.9,rch=945,surv=12,col=False  l:val=326.6,rch=945,surv=12,col=False
+pos=(6,5) en=(7,31) depth=3 | u:val=581.3,rch=938,surv=12,col=False  d:val=768.0,rch=933,surv=12,col=False
+pos=(6,12) en=(6,31) depth=3 | d:val=650.9,rch=931,surv=12,col=False  l:val=698.0,rch=931,surv=12,col=False  r:val=738.4,rch=931,surv=12,col=False
+pos=(7,12) en=(6,22) depth=3 | u:val=-1099.1,rch=920,surv=10,col=False  d:val=440.2,rch=919,surv=12,col=False  r:val=512.3,rch=921,surv=12,col=False
+pos=(8,12) en=(10,22) depth=3 | d:val=441.1,rch=912,surv=12,col=False
+pos=(8,17) en=(10,24) depth=3 | l:val=874.9,rch=909,surv=12,col=False  r:val=369.8,rch=905,surv=12,col=False
+pos=(7,17) en=(10,25) depth=3 | u:val=121.1,rch=895,surv=12,col=False  d:val=982.1,rch=898,surv=12,col=False  l:val=-139.2,rch=893,surv=12,col=False
+pos=(7,18) en=(9,25) depth=3 | d:val=1034.3,rch=897,surv=12,col=False  l:val=1139.2,rch=891,surv=12,col=False  r:val=1074.2,rch=890,surv=12,col=False
+pos=(0,18) en=(9,23) depth=3 | u:val=1107.2,rch=886,surv=12,col=False  d:val=1038.2,rch=887,surv=12,col=False
+pos=(0,13) en=(9,23) depth=3 | u:val=1099.2,rch=877,surv=12,col=False  r:val=1082.1,rch=881,surv=12,col=False
+pos=(5,13) en=(9,23) depth=3 | u:val=1069.1,rch=851,surv=12,col=False
+pos=(5,12) en=(9,23) depth=3 | u:val=1067.1,rch=846,surv=12,col=False  l:val=1060.1,rch=848,surv=12,col=False
+pos=(2,12) en=(9,23) depth=3 | u:val=1056.1,rch=846,surv=12,col=False
+pos=(2,10) en=(9,23) depth=3 | u:val=1054.0,rch=842,surv=12,col=False
+pos=(2,6) en=(9,23) depth=3 | u:val=1051.0,rch=837,surv=12,col=False
+pos=(2,1) en=(9,23) depth=3 | r:val=1085.0,rch=833,surv=12,col=False
+pos=(6,1) en=(9,23) depth=3 | r:val=1081.0,rch=824,surv=12,col=False
+pos=(15,1) en=(9,23) depth=3 | d:val=1061.0,rch=822,surv=12,col=False  r:val=999.0,rch=818,surv=12,col=False
+pos=(15,3) en=(9,23) depth=3 | r:val=1056.9,rch=814,surv=12,col=False
+pos=(23,3) en=(9,23) depth=3 | d:val=989.9,rch=811,surv=12,col=False  r:val=1040.9,rch=807,surv=12,col=False
+pos=(30,3) en=(9,23) depth=3 | d:val=1028.9,rch=805,surv=12,col=False  r:val=906.6,rch=806,surv=12,col=False
+pos=(30,5) en=(9,23) depth=3 | d:val=1031.8,rch=797,surv=12,col=False  l:val=985.9,rch=799,surv=12,col=False  r:val=958.6,rch=804,surv=12,col=False
+pos=(30,13) en=(9,23) depth=3 | d:val=1033.9,rch=788,surv=12,col=False  l:val=975.9,rch=796,surv=12,col=False
+pos=(30,22) en=(9,23) depth=3 | d:val=877.4,rch=779,surv=12,col=False  l:val=1014.8,rch=787,surv=12,col=False
+pos=(29,22) en=(9,23) depth=3 | u:val=1015.8,rch=780,surv=12,col=False  d:val=946.8,rch=779,surv=12,col=False  l:val=968.8,rch=783,surv=12,col=False
+pos=(29,15) en=(9,23) depth=3 | u:val=1002.8,rch=772,surv=12,col=False
+pos=(29,7) en=(9,23) depth=3 | l:val=981.8,rch=768,surv=12,col=False
+pos=(25,7) en=(9,23) depth=3 | d:val=977.7,rch=760,surv=12,col=False  l:val=516.2,rch=764,surv=12,col=False
+pos=(25,15) en=(9,23) depth=3 | d:val=959.7,rch=757,surv=12,col=False
+pos=(25,18) en=(9,23) depth=3 | d:val=754.1,rch=749,surv=12,col=False
+pos=(25,26) en=(9,23) depth=3 | r:val=734.1,rch=743,surv=12,col=False
+pos=(31,26) en=(9,23) depth=3 | u:val=41.1,rch=107,surv=12,col=False  d:val=734.1,rch=567,surv=12,col=False
+pos=(31,31) en=(9,23) depth=3 | l:val=725.0,rch=563,surv=12,col=False
+pos=(27,31) en=(9,23) depth=3 | l:val=714.0,rch=562,surv=12,col=False
+pos=(26,31) en=(9,23) depth=3 | l:val=717.0,rch=556,surv=12,col=False
+pos=(20,31) en=(9,23) depth=3 | l:val=717.0,rch=555,surv=12,col=False
+pos=(19,31) en=(9,23) depth=3 | l:val=718.0,rch=549,surv=12,col=False
+pos=(13,31) en=(9,23) depth=3 | l:val=692.0,rch=546,surv=12,col=False
+pos=(10,31) en=(9,23) depth=3 | u:val=694.9,rch=542,surv=12,col=False
+pos=(10,27) en=(9,23) depth=3 | r:val=681.9,rch=530,surv=12,col=False
+pos=(12,27) en=(9,23) depth=3 | d:val=676.9,rch=527,surv=12,col=False
+pos=(12,30) en=(9,23) depth=3 | r:val=674.9,rch=522,surv=12,col=False
+pos=(14,30) en=(9,23) depth=3 | r:val=675.9,rch=521,surv=12,col=False
+pos=(15,30) en=(9,23) depth=3 | r:val=673.9,rch=514,surv=12,col=False
+pos=(22,30) en=(9,23) depth=3 | r:val=657.8,rch=507,surv=12,col=False
+pos=(29,30) en=(9,23) depth=3 | u:val=644.8,rch=506,surv=12,col=False
+pos=(29,29) en=(9,23) depth=3 | l:val=639.8,rch=501,surv=12,col=False
+pos=(24,29) en=(9,23) depth=3 | u:val=620.8,rch=500,surv=12,col=False
+pos=(24,28) en=(9,23) depth=3 | u:val=613.6,rch=445,surv=12,col=False
+pos=(24,23) en=(9,23) depth=3 | u:val=606.6,rch=443,surv=12,col=False
+pos=(24,21) en=(9,23) depth=3 | u:val=603.6,rch=441,surv=12,col=False
+pos=(24,19) en=(9,23) depth=3 | u:val=494.2,rch=433,surv=12,col=False
+pos=(24,11) en=(9,23) depth=3 | l:val=478.1,rch=430,surv=12,col=False
+pos=(21,11) en=(9,23) depth=3 | d:val=473.1,rch=313,surv=12,col=False
+pos=(21,18) en=(9,23) depth=3 | d:val=460.1,rch=312,surv=12,col=False  l:val=458.1,rch=305,surv=12,col=False
+pos=(21,19) en=(9,23) depth=3 | l:val=474.1,rch=308,surv=12,col=False
+pos=(17,19) en=(9,23) depth=3 | d:val=241.9,rch=306,surv=11,col=False
+pos=(17,21) en=(9,23) depth=3 | l:val=-45.2,rch=246,surv=10,col=False
+pos=(9,21) en=(9,23) depth=3 | l:val=-285.5,rch=239,surv=9,col=False
+pos=(2,21) en=(9,23) depth=3 | d:val=-531.9,rch=236,surv=8,col=False
+pos=(2,24) en=(9,23) depth=3 | l:val=-765.8,rch=235,surv=7,col=False
+pos=(1,24) en=(9,23) depth=3 | u:val=-996.9,rch=231,surv=6,col=False  l:val=-1267.2,rch=234,surv=5,col=False
+pos=(1,20) en=(9,23) depth=3 | r:val=-1225.9,rch=230,surv=5,col=False
+pos=(2,20) en=(9,23) depth=3 | r:val=-1457.2,rch=227,surv=4,col=False
+pos=(5,20) en=(9,23) depth=3 | u:val=-1978.6,rch=226,surv=2,col=False  r:val=-1701.9,rch=218,surv=3,col=False
+pos=(14,20) en=(9,23) depth=3 | u:val=-2098.4,rch=217,surv=2,col=False
+pos=(14,19) en=(9,23) depth=3 | u:val=-3674.2,rch=214,surv=0,col=False  l:val=-3389.7,rch=213,surv=1,col=False
+pos=(10,19) en=(9,23) depth=3 | l:val=-3931.7,rch=64,surv=0,col=False
+pos=(31,26) en=(3,14) depth=3 | u:val=93.8,rch=966,surv=12,col=False
+pos=(31,17) en=(3,6) depth=3 | u:val=99.9,rch=951,surv=12,col=False
+pos=(31,10) en=(3,1) depth=3 | u:val=571.4,rch=943,surv=12,col=False  l:val=519.5,rch=944,surv=12,col=False
+pos=(31,7) en=(4,1) depth=3 | l:val=658.7,rch=938,surv=12,col=False
+pos=(27,7) en=(4,7) depth=3 | u:val=246.4,rch=926,surv=12,col=False  d:val=784.5,rch=931,surv=12,col=False  l:val=818.6,rch=925,surv=12,col=False
+pos=(20,7) en=(4,10) depth=3 | u:val=1015.9,rch=921,surv=12,col=False  d:val=770.3,rch=914,surv=12,col=False  l:val=970.0,rch=913,surv=12,col=False
+pos=(20,6) en=(7,10) depth=3 | u:val=791.5,rch=915,surv=12,col=False  l:val=809.6,rch=911,surv=12,col=False  r:val=230.4,rch=916,surv=12,col=False
+pos=(20,3) en=(11,10) depth=3 | l:val=982.1,rch=907,surv=12,col=False  r:val=524.4,rch=910,surv=12,col=False
+pos=(16,3) en=(11,13) depth=3 | d:val=1034.1,rch=879,surv=12,col=False
+pos=(16,7) en=(9,13) depth=3 | d:val=1061.1,rch=875,surv=12,col=False  l:val=1035.1,rch=873,surv=12,col=False  r:val=1077.1,rch=876,surv=12,col=False
+pos=(19,7) en=(9,11) depth=3 | d:val=1028.1,rch=858,surv=12,col=False
+pos=(19,16) en=(9,11) depth=3 | d:val=1010.0,rch=853,surv=12,col=False  l:val=1003.1,rch=855,surv=12,col=False
+pos=(16,16) en=(9,11) depth=3 | d:val=987.0,rch=852,surv=12,col=False  l:val=1026.1,rch=854,surv=12,col=False
+pos=(15,16) en=(9,11) depth=3 | u:val=929.9,rch=850,surv=12,col=False  d:val=1028.1,rch=850,surv=12,col=False  l:val=1030.0,rch=848,surv=12,col=False
+pos=(15,20) en=(9,11) depth=3 | d:val=1007.0,rch=844,surv=12,col=False  l:val=1022.0,rch=848,surv=12,col=False  r:val=999.0,rch=847,surv=12,col=False
+pos=(13,20) en=(9,11) depth=3 | d:val=1025.0,rch=843,surv=12,col=False  l:val=986.0,rch=847,surv=12,col=False
+pos=(12,20) en=(9,11) depth=3 | d:val=997.0,rch=838,surv=12,col=False  l:val=979.0,rch=843,surv=12,col=False
+pos=(8,20) en=(9,11) depth=3 | d:val=974.0,rch=840,surv=12,col=False  l:val=964.0,rch=839,surv=12,col=False
+pos=(8,23) en=(9,11) depth=3 | d:val=933.0,rch=836,surv=12,col=False  l:val=967.0,rch=838,surv=12,col=False  r:val=971.0,rch=838,surv=12,col=False
+pos=(6,23) en=(9,11) depth=3 | u:val=989.0,rch=836,surv=12,col=False  d:val=963.0,rch=831,surv=12,col=False
+pos=(6,21) en=(9,11) depth=3 | u:val=986.0,rch=834,surv=12,col=False
+pos=(6,19) en=(9,11) depth=3 | u:val=983.0,rch=832,surv=12,col=False  r:val=982.0,rch=828,surv=12,col=False
+pos=(6,17) en=(9,11) depth=3 | l:val=982.0,rch=830,surv=12,col=False
+pos=(4,17) en=(9,11) depth=3 | u:val=995.0,rch=828,surv=12,col=False  d:val=980.9,rch=822,surv=12,col=False
+pos=(4,15) en=(9,11) depth=3 | l:val=998.0,rch=825,surv=12,col=False
+pos=(1,15) en=(9,11) depth=3 | d:val=995.9,rch=824,surv=12,col=False
+pos=(1,16) en=(9,11) depth=3 | d:val=994.9,rch=815,surv=12,col=False
+pos=(1,25) en=(9,11) depth=3 | d:val=929.9,rch=814,surv=12,col=False  r:val=969.9,rch=808,surv=12,col=False
+pos=(8,25) en=(9,11) depth=3 | r:val=950.9,rch=806,surv=12,col=False
+pos=(10,25) en=(9,11) depth=3 | r:val=947.9,rch=804,surv=12,col=False
+pos=(12,25) en=(9,11) depth=3 | u:val=921.9,rch=803,surv=12,col=False  d:val=942.9,rch=803,surv=12,col=False  r:val=945.9,rch=802,surv=12,col=False
+pos=(12,24) en=(9,11) depth=3 | r:val=935.9,rch=797,surv=12,col=False
+pos=(18,24) en=(9,11) depth=3 | u:val=907.8,rch=795,surv=12,col=False  d:val=924.8,rch=793,surv=12,col=False
+pos=(18,22) en=(9,11) depth=3 | u:val=908.9,rch=791,surv=12,col=False  r:val=903.8,rch=793,surv=12,col=False
+pos=(20,22) en=(9,11) depth=3 | u:val=601.3,rch=789,surv=11,col=False  d:val=930.8,rch=785,surv=12,col=False
+pos=(20,30) en=(9,11) depth=3 | l:val=885.8,rch=783,surv=12,col=False  r:val=866.8,rch=784,surv=12,col=False
+pos=(21,30) en=(9,11) depth=3 | d:val=598.7,rch=783,surv=12,col=False
+pos=(21,31) en=(9,11) depth=3 | l:val=602.7,rch=463,surv=12,col=False
+pos=(14,31) en=(9,11) depth=3 | u:val=554.6,rch=462,surv=12,col=False  l:val=583.6,rch=461,surv=12,col=False
+pos=(12,31) en=(9,11) depth=3 | l:val=583.6,rch=454,surv=12,col=False
+pos=(5,31) en=(9,11) depth=3 | u:val=564.6,rch=452,surv=12,col=False  l:val=177.3,rch=452,surv=12,col=False
+pos=(5,29) en=(9,11) depth=3 | r:val=559.6,rch=446,surv=12,col=False
+pos=(11,29) en=(9,11) depth=3 | r:val=545.6,rch=444,surv=12,col=False
+pos=(13,29) en=(9,11) depth=3 | u:val=332.4,rch=443,surv=11,col=False
+pos=(13,28) en=(9,11) depth=3 | l:val=58.9,rch=439,surv=10,col=False
+pos=(9,28) en=(9,11) depth=3 | u:val=-205.4,rch=437,surv=9,col=False
+pos=(9,26) en=(9,11) depth=3 | l:val=-428.7,rch=373,surv=8,col=False
+pos=(0,26) en=(9,11) depth=3 | u:val=-674.9,rch=335,surv=7,col=False
+pos=(0,21) en=(9,11) depth=3 | u:val=-907.1,rch=328,surv=6,col=False
+pos=(0,14) en=(9,11) depth=3 | u:val=-1150.4,rch=323,surv=5,col=False
+pos=(0,9) en=(9,11) depth=3 | u:val=-1678.6,rch=316,surv=4,col=False
+pos=(0,2) en=(9,11) depth=3 | r:val=-1919.8,rch=314,surv=3,col=False
+pos=(2,2) en=(9,11) depth=3 | d:val=-2527.9,rch=24,surv=2,col=False
+pos=(2,3) en=(9,11) depth=3 | d:val=-3762.0,rch=20,surv=1,col=False
+pos=(2,7) en=(9,11) depth=3 | d:val=-4008.5,rch=14,surv=0,col=False
+pos=(19,4) en=(16,21) depth=3 | l:val=-47.0,rch=974,surv=12,col=False
+pos=(14,4) en=(13,21) depth=3 | d:val=-80.1,rch=968,surv=12,col=False  l:val=-10.9,rch=962,surv=12,col=False
+pos=(5,4) en=(13,22) depth=3 | u:val=-356.0,rch=957,surv=12,col=False  d:val=565.2,rch=959,surv=12,col=False
+pos=(5,6) en=(4,22) depth=3 | d:val=535.0,rch=941,surv=12,col=False  r:val=411.7,rch=948,surv=12,col=False
+pos=(5,15) en=(0,22) depth=3 | d:val=807.2,rch=932,surv=12,col=False  r:val=785.0,rch=929,surv=12,col=False
+pos=(5,20) en=(0,26) depth=3 | l:val=421.2,rch=927,surv=12,col=False  r:val=790.2,rch=920,surv=12,col=False
+pos=(13,20) en=(0,29) depth=3 | u:val=715.0,rch=916,surv=12,col=False  r:val=732.1,rch=908,surv=12,col=False
+pos=(13,19) en=(0,30) depth=3 | u:val=723.1,rch=909,surv=12,col=False  r:val=742.1,rch=910,surv=12,col=False
+pos=(18,19) en=(8,30) depth=3 | u:val=679.0,rch=897,surv=12,col=False  d:val=735.0,rch=895,surv=12,col=False  r:val=725.1,rch=896,surv=12,col=False
+pos=(24,19) en=(10,30) depth=3 | u:val=671.0,rch=893,surv=12,col=False  r:val=621.8,rch=892,surv=12,col=False
+pos=(24,18) en=(19,30) depth=3 | u:val=442.1,rch=877,surv=12,col=False  l:val=637.8,rch=879,surv=12,col=False  r:val=622.0,rch=879,surv=12,col=False
+pos=(19,18) en=(21,30) depth=3 | u:val=506.4,rch=873,surv=12,col=False  l:val=487.2,rch=872,surv=12,col=False
+pos=(19,14) en=(25,30) depth=3 | l:val=280.4,rch=861,surv=12,col=False  r:val=476.3,rch=862,surv=12,col=False
+pos=(26,14) en=(25,31) depth=3 | u:val=956.0,rch=834,surv=12,col=False
+pos=(26,12) en=(23,31) depth=3 | u:val=964.0,rch=831,surv=12,col=False  l:val=972.0,rch=832,surv=12,col=False  r:val=959.0,rch=831,surv=12,col=False
+pos=(24,12) en=(16,31) depth=3 | u:val=976.0,rch=830,surv=12,col=False  l:val=1004.9,rch=825,surv=12,col=False
+pos=(24,10) en=(14,31) depth=3 | u:val=956.0,rch=827,surv=12,col=False  l:val=230.4,rch=195,surv=12,col=False  r:val=986.0,rch=824,surv=12,col=False
+pos=(24,7) en=(6,31) depth=3 | r:val=1003.0,rch=825,surv=12,col=False
+pos=(26,7) en=(6,31) depth=3 | u:val=1005.9,rch=819,surv=12,col=False  r:val=660.7,rch=820,surv=12,col=False
+pos=(26,1) en=(6,31) depth=3 | l:val=996.9,rch=813,surv=12,col=False  r:val=547.4,rch=814,surv=12,col=False
+pos=(20,1) en=(6,31) depth=3 | u:val=580.5,rch=812,surv=12,col=False  d:val=513.9,rch=811,surv=11,col=False  l:val=987.9,rch=804,surv=12,col=False
+pos=(11,1) en=(6,31) depth=3 | l:val=961.9,rch=795,surv=12,col=False
+pos=(2,1) en=(6,31) depth=3 | d:val=958.9,rch=786,surv=12,col=False
+pos=(2,10) en=(6,31) depth=3 | d:val=940.8,rch=785,surv=12,col=False
+pos=(2,11) en=(6,31) depth=3 | l:val=631.6,rch=783,surv=12,col=False
+pos=(0,11) en=(6,31) depth=3 | u:val=620.5,rch=432,surv=12,col=False
+pos=(0,7) en=(6,31) depth=3 | u:val=609.5,rch=425,surv=12,col=False
+pos=(0,0) en=(6,31) depth=3 | r:val=594.5,rch=410,surv=12,col=False
+pos=(5,0) en=(6,31) depth=3 | r:val=580.5,rch=409,surv=12,col=False
+pos=(6,0) en=(6,31) depth=3 | r:val=580.5,rch=403,surv=12,col=False
+pos=(12,0) en=(6,31) depth=3 | r:val=565.5,rch=402,surv=12,col=False
+pos=(13,0) en=(6,31) depth=3 | r:val=563.5,rch=399,surv=12,col=False
+pos=(16,0) en=(6,31) depth=3 | r:val=558.4,rch=396,surv=12,col=False
+pos=(19,0) en=(6,31) depth=3 | r:val=556.4,rch=395,surv=12,col=False
+pos=(20,0) en=(6,31) depth=3 | r:val=559.4,rch=391,surv=12,col=False
+pos=(24,0) en=(6,31) depth=3 | r:val=331.2,rch=384,surv=11,col=False
+pos=(31,0) en=(6,31) depth=3 | d:val=87.9,rch=378,surv=10,col=False
+pos=(31,6) en=(6,31) depth=3 | d:val=-147.3,rch=370,surv=9,col=False
+pos=(31,14) en=(6,31) depth=3 | d:val=-389.5,rch=368,surv=8,col=False
+pos=(31,16) en=(6,31) depth=3 | d:val=-779.4,rch=362,surv=7,col=False
+pos=(31,22) en=(6,31) depth=3 | l:val=-1126.3,rch=186,surv=6,col=False
+pos=(26,22) en=(6,31) depth=3 | l:val=-1365.3,rch=185,surv=5,col=False
+pos=(25,22) en=(6,31) depth=3 | l:val=-1593.2,rch=184,surv=4,col=False
+pos=(24,22) en=(6,31) depth=3 | u:val=-3430.9,rch=182,surv=1,col=False  l:val=-1817.1,rch=183,surv=3,col=False
+pos=(23,22) en=(6,31) depth=3 | l:val=-2207.1,rch=180,surv=2,col=False
+pos=(20,22) en=(6,31) depth=3 | d:val=-3457.9,rch=175,surv=1,col=False
+pos=(20,27) en=(6,31) depth=3 | r:val=-4020.1,rch=16,surv=0,col=False
+pos=(27,30) en=(1,23) depth=3 | l:val=210.1,rch=978,surv=12,col=False
+pos=(23,30) en=(10,23) depth=3 | u:val=-369.0,rch=968,surv=12,col=False  l:val=271.5,rch=966,surv=12,col=False
+pos=(20,30) en=(10,17) depth=3 | u:val=219.3,rch=955,surv=12,col=False  l:val=-186.5,rch=954,surv=12,col=False
+pos=(20,25) en=(14,17) depth=3 | u:val=619.0,rch=942,surv=12,col=True  l:val=339.8,rch=950,surv=12,col=False
+pos=(17,6) en=(24,14) depth=3 | u:val=-36.8,rch=971,surv=12,col=False  l:val=269.4,rch=963,surv=12,col=False
+pos=(8,6) en=(15,14) depth=3 | l:val=55.7,rch=949,surv=12,col=False
+pos=(3,6) en=(15,23) depth=3 | u:val=-142.0,rch=939,surv=12,col=False  d:val=60.4,rch=934,surv=12,col=False  l:val=8.4,rch=938,surv=12,col=False
+pos=(3,12) en=(16,23) depth=3 | d:val=279.4,rch=929,surv=12,col=False  l:val=162.2,rch=932,surv=12,col=False  r:val=184.1,rch=924,surv=12,col=False
+pos=(3,16) en=(16,31) depth=3 | d:val=270.5,rch=914,surv=12,col=False  l:val=508.4,rch=920,surv=12,col=False  r:val=380.8,rch=913,surv=12,col=False
+pos=(2,16) en=(18,31) depth=3 | u:val=581.3,rch=913,surv=12,col=False  d:val=207.2,rch=912,surv=12,col=False
+pos=(2,11) en=(26,31) depth=3 | u:val=589.3,rch=898,surv=12,col=False  l:val=137.0,rch=903,surv=12,col=False
+pos=(2,4) en=(26,22) depth=3 | u:val=552.2,rch=888,surv=12,col=False  r:val=512.4,rch=880,surv=12,col=False
+pos=(2,3) en=(31,22) depth=3 | r:val=753.9,rch=829,surv=12,col=False
+pos=(11,3) en=(31,18) depth=3 | r:val=802.1,rch=638,surv=12,col=False
+pos=(12,3) en=(31,14) depth=3 | r:val=751.9,rch=633,surv=12,col=False
+pos=(13,3) en=(31,5) depth=3 | r:val=-423.5,rch=615,surv=3,col=False
+pos=(22,3) en=(22,5) depth=3 | u:val=-1876.2,rch=605,surv=2,col=False  r:val=-1787.8,rch=605,surv=2,col=False
+pos=(23,3) en=(21,5) depth=3 | r:val=-3380.3,rch=600,surv=1,col=False
+pos=(27,3) en=(12,5) depth=3 | r:val=-3616.5,rch=513,surv=0,col=False
+pos=(29,23) en=(18,14) depth=3 | d:val=-314.7,rch=991,surv=12,col=False
+pos=(29,29) en=(18,2) depth=3 | l:val=189.2,rch=976,surv=12,col=False
+pos=(28,29) en=(18,0) depth=3 | u:val=552.5,rch=970,surv=12,col=False  l:val=612.7,rch=972,surv=12,col=False
+pos=(26,29) en=(13,0) depth=3 | l:val=618.7,rch=961,surv=12,col=False
+pos=(20,29) en=(13,1) depth=3 | u:val=664.8,rch=956,surv=12,col=False  l:val=669.9,rch=953,surv=12,col=False
+pos=(20,25) en=(13,9) depth=3 | u:val=668.9,rch=940,surv=12,col=False  l:val=643.6,rch=946,surv=12,col=False
+pos=(18,25) en=(11,9) depth=3 | u:val=681.7,rch=943,surv=12,col=False  d:val=607.8,rch=942,surv=12,col=False  l:val=727.9,rch=935,surv=12,col=False
+pos=(9,25) en=(11,4) depth=3 | u:val=642.8,rch=929,surv=12,col=False  d:val=667.9,rch=928,surv=12,col=False  l:val=727.1,rch=927,surv=12,col=False
+pos=(6,25) en=(11,3) depth=3 | u:val=844.5,rch=918,surv=12,col=False  l:val=768.3,rch=922,surv=12,col=False
+pos=(6,17) en=(10,3) depth=3 | u:val=-88.9,rch=910,surv=12,col=False  l:val=810.2,rch=915,surv=12,col=False  r:val=669.9,rch=913,surv=12,col=False
+pos=(4,17) en=(8,3) depth=3 | u:val=722.1,rch=906,surv=12,col=False  d:val=722.3,rch=912,surv=12,col=False  l:val=806.2,rch=912,surv=12,col=False
+pos=(3,17) en=(0,3) depth=3 | u:val=622.5,rch=853,surv=12,col=False  d:val=666.9,rch=857,surv=12,col=False
+pos=(3,19) en=(0,11) depth=3 | d:val=-331.6,rch=847,surv=12,col=False  l:val=625.7,rch=847,surv=12,col=False
+pos=(1,19) en=(3,11) depth=3 | d:val=-297.6,rch=836,surv=12,col=False
+pos=(1,27) en=(3,10) depth=3 | d:val=-331.7,rch=831,surv=12,col=False
+pos=(1,31) en=(7,10) depth=3 | r:val=-207.2,rch=686,surv=12,col=False
+pos=(10,31) en=(7,8) depth=3 | r:val=731.1,rch=683,surv=12,col=False
+pos=(13,31) en=(5,8) depth=3 | r:val=775.0,rch=682,surv=12,col=False
+pos=(14,31) en=(5,4) depth=3 | u:val=537.2,rch=680,surv=11,col=False  r:val=830.4,rch=680,surv=12,col=False
+pos=(16,31) en=(5,4) depth=3 | r:val=828.4,rch=677,surv=12,col=False
+pos=(19,31) en=(5,4) depth=3 | r:val=822.4,rch=673,surv=12,col=False
+pos=(23,31) en=(5,4) depth=3 | r:val=689.9,rch=669,surv=12,col=False
+pos=(27,31) en=(5,4) depth=3 | r:val=684.9,rch=666,surv=12,col=False
+pos=(30,31) en=(5,4) depth=3 | u:val=714.8,rch=530,surv=12,col=False
+pos=(30,23) en=(5,4) depth=3 | u:val=696.8,rch=523,surv=12,col=False
+pos=(30,16) en=(5,4) depth=3 | u:val=678.8,rch=518,surv=12,col=False  l:val=648.8,rch=518,surv=12,col=False
+pos=(30,11) en=(5,4) depth=3 | u:val=639.8,rch=509,surv=12,col=False  l:val=665.8,rch=512,surv=12,col=False  r:val=650.7,rch=517,surv=12,col=False
+pos=(31,11) en=(5,4) depth=3 | u:val=655.7,rch=490,surv=12,col=False
+pos=(31,4) en=(5,4) depth=3 | u:val=642.7,rch=486,surv=12,col=False  l:val=645.7,rch=487,surv=12,col=False
+pos=(28,4) en=(5,4) depth=3 | u:val=578.5,rch=486,surv=12,col=False  d:val=600.7,rch=485,surv=12,col=False  l:val=643.7,rch=480,surv=12,col=False
+pos=(21,4) en=(5,4) depth=3 | u:val=625.7,rch=479,surv=12,col=False  d:val=595.7,rch=475,surv=12,col=False  l:val=542.5,rch=478,surv=12,col=False
+pos=(21,3) en=(5,4) depth=3 | r:val=614.6,rch=472,surv=12,col=False
+pos=(28,3) en=(5,4) depth=3 | u:val=597.6,rch=469,surv=12,col=False
+pos=(28,0) en=(5,4) depth=3 | l:val=581.5,rch=453,surv=12,col=False
+pos=(24,0) en=(5,4) depth=3 | l:val=578.5,rch=449,surv=12,col=False
+pos=(20,0) en=(5,4) depth=3 | d:val=549.4,rch=428,surv=12,col=False
+pos=(20,7) en=(5,4) depth=3 | d:val=539.5,rch=426,surv=12,col=False  r:val=534.4,rch=419,surv=12,col=False
+pos=(20,9) en=(5,4) depth=3 | d:val=553.5,rch=419,surv=12,col=False  r:val=532.5,rch=418,surv=12,col=False
+pos=(20,16) en=(5,4) depth=3 | d:val=500.4,rch=418,surv=12,col=False  l:val=536.5,rch=418,surv=12,col=False  r:val=541.4,rch=416,surv=12,col=False
+pos=(19,16) en=(5,4) depth=3 | d:val=558.4,rch=415,surv=12,col=False  l:val=546.4,rch=413,surv=12,col=False
+pos=(19,19) en=(5,4) depth=3 | d:val=498.4,rch=411,surv=12,col=False  l:val=555.4,rch=411,surv=12,col=False  r:val=48.0,rch=139,surv=12,col=False
+pos=(15,19) en=(5,4) depth=3 | u:val=483.4,rch=410,surv=12,col=False  d:val=548.4,rch=407,surv=12,col=False
+pos=(15,23) en=(5,4) depth=3 | l:val=481.4,rch=402,surv=12,col=False  r:val=527.3,rch=401,surv=12,col=False
+pos=(21,23) en=(5,4) depth=3 | u:val=512.3,rch=396,surv=12,col=False
+pos=(21,18) en=(5,4) depth=3 | u:val=500.3,rch=369,surv=12,col=False  r:val=240.4,rch=388,surv=12,col=False
+pos=(21,9) en=(5,4) depth=3 | u:val=466.3,rch=365,surv=12,col=False  r:val=476.3,rch=366,surv=12,col=False
+pos=(24,9) en=(5,4) depth=3 | d:val=471.3,rch=363,surv=12,col=False
+pos=(24,12) en=(5,4) depth=3 | d:val=429.3,rch=360,surv=12,col=False  r:val=237.0,rch=360,surv=11,col=False
+pos=(24,15) en=(5,4) depth=3 | d:val=430.3,rch=359,surv=12,col=False
+pos=(24,16) en=(5,4) depth=3 | d:val=424.2,rch=357,surv=12,col=False
+pos=(24,18) en=(5,4) depth=3 | l:val=318.8,rch=355,surv=12,col=False
+pos=(22,18) en=(5,4) depth=3 | d:val=292.5,rch=234,surv=12,col=False
+pos=(22,24) en=(5,4) depth=3 | l:val=142.5,rch=173,surv=12,col=False
+pos=(14,24) en=(5,4) depth=3 | l:val=69.9,rch=171,surv=12,col=False
+pos=(12,24) en=(5,4) depth=3 | u:val=66.4,rch=162,surv=12,col=False
+pos=(12,15) en=(5,4) depth=3 | l:val=-276.2,rch=107,surv=11,col=False
+pos=(7,15) en=(5,4) depth=3 | u:val=-517.3,rch=103,surv=10,col=False  l:val=-525.6,rch=104,surv=10,col=False
+pos=(4,15) en=(5,4) depth=3 | l:val=-807.5,rch=102,surv=9,col=False
+pos=(2,15) en=(5,4) depth=3 | d:val=-1025.4,rch=101,surv=8,col=False
+pos=(2,16) en=(5,4) depth=3 | r:val=-1345.5,rch=44,surv=7,col=False
+pos=(8,16) en=(5,4) depth=3 | r:val=-1589.1,rch=42,surv=6,col=False
+pos=(10,16) en=(5,4) depth=3 | d:val=-1825.9,rch=37,surv=5,col=False
+pos=(10,21) en=(5,4) depth=3 | d:val=-2063.6,rch=35,surv=4,col=False
+pos=(10,23) en=(5,4) depth=3 | d:val=-2306.6,rch=34,surv=3,col=False  l:val=-3748.7,rch=33,surv=1,col=False
+pos=(10,24) en=(5,4) depth=3 | l:val=-2547.0,rch=24,surv=2,col=False
+pos=(9,24) en=(5,4) depth=3 | u:val=-3770.6,rch=22,surv=1,col=False
+pos=(9,22) en=(5,4) depth=3 | u:val=-4007.7,rch=18,surv=0,col=False
+pos=(13,5) en=(19,29) depth=3 | u:val=1.1,rch=970,surv=12,col=False  l:val=492.8,rch=964,surv=12,col=False
+pos=(4,5) en=(18,29) depth=3 | u:val=-172.3,rch=960,surv=12,col=False  d:val=333.5,rch=954,surv=12,col=False  l:val=-106.9,rch=961,surv=12,col=False
+pos=(4,14) en=(18,21) depth=3 | d:val=157.2,rch=945,surv=12,col=False  r:val=31.3,rch=938,surv=12,col=False
+pos=(4,15) en=(17,21) depth=3 | d:val=-80.7,rch=940,surv=12,col=False  r:val=81.5,rch=940,surv=12,col=False
+pos=(8,15) en=(8,21) depth=3 | u:val=402.9,rch=926,surv=12,col=False  r:val=463.9,rch=925,surv=12,col=False
+pos=(14,15) en=(2,21) depth=3 | d:val=334.7,rch=916,surv=12,col=False  r:val=427.8,rch=917,surv=12,col=False
+pos=(16,15) en=(2,20) depth=3 | u:val=339.7,rch=913,surv=12,col=False  d:val=405.7,rch=915,surv=12,col=False  r:val=340.6,rch=914,surv=12,col=False
+pos=(16,16) en=(2,18) depth=3 | l:val=365.8,rch=910,surv=12,col=False  r:val=364.7,rch=906,surv=12,col=False
+pos=(13,16) en=(2,15) depth=3 | l:val=350.7,rch=905,surv=12,col=False
+pos=(11,16) en=(1,15) depth=3 | d:val=383.8,rch=900,surv=12,col=False  l:val=372.9,rch=902,surv=12,col=False
+pos=(9,16) en=(1,20) depth=3 | d:val=434.3,rch=894,surv=12,col=False
+pos=(9,19) en=(1,24) depth=3 | l:val=482.1,rch=884,surv=12,col=False  r:val=478.0,rch=883,surv=12,col=False
+pos=(3,19) en=(1,29) depth=3 | u:val=395.9,rch=877,surv=12,col=False
+pos=(3,17) en=(10,29) depth=3 | u:val=391.9,rch=851,surv=12,col=False
+pos=(3,15) en=(10,24) depth=3 | u:val=505.3,rch=841,surv=12,col=False
+pos=(3,10) en=(10,23) depth=3 | u:val=508.3,rch=839,surv=12,col=False
+pos=(3,9) en=(13,23) depth=3 | u:val=537.4,rch=832,surv=12,col=False
+pos=(3,5) en=(16,23) depth=3 | u:val=554.4,rch=826,surv=12,col=False
+pos=(3,2) en=(16,28) depth=3 | l:val=318.7,rch=818,surv=12,col=False  r:val=552.4,rch=814,surv=12,col=False
+pos=(10,2) en=(16,29) depth=3 | u:val=552.4,rch=812,surv=12,col=False  r:val=581.5,rch=805,surv=12,col=False
+pos=(18,2) en=(13,29) depth=3 | r:val=585.5,rch=800,surv=12,col=False
+pos=(20,2) en=(13,25) depth=3 | d:val=636.5,rch=791,surv=12,col=False  r:val=633.5,rch=795,surv=12,col=False
+pos=(21,2) en=(13,24) depth=3 | u:val=393.1,rch=782,surv=12,col=False  d:val=598.5,rch=775,surv=12,col=False  r:val=575.5,rch=777,surv=12,col=False
+pos=(28,2) en=(13,24) depth=3 | d:val=564.5,rch=772,surv=12,col=False
+pos=(28,7) en=(13,24) depth=3 | d:val=512.4,rch=767,surv=12,col=False  l:val=548.4,rch=771,surv=12,col=False
+pos=(27,7) en=(13,24) depth=3 | d:val=538.4,rch=767,surv=12,col=False  l:val=546.5,rch=764,surv=12,col=False
+pos=(27,11) en=(13,24) depth=3 | d:val=515.4,rch=758,surv=12,col=False  l:val=556.4,rch=763,surv=12,col=False  r:val=524.5,rch=764,surv=12,col=False
+pos=(23,11) en=(13,24) depth=3 | u:val=487.3,rch=758,surv=12,col=False  d:val=561.4,rch=756,surv=12,col=False  l:val=430.0,rch=759,surv=12,col=False
+pos=(23,18) en=(13,24) depth=3 | r:val=544.4,rch=750,surv=12,col=False
+pos=(29,18) en=(13,24) depth=3 | u:val=496.3,rch=742,surv=12,col=False  d:val=115.1,rch=745,surv=12,col=False
+pos=(29,10) en=(13,24) depth=3 | u:val=476.3,rch=740,surv=12,col=False
+pos=(29,8) en=(13,24) depth=3 | u:val=468.3,rch=702,surv=12,col=False  r:val=452.2,rch=705,surv=12,col=False
+pos=(30,8) en=(13,24) depth=3 | d:val=449.2,rch=703,surv=12,col=False  r:val=297.6,rch=704,surv=12,col=False
+pos=(30,10) en=(13,24) depth=3 | d:val=446.2,rch=697,surv=12,col=False
+pos=(30,16) en=(13,24) depth=3 | d:val=408.1,rch=695,surv=12,col=False
+pos=(30,18) en=(13,24) depth=3 | d:val=418.2,rch=692,surv=12,col=False
+pos=(30,21) en=(13,24) depth=3 | l:val=375.0,rch=690,surv=12,col=False
+pos=(28,21) en=(13,24) depth=3 | u:val=366.0,rch=689,surv=12,col=False  d:val=160.3,rch=688,surv=12,col=False  l:val=346.8,rch=683,surv=12,col=False
+pos=(28,20) en=(13,24) depth=3 | l:val=324.8,rch=684,surv=12,col=False
+pos=(23,20) en=(13,24) depth=3 | l:val=351.8,rch=683,surv=12,col=False
+pos=(22,20) en=(13,24) depth=3 | u:val=97.4,rch=669,surv=11,col=False  l:val=-629.4,rch=298,surv=9,col=False
+pos=(22,14) en=(13,24) depth=3 | u:val=-142.8,rch=668,surv=10,col=False
+pos=(22,13) en=(13,24) depth=3 | u:val=-349.9,rch=659,surv=9,col=False
+pos=(22,4) en=(13,24) depth=3 | l:val=-576.1,rch=657,surv=8,col=False
+pos=(20,4) en=(13,24) depth=3 | d:val=-807.3,rch=653,surv=7,col=False
+pos=(20,8) en=(13,24) depth=3 | d:val=-1016.4,rch=648,surv=6,col=False
+pos=(20,13) en=(13,24) depth=3 | d:val=-1843.2,rch=646,surv=4,col=False  l:val=-1559.9,rch=641,surv=5,col=False
+pos=(13,13) en=(13,24) depth=3 | d:val=-3386.3,rch=640,surv=1,col=False  l:val=-1808.1,rch=635,surv=4,col=False
+pos=(7,13) en=(13,24) depth=3 | u:val=-2375.6,rch=515,surv=3,col=False
+pos=(7,8) en=(13,24) depth=3 | u:val=-2620.8,rch=513,surv=2,col=False
+pos=(7,6) en=(13,24) depth=3 | r:val=-3765.9,rch=16,surv=1,col=False
+pos=(16,6) en=(13,24) depth=3 | d:val=-4034.3,rch=6,surv=0,col=False
+pos=(31,26) en=(9,20) depth=3 | d:val=-212.3,rch=970,surv=12,col=False  l:val=165.9,rch=966,surv=12,col=False
+pos=(24,26) en=(6,20) depth=3 | l:val=415.8,rch=954,surv=12,col=False
+pos=(15,26) en=(6,14) depth=3 | u:val=458.0,rch=939,surv=12,col=False  l:val=441.0,rch=944,surv=12,col=False
+pos=(11,26) en=(6,13) depth=3 | u:val=445.9,rch=938,surv=12,col=False  l:val=178.3,rch=942,surv=12,col=False
+pos=(11,21) en=(6,12) depth=3 | u:val=476.0,rch=933,surv=12,col=False  l:val=-368.7,rch=931,surv=12,col=False  r:val=449.0,rch=933,surv=12,col=False
+pos=(11,17) en=(6,8) depth=3 | r:val=471.2,rch=926,surv=12,col=False
+pos=(14,17) en=(6,4) depth=3 | u:val=395.6,rch=919,surv=12,col=False  d:val=271.6,rch=919,surv=12,col=False  r:val=310.4,rch=914,surv=12,col=False
+pos=(14,14) en=(14,4) depth=3 | u:val=-142.9,rch=910,surv=12,col=False  r:val=382.9,rch=905,surv=12,col=False
+pos=(20,14) en=(20,4) depth=3 | d:val=335.8,rch=897,surv=12,col=False  r:val=-108.1,rch=897,surv=12,col=False
+pos=(20,16) en=(20,8) depth=3 | l:val=-380.8,rch=890,surv=12,col=False  r:val=282.5,rch=892,surv=12,col=False
+pos=(21,16) en=(22,8) depth=3 | r:val=468.5,rch=889,surv=12,col=False
+pos=(22,16) en=(30,8) depth=3 | u:val=13.0,rch=880,surv=10,col=False  r:val=358.0,rch=878,surv=11,col=False
+pos=(25,16) en=(30,9) depth=3 | u:val=-306.2,rch=872,surv=10,col=False
+pos=(25,11) en=(30,13) depth=3 | r:val=-1087.5,rch=866,surv=9,col=False
+pos=(27,11) en=(31,13) depth=3 | d:val=-1293.7,rch=859,surv=8,col=False
+pos=(27,17) en=(31,7) depth=3 | l:val=-1684.9,rch=155,surv=7,col=False
+pos=(20,17) en=(23,7) depth=3 | d:val=-2384.6,rch=148,surv=4,col=False  l:val=-1940.7,rch=150,surv=6,col=False
+pos=(15,17) en=(23,5) depth=3 | u:val=-3238.4,rch=10,surv=2,col=False  d:val=-2190.8,rch=139,surv=5,col=False
+pos=(15,18) en=(23,0) depth=3 | d:val=-2831.4,rch=132,surv=2,col=False  l:val=-2360.0,rch=136,surv=4,col=False
+pos=(12,18) en=(20,0) depth=3 | d:val=-2600.2,rch=129,surv=3,col=False
+pos=(12,25) en=(19,0) depth=3 | r:val=-2835.3,rch=125,surv=2,col=False
+pos=(16,25) en=(10,0) depth=3 | u:val=-3630.7,rch=100,surv=1,col=False  r:val=-3588.6,rch=121,surv=1,col=False
+pos=(20,25) en=(10,1) depth=3 | u:val=-3837.7,rch=117,surv=0,col=False  r:val=-3835.1,rch=115,surv=0,col=False
+pos=(23,3) en=(30,19) depth=3 | u:val=149.2,rch=957,surv=12,col=False  l:val=439.9,rch=957,surv=12,col=False
+pos=(20,3) en=(30,10) depth=3 | u:val=603.5,rch=945,surv=12,col=False  l:val=698.8,rch=939,surv=12,col=False
+pos=(11,3) en=(30,2) depth=3 | d:val=806.2,rch=929,surv=12,col=False  l:val=833.3,rch=922,surv=12,col=False
+pos=(11,5) en=(24,2) depth=3 | l:val=865.4,rch=894,surv=12,col=False  r:val=-493.5,rch=891,surv=12,col=False
+pos=(6,5) en=(24,0) depth=3 | u:val=744.0,rch=890,surv=12,col=False  d:val=899.7,rch=886,surv=12,col=False  l:val=774.2,rch=889,surv=12,col=False
+pos=(6,11) en=(28,0) depth=3 | d:val=1056.0,rch=875,surv=12,col=False  l:val=893.5,rch=880,surv=12,col=False  r:val=1071.0,rch=876,surv=12,col=False
+pos=(12,11) en=(28,0) depth=3 | d:val=1069.0,rch=868,surv=12,col=False
+pos=(12,19) en=(28,0) depth=3 | d:val=1026.9,rch=863,surv=12,col=False  l:val=1058.9,rch=865,surv=12,col=False  r:val=1025.9,rch=865,surv=12,col=False
+pos=(9,19) en=(28,0) depth=3 | u:val=647.7,rch=862,surv=12,col=False  d:val=1047.9,rch=863,surv=12,col=False  l:val=1071.9,rch=864,surv=12,col=False
+pos=(8,19) en=(28,0) depth=3 | u:val=818.2,rch=857,surv=12,col=False  d:val=1084.9,rch=857,surv=12,col=False
+pos=(8,26) en=(28,0) depth=3 | l:val=858.5,rch=854,surv=12,col=False  r:val=1073.9,rch=848,surv=12,col=False
+pos=(17,26) en=(28,0) depth=3 | d:val=962.8,rch=846,surv=12,col=False  r:val=1090.9,rch=840,surv=12,col=False
+pos=(25,26) en=(28,0) depth=3 | u:val=996.9,rch=837,surv=12,col=False  r:val=1066.9,rch=835,surv=12,col=False
+pos=(30,26) en=(28,0) depth=3 | u:val=1051.8,rch=834,surv=12,col=False  d:val=274.2,rch=830,surv=12,col=False
+pos=(30,25) en=(28,0) depth=3 | u:val=48.6,rch=830,surv=12,col=False  l:val=1050.8,rch=829,surv=12,col=False
+pos=(25,25) en=(28,0) depth=3 | u:val=919.9,rch=827,surv=12,col=False  l:val=1031.8,rch=823,surv=12,col=False
+pos=(19,25) en=(28,0) depth=3 | u:val=1005.8,rch=818,surv=12,col=False
+pos=(19,20) en=(28,0) depth=3 | l:val=966.6,rch=812,surv=12,col=False  r:val=895.7,rch=817,surv=12,col=False
+pos=(13,20) en=(28,0) depth=3 | u:val=778.9,rch=755,surv=12,col=False
+pos=(13,17) en=(28,0) depth=3 | r:val=761.8,rch=746,surv=12,col=False
+pos=(22,17) en=(28,0) depth=3 | d:val=631.4,rch=556,surv=12,col=False
+pos=(22,24) en=(28,0) depth=3 | r:val=618.4,rch=521,surv=12,col=False
+pos=(31,24) en=(28,0) depth=3 | d:val=600.3,rch=440,surv=12,col=False
+pos=(31,31) en=(28,0) depth=3 | l:val=583.3,rch=432,surv=12,col=False
+pos=(23,31) en=(28,0) depth=3 | l:val=565.3,rch=423,surv=12,col=False
+pos=(14,31) en=(28,0) depth=3 | l:val=546.3,rch=419,surv=12,col=False
+pos=(10,31) en=(28,0) depth=3 | u:val=436.0,rch=415,surv=12,col=False  l:val=537.2,rch=413,surv=12,col=False
+pos=(4,31) en=(28,0) depth=3 | u:val=514.2,rch=405,surv=12,col=False  l:val=519.2,rch=412,surv=12,col=False
+pos=(3,31) en=(28,0) depth=3 | u:val=519.2,rch=404,surv=12,col=False
+pos=(3,23) en=(28,0) depth=3 | u:val=528.2,rch=395,surv=12,col=False
+pos=(3,14) en=(28,0) depth=3 | u:val=507.2,rch=392,surv=12,col=False  r:val=482.2,rch=394,surv=12,col=False
+pos=(3,11) en=(28,0) depth=3 | l:val=501.2,rch=391,surv=12,col=False
+pos=(2,11) en=(28,0) depth=3 | u:val=336.5,rch=385,surv=12,col=False  d:val=462.2,rch=390,surv=12,col=False
+pos=(2,12) en=(28,0) depth=3 | d:val=461.2,rch=387,surv=12,col=False
+pos=(2,15) en=(28,0) depth=3 | d:val=461.0,rch=381,surv=12,col=False
+pos=(2,21) en=(28,0) depth=3 | l:val=445.0,rch=379,surv=12,col=False
+pos=(0,21) en=(28,0) depth=3 | u:val=441.0,rch=342,surv=12,col=False
+pos=(0,14) en=(28,0) depth=3 | u:val=426.0,rch=340,surv=12,col=False
+pos=(0,12) en=(28,0) depth=3 | u:val=423.0,rch=338,surv=12,col=False
+pos=(0,10) en=(28,0) depth=3 | u:val=420.0,rch=332,surv=12,col=False
+pos=(0,4) en=(28,0) depth=3 | r:val=403.0,rch=329,surv=12,col=False
+pos=(3,4) en=(28,0) depth=3 | d:val=402.0,rch=326,surv=12,col=False
+pos=(3,7) en=(28,0) depth=3 | r:val=396.9,rch=325,surv=12,col=False
+pos=(4,7) en=(28,0) depth=3 | d:val=398.8,rch=322,surv=12,col=False
+pos=(4,10) en=(28,0) depth=3 | d:val=168.4,rch=290,surv=11,col=False
+pos=(4,17) en=(28,0) depth=3 | d:val=-296.7,rch=287,surv=9,col=False  r:val=-70.2,rch=288,surv=10,col=False
+pos=(6,17) en=(28,0) depth=3 | d:val=-298.9,rch=286,surv=9,col=False
+pos=(6,19) en=(28,0) depth=3 | d:val=-522.1,rch=277,surv=8,col=False
+pos=(6,28) en=(28,0) depth=3 | r:val=-771.8,rch=275,surv=7,col=False
+pos=(8,28) en=(28,0) depth=3 | d:val=-1032.5,rch=273,surv=6,col=False  r:val=-1450.4,rch=266,surv=4,col=False
+pos=(8,30) en=(28,0) depth=3 | l:val=-2296.1,rch=28,surv=3,col=False  r:val=-1269.5,rch=235,surv=5,col=False
+pos=(16,30) en=(28,0) depth=3 | r:val=-1518.1,rch=233,surv=4,col=False
+pos=(18,30) en=(28,0) depth=3 | u:val=-1757.8,rch=231,surv=3,col=False  r:val=-1752.8,rch=231,surv=3,col=False
+pos=(18,28) en=(28,0) depth=3 | l:val=-2216.7,rch=227,surv=2,col=False  r:val=-3645.0,rch=224,surv=0,col=False
+pos=(14,28) en=(28,0) depth=3 | d:val=-3382.4,rch=226,surv=1,col=False
+pos=(14,29) en=(28,0) depth=3 | r:val=-4042.4,rch=3,surv=0,col=False
+pos=(26,30) en=(20,7) depth=3 | l:val=321.4,rch=971,surv=12,col=False
+pos=(17,31) en=(25,12) depth=3 | l:val=305.4,rch=951,surv=12,col=False  r:val=-621.0,rch=955,surv=12,col=False
+pos=(8,31) en=(25,18) depth=3 | u:val=38.6,rch=941,surv=12,col=False  l:val=-132.3,rch=938,surv=12,col=False
+pos=(8,27) en=(25,19) depth=3 | u:val=426.9,rch=619,surv=12,col=False  r:val=519.3,rch=621,surv=12,col=False
+pos=(15,27) en=(28,19) depth=3 | u:val=544.2,rch=618,surv=12,col=False  d:val=471.2,rch=620,surv=12,col=False  r:val=501.2,rch=618,surv=12,col=False
+pos=(15,24) en=(28,13) depth=3 | u:val=510.1,rch=612,surv=12,col=False  l:val=505.2,rch=615,surv=12,col=False  r:val=543.2,rch=612,surv=12,col=False
+pos=(21,24) en=(31,13) depth=3 | u:val=554.5,rch=607,surv=12,col=False
+pos=(21,19) en=(31,22) depth=3 | l:val=712.0,rch=605,surv=12,col=False
+pos=(19,19) en=(27,22) depth=3 | u:val=663.6,rch=478,surv=12,col=False  l:val=732.0,rch=602,surv=12,col=False
+pos=(16,19) en=(27,26) depth=3 | u:val=732.0,rch=600,surv=12,col=False  d:val=733.0,rch=601,surv=12,col=False  l:val=706.0,rch=596,surv=12,col=False
+pos=(16,20) en=(27,29) depth=3 | l:val=789.0,rch=599,surv=12,col=False
+pos=(14,20) en=(27,29) depth=3 | u:val=789.0,rch=592,surv=12,col=False  d:val=727.9,rch=573,surv=12,col=False  l:val=755.0,rch=595,surv=12,col=False
+pos=(14,13) en=(27,29) depth=3 | u:val=776.0,rch=591,surv=12,col=False  l:val=774.0,rch=583,surv=12,col=False
+pos=(14,12) en=(27,29) depth=3 | u:val=781.0,rch=590,surv=12,col=False  l:val=731.0,rch=582,surv=12,col=False
+pos=(14,11) en=(27,29) depth=3 | l:val=783.9,rch=581,surv=12,col=False
+pos=(5,11) en=(27,29) depth=3 | u:val=721.9,rch=579,surv=12,col=False  d:val=758.9,rch=573,surv=12,col=False  l:val=710.9,rch=580,surv=12,col=False
+pos=(5,19) en=(27,29) depth=3 | d:val=740.9,rch=567,surv=12,col=False  r:val=732.9,rch=569,surv=12,col=False
+pos=(9,19) en=(27,29) depth=3 | d:val=561.3,rch=563,surv=12,col=False
+pos=(9,25) en=(27,29) depth=3 | l:val=545.3,rch=554,surv=12,col=False
+pos=(0,25) en=(27,29) depth=3 | u:val=522.2,rch=381,surv=12,col=False
+pos=(0,18) en=(27,29) depth=3 | u:val=511.2,rch=379,surv=12,col=False
+pos=(0,16) en=(27,29) depth=3 | u:val=509.2,rch=375,surv=12,col=False  r:val=507.2,rch=378,surv=12,col=False
+pos=(1,16) en=(27,29) depth=3 | u:val=491.2,rch=370,surv=12,col=False  d:val=513.2,rch=372,surv=12,col=False
+pos=(1,22) en=(27,29) depth=3 | r:val=501.2,rch=370,surv=12,col=False
+pos=(3,22) en=(27,29) depth=3 | u:val=517.2,rch=361,surv=12,col=False
+pos=(3,13) en=(27,29) depth=3 | u:val=492.2,rch=355,surv=12,col=False
+pos=(3,7) en=(27,29) depth=3 | l:val=483.2,rch=353,surv=12,col=False
+pos=(1,7) en=(27,29) depth=3 | d:val=480.1,rch=351,surv=12,col=False
+pos=(1,9) en=(27,29) depth=3 | d:val=475.1,rch=350,surv=12,col=False  l:val=3.6,rch=350,surv=10,col=False
+pos=(1,10) en=(27,29) depth=3 | d:val=458.1,rch=347,surv=12,col=False
+pos=(1,13) en=(27,29) depth=3 | l:val=232.8,rch=346,surv=11,col=False
+pos=(0,13) en=(27,29) depth=3 | u:val=12.6,rch=324,surv=10,col=False
+pos=(0,9) en=(27,29) depth=3 | u:val=-226.7,rch=316,surv=9,col=False
+pos=(0,1) en=(27,29) depth=3 | r:val=-471.9,rch=309,surv=8,col=False
+pos=(7,1) en=(27,29) depth=3 | d:val=-742.1,rch=296,surv=7,col=False
+pos=(7,6) en=(27,29) depth=3 | l:val=-976.0,rch=293,surv=6,col=False
+pos=(4,6) en=(27,29) depth=3 | u:val=-3718.0,rch=27,surv=1,col=False  d:val=-1213.7,rch=263,surv=5,col=False  l:val=-4001.2,rch=27,surv=0,col=False
+pos=(4,9) en=(27,29) depth=3 | d:val=-2244.6,rch=34,surv=3,col=False  r:val=-1445.2,rch=262,surv=4,col=False
+pos=(5,9) en=(27,29) depth=3 | r:val=-1676.8,rch=260,surv=3,col=False
+pos=(7,9) en=(27,29) depth=3 | r:val=-1906.1,rch=246,surv=2,col=False
+pos=(15,9) en=(27,29) depth=3 | d:val=-3415.0,rch=193,surv=1,col=False  r:val=-3348.2,rch=245,surv=1,col=False
+pos=(16,9) en=(27,29) depth=3 | d:val=-3626.3,rch=241,surv=0,col=False

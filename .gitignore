@@ -39,3 +39,4 @@ Thumbs.db
 
 replays/
 *.jsonl
+.claude/worktrees/

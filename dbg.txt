@@ -1,0 +1,13 @@
+pos=(23,23) en=(8,8) depth=3 | u:val=192.2,rch=1022,surv=12,col=False  d:val=279.2,rch=1018,surv=12,col=False  l:val=392.6,rch=1016,surv=12,col=False  r:val=274.4,rch=1019,surv=12,col=False
+pos=(16,23) en=(10,8) depth=3 | u:val=400.7,rch=1013,surv=12,col=False  d:val=394.7,rch=1013,surv=12,col=False  l:val=184.8,rch=1005,surv=12,col=False
+pos=(16,22) en=(10,13) depth=3 | u:val=346.4,rch=1005,surv=12,col=False  l:val=226.4,rch=1007,surv=12,col=False  r:val=32.6,rch=999,surv=12,col=False
+pos=(16,19) en=(1,13) depth=3 | u:val=806.3,rch=993,surv=12,col=False  l:val=724.8,rch=990,surv=12,col=False  r:val=629.4,rch=992,surv=12,col=False
+pos=(16,16) en=(1,20) depth=3 | u:val=444.8,rch=984,surv=12,col=False  l:val=368.5,rch=982,surv=12,col=False  r:val=439.8,rch=985,surv=12,col=False
+pos=(17,16) en=(1,28) depth=3 | u:val=470.9,rch=969,surv=12,col=False  d:val=438.0,rch=972,surv=12,col=False  r:val=490.0,rch=975,surv=12,col=False
+pos=(19,16) en=(6,28) depth=3 | u:val=370.5,rch=962,surv=12,col=False  d:val=274.2,rch=965,surv=12,col=False  r:val=456.9,rch=967,surv=12,col=False
+pos=(22,16) en=(14,28) depth=3 | u:val=307.3,rch=951,surv=12,col=False  d:val=-49.0,rch=955,surv=12,col=False  r:val=365.5,rch=955,surv=12,col=False
+pos=(26,16) en=(20,28) depth=3 | u:val=536.2,rch=946,surv=12,col=False  d:val=888.4,rch=947,surv=12,col=False
+pos=(26,18) en=(29,28) depth=3 | d:val=395.8,rch=932,surv=12,col=False  l:val=-286.7,rch=929,surv=12,col=False
+pos=(26,24) en=(29,25) depth=3 | d:val=158.2,rch=926,surv=12,col=False  l:val=279.5,rch=865,surv=12,col=False  r:val=482.2,rch=928,surv=12,col=False
+pos=(27,24) en=(29,16) depth=3 | u:val=-1200.5,rch=914,surv=0,col=False
+pos=(27,19) en=(29,12) depth=3 | u:val=518.0,rch=903,surv=12,col=True
