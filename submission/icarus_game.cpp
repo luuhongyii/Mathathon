@@ -16,7 +16,9 @@
 //    pick the finishing bid with the highest success probability. Only when
 //    finishing is genuinely risky AND every opponent is far away do we spend a
 //    round advancing safely to set up a safer finish.
-// Everything is exact and deterministic -- no RNG, no timing, cannot time out.
+// Pack / best-response opponents bid in a tight cluster under each other.
+// When detected, prefer riding just below the observed ceiling instead of
+// the independent-model EV peak (which over-bids and keeps getting blocked).
 
 #include <algorithm>
 #include <array>
@@ -27,6 +29,41 @@
 using namespace std;
 
 static const int TARGET = 999;
+
+// Tunable strategy parameters. These are the SINGLE source of truth shared
+// (by value) with icarus_game.py and the LearnedBot in icarus_rl_train.py.
+// The RL tuner searches this exact set; keep the three files in lockstep.
+struct Params {
+    // Values below are the CEM-tuned set (eval: 598/768 outright wins).
+    double no_info_floor   = 0.0171807;   // uniform floor on every opponent dist
+    double recency_decay   = 0.624394;    // kernel recency weight base
+    double tight_sd_mul    = 1.29265;     // sigT = mul*sd + add ...
+    double tight_sd_add    = 0.280066;
+    double trust_base      = 0.05;        // kTrust = base + sd_mul*sd + n_mul/n
+    double trust_sd_mul    = 0.462153;
+    double trust_n_mul     = 7.00283;
+    double trend_mul       = 0.508882;    // trend shift = mul * slope
+    double block_up        = 8.88151;     // blockBias increment when blocked
+    double block_down      = 1.15079;     // blockBias decay when not blocked
+    double block_cap       = 66.0955;     // blockBias hard ceiling
+    double finish_safe     = 0.697257;    // pSafe needed to take a finish shot
+    double setup_safe      = 0.691082;    // pSafe needed to spend a setup round
+    // Tight-kernel (best-responder pack) branch.
+    double tight_sd_thresh = 1.5;      // sd below this -> tight reliable shield
+    double tight_sigma     = 0.2;      // sigT override inside the tight branch
+    double tight_w_boost   = 0.0845868;// extra weight on the tight kernel
+    // Shield / pack-riding thresholds.
+    double shield_safe1    = 0.661246; // ride ceiling-1 if pSafe >= this ...
+    double shield_evfrac1  = 0.981208; // ... and EV >= bestEV * this
+    double shield_safe2    = 0.793981; // deeper shield candidate gate
+    double shield_safe3    = 0.917121; // final shield accept gate ...
+    double shield_evfrac3  = 0.886851; // ... and EV >= bestEV * this
+    double match_safe      = 0.545142; // low-cum match gate
+    double match_evfrac    = 0.859635; // low-cum match EV fraction
+    double block_shift_cap = 19.5093;  // max effective blockBias shift in pSafe
+};
+
+static const Params PARAMS;
 
 array<vector<int>, 4> bidHist;   // observed bids (cumulative deltas)
 array<bool, 4> alive = {true, true, true, true};
@@ -39,6 +76,9 @@ bool haveLast = false;
 // risk assessment downward until I am safely under them, then decays away.
 // Down-only: probing upward is unsafe near a hard ceiling (a constant bidder).
 double blockBias = 0.0;
+
+// Field's top bid per round, for the descending-war guard (see warCap).
+vector<int> topHist;
 
 int clampBid(int x) { return x < 1 ? 1 : (x > 100 ? 100 : x); }
 
@@ -86,8 +126,9 @@ void normalize(array<double, 101>& a) {
 array<double, 101> kernelDist(const vector<int>& h, double sigma) {
     array<double, 101> d{};
     int n = (int)h.size();
+    if (sigma < 0.05) sigma = 0.05;
     for (int k = 0; k < n; ++k) {
-        double recw = pow(0.70, n - 1 - k);  // exponential recency decay
+        double recw = pow(PARAMS.recency_decay, n - 1 - k);  // recency decay
         int v = h[k];
         for (int b = 1; b <= 100; ++b) {
             double dd = b - v;
@@ -126,13 +167,20 @@ array<double, 101> oppDist(int i, int oppPos) {
         // centred on the data, NOT uniform, so a reliable high bidder is still
         // treated as a reliable shield. Trust the tight estimate more with more
         // data and lower spread; with little data, lean on the wide hedge.
-        double sigT = clamp(0.85 * sd + 0.35, 0.35, 9.0);
-        double sigW = max(15.0, 2.5 * sigT);
+        // Tight recent cluster -> treat as a reliable shield (best-responders).
+        double sigT;
+        bool tightBranch = (sd < PARAMS.tight_sd_thresh);
+        if (tightBranch) sigT = PARAMS.tight_sigma;
+        else sigT = clamp(PARAMS.tight_sd_mul * sd + PARAMS.tight_sd_add, 0.35, 9.0);
+        double sigW = max(12.0, 2.2 * sigT);
         array<double, 101> tight = kernelDist(h, sigT);
         array<double, 101> wide = kernelDist(h, sigW);
 
-        double kTrust = clamp(0.3 + 0.33 * sd + 4.5 / n, 0.3, 9.0);
+        double kTrust = clamp(PARAMS.trust_base + PARAMS.trust_sd_mul * sd +
+                                  PARAMS.trust_n_mul / n,
+                              0.25, 9.0);
         double w = n / (n + kTrust);
+        if (tightBranch) w = min(0.92, w + PARAMS.tight_w_boost);
         for (int b = 1; b <= 100; ++b)
             p[b] = w * tight[b] + (1.0 - w) * wide[b];
 
@@ -144,9 +192,13 @@ array<double, 101> oppDist(int i, int oppPos) {
             double m1 = 0.0, m2 = 0.0;
             for (int k = n - L; k < n - L + half; ++k) m1 += h[k];
             for (int k = n - half; k < n; ++k) m2 += h[k];
-            // per-round slope, projected ~1.5 rounds forward
-            double slope = (m2 / half - m1 / half) / half;
-            double shift = clamp(1.5 * slope, -9.0, 9.0);
+            // m1, m2 are the two half-window *means*; slope then divides their
+            // difference by `half` again (matches the Python reference, which
+            // divides by `half` twice in total -- once per mean, once here).
+            m1 /= half;
+            m2 /= half;
+            double slope = (m2 - m1) / half;
+            double shift = clamp(PARAMS.trend_mul * slope, -9.0, 9.0);
 
             // Skip extrapolation when the most recent bids are already flat:
             // an opponent that ramped up early and has since plateaued (a
@@ -177,14 +229,18 @@ array<double, 101> oppDist(int i, int oppPos) {
     }
 
     // Tiny uniform floor: never assign a bid exactly zero probability.
-    double floorW = 0.01;
+    double floorW = PARAMS.no_info_floor;
     for (int b = 1; b <= 100; ++b)
         p[b] = (1.0 - floorW) * p[b] + floorW / 100.0;
 
     // Finisher adjustment: an opponent within finishing range will likely bid
-    // at or above its remaining distance to cross the line.
+    // at or above its remaining distance to cross the line -- BUT only if its
+    // recent bidding shows it will actually bid that high. A spiralled-down
+    // crawler (recent bid far below its distance) keeps crawling; modelling it
+    // as a finisher overestimates its bids and makes us over-bid into the pack
+    // and get blocked.
     int dist = TARGET - oppPos;
-    if (dist >= 1 && dist <= 100) {
+    if (dist >= 1 && dist <= 100 && (n == 0 || h.back() >= dist - 4)) {
         array<double, 101> fin{};
         double fs = 0.0;
         for (int b = dist; b <= 100; ++b) {
@@ -213,8 +269,52 @@ array<double, 101> oppDist(int i, int oppPos) {
 struct OppInfo {
     int cum;
     int dist;
+    int lastBid = 0;
     array<double, 101> cdf;  // cdf[b] = P(bid <= b), cdf[0] = 0
 };
+
+// True when opponents look like a spiralling best-response pack.
+static bool detectPack(const vector<OppInfo>& opps) {
+    if ((int)opps.size() < 2) return false;
+    vector<int> recent;
+    for (const OppInfo& o : opps) {
+        if (o.lastBid >= 1) recent.push_back(o.lastBid);
+    }
+    if ((int)recent.size() < 2) return false;
+    int lo = recent[0], hi = recent[0];
+    for (int b : recent) {
+        lo = min(lo, b);
+        hi = max(hi, b);
+    }
+    return (hi - lo) <= 10;
+}
+
+static int recentCeil(const vector<OppInfo>& opps) {
+    vector<int> bids;
+    for (const OppInfo& o : opps)
+        if (o.lastBid >= 1) bids.push_back(o.lastBid);
+    if (bids.empty()) return 0;
+    sort(bids.begin(), bids.end(), greater<int>());
+    return bids.size() >= 2 ? bids[1] : bids[0];
+}
+
+// Safe bid ceiling during a descending bid war (else a no-op high cap of 1000).
+// In a war the pack's top bid drops ~2-3/round; the EV/shield logic still
+// targets last round's stale (higher) top, so a bid "safely under" it ties the
+// new top and gets blocked. Extrapolate the descent and cap our bid a margin
+// under the predicted next top. The monotonic check keeps the guard from
+// mis-firing on noisy opponents that are not in a war.
+static int warCap(const vector<int>& th, bool pack) {
+    int m = (int)th.size();
+    if (!pack || m < 3) return 1000;
+    int a = th[m - 3], b = th[m - 2], c = th[m - 1];
+    if (a < b || b < c) return 1000;  // require a consistent descent
+    double drop = (a - c) / 2.0;
+    if (drop < 1.0) return 1000;
+    if (drop > 12.0) drop = 12.0;
+    int cap = (int)(c - drop - 2.0);
+    return cap >= 1 ? cap : 1;
+}
 
 int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
     int myCum = cum[0], myDist = TARGET - pos[0];
@@ -225,13 +325,25 @@ int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
         OppInfo o;
         o.cum = cum[i];
         o.dist = TARGET - pos[i];
+        const vector<int>& h = bidHist[i];
+        o.lastBid = h.empty() ? 0 : h.back();
         array<double, 101> d = oppDist(i, pos[i]);
         o.cdf[0] = 0.0;
         for (int b = 1; b <= 100; ++b) o.cdf[b] = o.cdf[b - 1] + d[b];
         opps.push_back(o);
     }
 
+    // Track the field's top bid each round for the descending-war guard.
+    int curTop = 0;
+    for (const OppInfo& o : opps) curTop = max(curTop, o.lastBid);
+    if (curTop >= 1) {
+        topHist.push_back(curTop);
+        if ((int)topHist.size() > 12) topHist.erase(topHist.begin());
+    }
+
     if (opps.empty()) return 1;  // alone: cannot move, just answer validly
+
+    int ceilBid = recentCeil(opps);
 
     // Exact probability that my bid b is the blocked one.
     // Blocked iff every lower-cum opponent bids < b and every equal/higher-cum
@@ -243,8 +355,16 @@ int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
         if (idx >= 100) return 1.0;
         return o.cdf[idx];
     };
+    // The effective shift is capped so a large accumulated blockBias cannot
+    // push `hi` far past 100: that would saturate every opponent CDF to 1.0,
+    // collapse pSafe to 0, and lock the bot into bidding 1-2 for many rounds.
     auto pSafe = [&](int b) -> double {
-        int hi = b + (int)lround(blockBias);
+        int shift = (int)lround(blockBias);
+        if (shift > (int)PARAMS.block_shift_cap) shift = (int)PARAMS.block_shift_cap;
+        if (ceilBid >= 8 && b + 3 <= ceilBid)
+            shift = min(shift, max(0, ceilBid - b - 2));
+        int hi = b + shift;
+        if (hi > 100) hi = 100;  // saturate gently at the bid ceiling
         double pb = 1.0;
         for (const OppInfo& o : opps)
             pb *= (o.cum < myCum) ? cdfAt(o, hi - 1) : cdfAt(o, hi);
@@ -254,22 +374,25 @@ int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
     if (myDist >= 1 && myDist <= 100) {
         // I can reach the line this round. Pick the finishing bid (>= myDist)
         // most likely to get through unblocked.
+        // A bigger finishing bid (>= myDist) only helps when a rival is ALSO
+        // finishing this round: overshooting TARGET wins the final position
+        // tie-break. If nobody else can finish, bid the minimal safe finish
+        // -- a b*pSafe over-bid would stick out above the pack and get us
+        // blocked while leading.
+        bool oppFinishing = false;
+        for (const auto &o : opps)
+            if (o.dist <= 100 && o.lastBid >= o.dist - 4) oppFinishing = true;
         int bFin = myDist;
-        double psFin = -1.0;
+        double psFin = -1.0, finEV = -1.0;
         for (int b = myDist; b <= 100; ++b) {
             double ps = pSafe(b);
-            if (ps > psFin) { psFin = ps; bFin = b; }
+            double ev = oppFinishing ? (double)b * ps : ps;
+            if (ev > finEV || (ev == finEV && ps > psFin)) {
+                finEV = ev;
+                psFin = ps;
+                bFin = b;
+            }
         }
-
-        // A safe finish dominates everything else -- take it.
-        if (psFin >= 0.80) return bFin;
-
-        // An opponent whose distance is within one bid can cross the line next
-        // round: there is no time to set up, take the best finish shot now.
-        bool oppCanFinish = false;
-        for (const OppInfo& o : opps)
-            if (o.dist <= 100) oppCanFinish = true;
-        if (oppCanFinish) return bFin;
 
         // Finishing now is risky -- my finishing bid (>= myDist) sticks out
         // above a spiralled-down pack and would make me Icarus -- and nobody
@@ -282,8 +405,31 @@ int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
             double ev = b * pSafe(b);
             if (ev > bestEV) { bestEV = ev; bSet = b; }
         }
-        if (bSet > 0 && pSafe(bSet) >= 0.70) return bSet;
-        return bFin;
+
+        // A safe finish dominates everything else -- take it.
+        if (psFin >= PARAMS.finish_safe) return bFin;
+
+        // If a rival is already at least as far as we are and can finish, there
+        // is no time to set up. But it counts as urgent only if its recent bid
+        // is actually large enough to finish: a rival that could reach the line
+        // yet is bidding far below its distance (a spiralled-down pack) will not
+        // finish next round, and panicking with a doomed finishing bid above
+        // the pack just gets us blocked.
+        bool urgentFinish = false;
+        for (const OppInfo& o : opps)
+            if (o.dist <= 100 && TARGET - o.dist >= pos[0] && o.lastBid >= o.dist - 4)
+                urgentFinish = true;
+        if (urgentFinish) return bFin;
+
+        if (bSet > 0 && pSafe(bSet) >= PARAMS.setup_safe) return bSet;
+        // EV-best setup is too risky -- but DON'T fall back to bFin: a doomed
+        // full-distance bid sticks out alone above a low pack and is a certain
+        // block that freezes us. Step down to the safest setup bid available.
+        int safeSet = 0;
+        for (int b = 1; b < myDist; ++b)
+            if (pSafe(b) >= PARAMS.setup_safe) safeSet = b;
+        if (safeSet > 0) return safeSet;
+        return bSet > 0 ? bSet : bFin;
     }
 
     // Cannot finish yet: maximise expected position gain.
@@ -293,6 +439,42 @@ int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
         double ev = b * pSafe(b);
         if (ev > bestEV) { bestEV = ev; best = b; }
     }
+
+    bool pack = detectPack(opps) || blockBias >= 8.0;
+    // Descending-war guard: cap every non-finishing bid so we never tie the
+    // pack's (descending) top -- see warCap.
+    int cap = warCap(topHist, pack);
+    if (pack && ceilBid >= 8) {
+        int shield = clamp(ceilBid - 1, 1, 100);
+        double shieldEV = shield * pSafe(shield);
+        // Ride just under the pack when it beats the naive EV peak.
+        if (pSafe(shield) >= PARAMS.shield_safe1 &&
+            shieldEV >= bestEV * PARAMS.shield_evfrac1)
+            return min(shield, cap);
+        for (int d = 2; d <= 4; ++d) {
+            int sb = clamp(ceilBid - d, 1, 100);
+            double ev = sb * pSafe(sb);
+            if (pSafe(sb) >= PARAMS.shield_safe2 && ev > shieldEV) {
+                shieldEV = ev;
+                shield = sb;
+            }
+        }
+        if (pSafe(shield) >= PARAMS.shield_safe3 &&
+            shieldEV >= bestEV * PARAMS.shield_evfrac3)
+            return min(shield, cap);
+        if (best > ceilBid) best = clamp(ceilBid - 1, 1, 100);
+    }
+
+    // Lowest cumulative: can match the pack without losing tie-breaks as often.
+    int minOppCum = opps[0].cum;
+    for (const OppInfo& o : opps) minOppCum = min(minOppCum, o.cum);
+    if (myCum <= minOppCum && pack && ceilBid >= 5) {
+        int match = clamp(ceilBid, 1, 100);
+        if (pSafe(match) >= PARAMS.match_safe &&
+            match * pSafe(match) > bestEV * PARAMS.match_evfrac)
+            return min(match, cap);
+    }
+
 #ifdef DBG
     fprintf(stderr, "dist=%d bias=%.0f best=%d EV=%.1f | ", myDist, blockBias,
             best, bestEV);
@@ -303,7 +485,7 @@ int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
                 o.cum, o.dist, o.cdf[85], o.cdf[90], o.cdf[94], o.cdf[95]);
     fprintf(stderr, "\n");
 #endif
-    return best;
+    return min(best, cap);
 }
 
 int main() {
@@ -325,8 +507,8 @@ int main() {
         if (haveLast) {
             int myBid = cum[0] - lastCum[0];
             bool blocked = (pos[0] == lastPos[0]) && myBid > 0;
-            if (blocked) blockBias = min(48.0, blockBias + 9.0);
-            else         blockBias = max(0.0, blockBias - 3.0);
+            if (blocked) blockBias = min(PARAMS.block_cap, blockBias + PARAMS.block_up);
+            else         blockBias = max(0.0, blockBias - PARAMS.block_down);
         }
 
         updateMemory(pos, cum);
