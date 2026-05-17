@@ -71,6 +71,7 @@ static const Params PARAMS;
 
 array<vector<int>, 4> bidHist;   // observed bids (cumulative deltas)
 array<bool, 4> alive = {true, true, true, true};
+array<bool, 4> blockedLast = {false, false, false, false};
 array<int, 4> zeroStreak = {0, 0, 0, 0};
 array<int, 4> lastPos{}, lastCum{};
 bool haveLast = false;
@@ -80,6 +81,7 @@ bool haveLast = false;
 // risk assessment downward until I am safely under them, then decays away.
 // Down-only: probing upward is unsafe near a hard ceiling (a constant bidder).
 double blockBias = 0.0;
+bool myBlockedLast = false;
 
 // Field's top bid per round, for the descending-war guard (see warCap).
 vector<int> topHist;
@@ -89,13 +91,17 @@ int clampBid(int x) { return x < 1 ? 1 : (x > 100 ? 100 : x); }
 void updateMemory(const array<int, 4>& pos, const array<int, 4>& cum) {
     if (!haveLast) return;
     for (int i = 0; i < 4; ++i) {
+        blockedLast[i] = false;
         if (!alive[i]) continue;
         int dc = cum[i] - lastCum[i];
+        if (dc > 0 && pos[i] == lastPos[i])
+            blockedLast[i] = true;
 
         // A player whose totals were reset to 0 has died.
         if (dc < 0 || (pos[i] == 0 && cum[i] == 0 && lastCum[i] > 0)) {
             alive[i] = false;
             bidHist[i].clear();
+            blockedLast[i] = false;
             continue;
         }
         // A live player always bids >= 1, so its cumulative total grows every
@@ -280,6 +286,7 @@ struct OppInfo {
     int cum;
     int dist;
     int lastBid = 0;
+    bool blocked = false;
     array<double, 101> cdf;  // cdf[b] = P(bid <= b), cdf[0] = 0
 };
 
@@ -302,7 +309,12 @@ static bool detectPack(const vector<OppInfo>& opps) {
 static int recentCeil(const vector<OppInfo>& opps) {
     vector<int> bids;
     for (const OppInfo& o : opps)
-        if (o.lastBid >= 1) bids.push_back(o.lastBid);
+        if (o.lastBid >= 1 && !(o.blocked && o.lastBid >= 25))
+            bids.push_back(o.lastBid);
+    if (bids.empty()) {
+        for (const OppInfo& o : opps)
+            if (o.lastBid >= 1) bids.push_back(o.lastBid);
+    }
     if (bids.empty()) return 0;
     sort(bids.begin(), bids.end(), greater<int>());
     return bids.size() >= 2 ? bids[1] : bids[0];
@@ -317,6 +329,9 @@ static int recentCeil(const vector<OppInfo>& opps) {
 static int warCap(const vector<int>& th, bool pack) {
     int m = (int)th.size();
     if (!pack || m < 3) return 1000;
+    if (m >= 4 && th[m - 4] <= 4 && th[m - 3] <= 4 &&
+        th[m - 2] <= 4 && th[m - 1] <= 4)
+        return 1;
     int a = th[m - 3], b = th[m - 2], c = th[m - 1];
     if (a < b || b < c) return 1000;  // require a consistent descent
     double drop = (a - c) / 2.0;
@@ -337,6 +352,7 @@ int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
         o.dist = TARGET - pos[i];
         const vector<int>& h = bidHist[i];
         o.lastBid = h.empty() ? 0 : h.back();
+        o.blocked = blockedLast[i];
         array<double, 101> d = oppDist(i, pos[i]);
         o.cdf[0] = 0.0;
         for (int b = 1; b <= 100; ++b) o.cdf[b] = o.cdf[b - 1] + d[b];
@@ -345,7 +361,9 @@ int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
 
     // Track the field's top bid each round for the descending-war guard.
     int curTop = 0;
-    for (const OppInfo& o : opps) curTop = max(curTop, o.lastBid);
+    for (const OppInfo& o : opps)
+        if (!(o.blocked && o.lastBid >= 25))
+            curTop = max(curTop, o.lastBid);
     if (curTop >= 1) {
         topHist.push_back(curTop);
         if ((int)topHist.size() > 12) topHist.erase(topHist.begin());
@@ -454,6 +472,11 @@ int chooseBid(const array<int, 4>& pos, const array<int, 4>& cum) {
     // Descending-war guard: cap every non-finishing bid so we never tie the
     // pack's (descending) top -- see warCap.
     int cap = warCap(topHist, pack);
+    for (const OppInfo& o : opps)
+        if (o.blocked && o.lastBid >= 25)
+            cap = min(cap, max(1, ceilBid));
+    if (myBlockedLast && ceilBid >= 8)
+        cap = min(cap, max(1, ceilBid - 6));
     if (pack && ceilBid >= 8) {
         int shield = clamp(ceilBid - 1, 1, 100);
         double shieldEV = shield * pSafe(shield);
@@ -517,8 +540,11 @@ int main() {
         if (haveLast) {
             int myBid = cum[0] - lastCum[0];
             bool blocked = (pos[0] == lastPos[0]) && myBid > 0;
+            myBlockedLast = blocked;
             if (blocked) blockBias = min(PARAMS.block_cap, blockBias + PARAMS.block_up);
             else         blockBias = max(0.0, blockBias - PARAMS.block_down);
+        } else {
+            myBlockedLast = false;
         }
 
         updateMemory(pos, cum);

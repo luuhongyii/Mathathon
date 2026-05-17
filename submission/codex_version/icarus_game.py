@@ -54,6 +54,7 @@ PARAMS = Params()
 
 bid_hist = [[] for _ in range(4)]   # observed bids (cumulative deltas)
 alive = [True, True, True, True]
+blocked_last = [False, False, False, False]
 zero_streak = [0, 0, 0, 0]
 last_pos = [0, 0, 0, 0]
 last_cum = [0, 0, 0, 0]
@@ -62,6 +63,7 @@ have_last = False
 # Feedback term: when blocked, opponents bid lower than the model thinks.
 # Shifts risk assessment downward until safely under them, then decays away.
 block_bias = 0.0
+my_blocked_last = False
 
 # Field's top bid per round, for the descending-war guard (see war_cap).
 top_hist = []
@@ -84,14 +86,18 @@ def update_memory(pos, cum):
     if not have_last:
         return
     for i in range(4):
+        blocked_last[i] = False
         if not alive[i]:
             continue
         dc = cum[i] - last_cum[i]
+        if dc > 0 and pos[i] == last_pos[i]:
+            blocked_last[i] = True
 
         # A player whose totals were reset to 0 has died.
         if dc < 0 or (pos[i] == 0 and cum[i] == 0 and last_cum[i] > 0):
             alive[i] = False
             bid_hist[i].clear()
+            blocked_last[i] = False
             continue
         # A live player always bids >= 1, so its cumulative total grows every
         # round. No growth means the player was not prompted (dead).
@@ -241,12 +247,13 @@ def opp_dist(i, opp_pos):
 
 
 class OppInfo:
-    __slots__ = ("cum", "dist", "last_bid", "cdf")
+    __slots__ = ("cum", "dist", "last_bid", "blocked", "cdf")
 
     def __init__(self):
         self.cum = 0
         self.dist = 0
         self.last_bid = 0
+        self.blocked = False
         self.cdf = [0.0] * 101  # cdf[b] = P(bid <= b), cdf[0] = 0
 
 
@@ -261,7 +268,12 @@ def detect_pack(opps):
 
 
 def recent_ceil(opps):
-    bids = sorted((o.last_bid for o in opps if o.last_bid >= 1), reverse=True)
+    bids = sorted((o.last_bid for o in opps
+                   if o.last_bid >= 1 and not (o.blocked and o.last_bid >= 25)),
+                  reverse=True)
+    if not bids:
+        bids = sorted((o.last_bid for o in opps if o.last_bid >= 1),
+                      reverse=True)
     if not bids:
         return 0
     return bids[1] if len(bids) >= 2 else bids[0]
@@ -300,6 +312,7 @@ def choose_bid(pos, cum):
         o.dist = TARGET - pos[i]
         h = bid_hist[i]
         o.last_bid = h[-1] if h else 0
+        o.blocked = blocked_last[i]
         d = opp_dist(i, pos[i])
         o.cdf[0] = 0.0
         for b in range(1, 101):
@@ -309,7 +322,8 @@ def choose_bid(pos, cum):
     # Track the field's top bid each round for the descending-war guard.
     cur_top = 0
     for o in opps:
-        cur_top = max(cur_top, o.last_bid)
+        if not (o.blocked and o.last_bid >= 25):
+            cur_top = max(cur_top, o.last_bid)
     if cur_top >= 1:
         top_hist.append(cur_top)
         if len(top_hist) > 12:
@@ -410,6 +424,11 @@ def choose_bid(pos, cum):
     pack = detect_pack(opps) or block_bias >= 8.0
     # Descending-war guard: cap every non-finishing bid.
     cap = war_cap(top_hist, pack)
+    for o in opps:
+        if o.blocked and o.last_bid >= 25:
+            cap = min(cap, max(1, ceil_bid))
+    if my_blocked_last and ceil_bid >= 8:
+        cap = min(cap, max(1, ceil_bid - 6))
     if pack and ceil_bid >= 8:
         shield = clampi(ceil_bid - 1, 1, 100)
         shield_ev = shield * p_safe(shield)
@@ -443,7 +462,7 @@ def choose_bid(pos, cum):
 
 
 def main():
-    global have_last, block_bias
+    global have_last, block_bias, my_blocked_last
 
     buf = []
     for line in sys.stdin:
@@ -459,11 +478,14 @@ def main():
             if have_last:
                 my_bid = cum[0] - last_cum[0]
                 blocked = (pos[0] == last_pos[0]) and my_bid > 0
+                my_blocked_last = blocked
                 if blocked:
                     block_bias = min(PARAMS.block_cap,
                                      block_bias + PARAMS.block_up)
                 else:
                     block_bias = max(0.0, block_bias - PARAMS.block_down)
+            else:
+                my_blocked_last = False
 
             update_memory(pos, cum)
             sys.stdout.write(str(clamp_bid(choose_bid(pos, cum))) + "\n")
